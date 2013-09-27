@@ -37,7 +37,7 @@ static OdbcEnvironment * sharedInstance = 0;
                              NSStringFromClass ([self class]),
                              NSStringFromSelector (@selector (sharedInstance))];
     }
-    
+        
     self = [super init];
     
     [self allocHandle];
