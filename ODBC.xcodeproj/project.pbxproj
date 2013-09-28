@@ -26,7 +26,6 @@
 		6A27E2C017D8FCAF0070E6B7 /* OdbcStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2B017D8FCAF0070E6B7 /* OdbcStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */; };
 		6A27E2CA17D90EC20070E6B7 /* Odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E29A17D8FC490070E6B7 /* Odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A744FAA17F78CC6000793B2 /* Odbc-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A744FA917F78CC6000793B2 /* Odbc-Info.plist */; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
 /* End PBXBuildFile section */
@@ -55,8 +54,8 @@
 		6A27E2AF17D8FCAF0070E6B7 /* OdbcResultDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcResultDescriptor.m; sourceTree = "<group>"; };
 		6A27E2B017D8FCAF0070E6B7 /* OdbcStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStatement.h; sourceTree = "<group>"; };
 		6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStatement.m; sourceTree = "<group>"; };
-		6A744FA917F78CC6000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
+		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPrepareDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,8 +137,8 @@
 		6A27E29417D8FC490070E6B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6A744FAE17F795D9000793B2 /* Odbc-Info.plist */,
 				6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */,
-				6A744FA917F78CC6000793B2 /* Odbc-Info.plist */,
 				6A27E29617D8FC490070E6B7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -176,6 +175,7 @@
 				6A27E28617D8FC490070E6B7 /* Frameworks */,
 				6A27E28717D8FC490070E6B7 /* Headers */,
 				6A27E28817D8FC490070E6B7 /* Resources */,
+				6A744FAD17F79478000793B2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -218,11 +218,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A27E29817D8FC490070E6B7 /* InfoPlist.strings in Resources */,
-				6A744FAA17F78CC6000793B2 /* Odbc-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A744FAD17F79478000793B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo hej";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A27E28517D8FC490070E6B7 /* Sources */ = {
