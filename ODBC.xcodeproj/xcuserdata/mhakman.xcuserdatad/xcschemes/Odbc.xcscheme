@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6A27E28917D8FC490070E6B7"
-               BuildableName = "ODBC.framework"
-               BlueprintName = "ODBC"
-               ReferencedContainer = "container:ODBC.xcodeproj">
+               BuildableName = "Odbc.framework"
+               BlueprintName = "Odbc"
+               ReferencedContainer = "container:Odbc.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

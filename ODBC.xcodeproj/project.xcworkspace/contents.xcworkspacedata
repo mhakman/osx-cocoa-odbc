@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ODBC.xcodeproj">
+      location = "self:Odbc.xcodeproj">
    </FileRef>
 </Workspace>
