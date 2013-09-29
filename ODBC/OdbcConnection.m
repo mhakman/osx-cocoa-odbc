@@ -34,6 +34,26 @@
 
 @synthesize hdbc;
 
+- (OdbcStatement *) tablesCatalog : (NSString *) catalog
+                           schema : (NSString *) schema
+                            table : (NSString *) table
+                       tableTypes : (NSString *) tableTypes {
+    
+    SQLRETURN rc;
+    
+    OdbcStatement * stmt = [self newStatement];
+    
+    rc = SQLTables (stmt.hstmt,
+                    (SQLCHAR *)catalog.UTF8String,SQL_NTS,
+                    (SQLCHAR *)schema.UTF8String,SQL_NTS,
+                    (SQLCHAR *)table.UTF8String,SQL_NTS,
+                    (SQLCHAR *)tableTypes.UTF8String,SQL_NTS);
+
+    CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
+
+    return stmt;
+}
+
 - (NSArray *) tableTypes {
     
     SQLRETURN rc;

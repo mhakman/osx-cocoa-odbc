@@ -49,4 +49,9 @@
 
 - (OdbcStatement *) newStatement;
 
+- (OdbcStatement *) tablesCatalog : (NSString *) catalog
+                           schema : (NSString *) schema
+                            table : (NSString *) table
+                       tableTypes : (NSString *) tableTypes;
+
 @end

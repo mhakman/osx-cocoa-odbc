@@ -29,6 +29,38 @@
     [self schemas];
     
     [self tableTypes];
+    
+    [self tables];
+}
+
+- (void) tables {
+    
+    NSLog (@"%s",__PRETTY_FUNCTION__);
+    
+    OdbcStatement * tableStmt = [self->connection tablesCatalog : @"%" schema : @"%" table : @"%" tableTypes : @""];
+    
+    while ([tableStmt fetch]) {
+        
+        NSString * catalog = [tableStmt getStringByName : @"TABLE_CAT"];
+        
+        if (! catalog) catalog = @"";
+        
+        NSString * schema = [tableStmt getStringByName : @"TABLE_SCHEM"];
+        
+        if (! schema) schema = @"";
+        
+        NSString * table = [tableStmt getStringByName : @"TABLE_NAME"];
+        
+        NSString * tableType = [tableStmt getStringByName : @"TABLE_TYPE"];
+        
+        NSString * remarks = [tableStmt getStringByName : @"REMARKS"];
+        
+        if (! remarks) remarks = @"";
+        
+        NSLog (@"%@ %@ %@ %@ %@",catalog,schema,table,tableType,remarks);
+    }
+    
+    [tableStmt closeCursor];
 }
 
 - (void) tableTypes {
