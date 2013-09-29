@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>OdbcTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>6A27E28917D8FC490070E6B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A744FB317F867E1000793B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

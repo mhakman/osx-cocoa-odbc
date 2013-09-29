@@ -27,8 +27,26 @@
 		6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */; };
 		6A27E2CA17D90EC20070E6B7 /* Odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E29A17D8FC490070E6B7 /* Odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
+		6A744FB617F867E1000793B2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A744FB517F867E1000793B2 /* CoreFoundation.framework */; };
+		6A744FB917F867E1000793B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FB817F867E1000793B2 /* main.m */; };
+		6A744FBB17F867E1000793B2 /* OdbcTest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A744FBA17F867E1000793B2 /* OdbcTest.1 */; };
+		6A744FC117F86933000793B2 /* OdbcTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FC017F86933000793B2 /* OdbcTest.m */; };
+		6A744FC217F86B30000793B2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6A744FB217F867E1000793B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				6A744FBB17F867E1000793B2 /* OdbcTest.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6A1F1A1417F0EA980019B7CC /* iODBC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iODBC.framework; path = /Library/Frameworks/iODBC.framework; sourceTree = "<absolute>"; };
@@ -56,6 +74,12 @@
 		6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStatement.m; sourceTree = "<group>"; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
+		6A744FB417F867E1000793B2 /* OdbcTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OdbcTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A744FB517F867E1000793B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		6A744FB817F867E1000793B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6A744FBA17F867E1000793B2 /* OdbcTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OdbcTest.1; sourceTree = "<group>"; };
+		6A744FBF17F86933000793B2 /* OdbcTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcTest.h; sourceTree = "<group>"; };
+		6A744FC017F86933000793B2 /* OdbcTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcTest.m; sourceTree = "<group>"; };
 		6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPrepareDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +93,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A744FB117F867E1000793B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A744FB617F867E1000793B2 /* CoreFoundation.framework in Frameworks */,
+				6A744FC217F86B30000793B2 /* Odbc.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				6A27E29317D8FC490070E6B7 /* Odbc */,
+				6A744FB717F867E1000793B2 /* OdbcTest */,
 				6A27E28C17D8FC490070E6B7 /* Frameworks */,
 				6A27E28B17D8FC490070E6B7 /* Products */,
 			);
@@ -85,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				6A27E28A17D8FC490070E6B7 /* Odbc.framework */,
+				6A744FB417F867E1000793B2 /* OdbcTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +129,7 @@
 			children = (
 				6A1F1A1417F0EA980019B7CC /* iODBC.framework */,
 				6A27E28D17D8FC490070E6B7 /* Cocoa.framework */,
+				6A744FB517F867E1000793B2 /* CoreFoundation.framework */,
 				6A27E28F17D8FC490070E6B7 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -144,6 +180,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6A744FB717F867E1000793B2 /* OdbcTest */ = {
+			isa = PBXGroup;
+			children = (
+				6A744FB817F867E1000793B2 /* main.m */,
+				6A744FBA17F867E1000793B2 /* OdbcTest.1 */,
+				6A744FBF17F86933000793B2 /* OdbcTest.h */,
+				6A744FC017F86933000793B2 /* OdbcTest.m */,
+			);
+			path = OdbcTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -187,6 +234,23 @@
 			productReference = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		6A744FB317F867E1000793B2 /* OdbcTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A744FBE17F867E1000793B2 /* Build configuration list for PBXNativeTarget "OdbcTest" */;
+			buildPhases = (
+				6A744FB017F867E1000793B2 /* Sources */,
+				6A744FB117F867E1000793B2 /* Frameworks */,
+				6A744FB217F867E1000793B2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OdbcTest;
+			productName = OdbcTest;
+			productReference = 6A744FB417F867E1000793B2 /* OdbcTest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -209,6 +273,7 @@
 			projectRoot = "";
 			targets = (
 				6A27E28917D8FC490070E6B7 /* Odbc */,
+				6A744FB317F867E1000793B2 /* OdbcTest */,
 			);
 		};
 /* End PBXProject section */
@@ -266,6 +331,15 @@
 				6A27E2BF17D8FCAF0070E6B7 /* OdbcResultDescriptor.m in Sources */,
 				6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */,
 				6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A744FB017F867E1000793B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A744FB917F867E1000793B2 /* main.m in Sources */,
+				6A744FC117F86933000793B2 /* OdbcTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +464,24 @@
 			};
 			name = Release;
 		};
+		6A744FBC17F867E1000793B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				LD_RUNPATH_SEARCH_PATHS = "/Library/Frameworks $(TARGET_BUILD_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6A744FBD17F867E1000793B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				LD_RUNPATH_SEARCH_PATHS = "/Library/Frameworks $(TARGET_BUILD_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -407,6 +499,15 @@
 			buildConfigurations = (
 				6A27E2A017D8FC490070E6B7 /* Debug */,
 				6A27E2A117D8FC490070E6B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A744FBE17F867E1000793B2 /* Build configuration list for PBXNativeTarget "OdbcTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A744FBC17F867E1000793B2 /* Debug */,
+				6A744FBD17F867E1000793B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
