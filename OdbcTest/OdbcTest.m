@@ -23,6 +23,15 @@
 - (void) run {
     
     [self connect];
+    
+    [self catalogs];
+}
+
+- (void) catalogs {
+    
+    NSArray * catalogs = [self->connection catalogs];
+    
+    NSLog (@"%s %@",__PRETTY_FUNCTION__,catalogs);
 }
 
 - (void) connect {

@@ -33,6 +33,8 @@
 
 @property (readonly) NSString * username;
 
+@property (readonly,nonatomic) NSArray * catalogs;
+
 - (void) connect : (NSString *) server user : (NSString *) user password : (NSString *) password;
 
 - (void) disconnect;

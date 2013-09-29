@@ -22,12 +22,41 @@
 
 @property NSString * username;
 
-    
+@property NSArray * catalogs;
+
 @end
 
 @implementation OdbcConnection
 
 @synthesize hdbc;
+
+- (NSArray *) catalogs {
+    
+    SQLRETURN rc;
+    
+    OdbcStatement * stmt = [self newStatement];
+    
+    rc = SQLTables (stmt.hstmt,
+                    (SQLCHAR *)SQL_ALL_CATALOGS,SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS);
+    
+    CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
+    
+    NSMutableArray * catalogs = [NSMutableArray new];
+    
+    while ([stmt fetch]) {
+        
+        NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
+        
+        [catalogs addObject : catalog];
+    }
+    
+    [stmt closeCursor];
+    
+    return catalogs;
+}
 
 - (bool) autocommit {
     
