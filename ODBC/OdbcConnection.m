@@ -26,11 +26,41 @@
 
 @property NSArray * schemas;
 
+@property NSArray * tableTypes;
+
 @end
 
 @implementation OdbcConnection
 
 @synthesize hdbc;
+
+- (NSArray *) tableTypes {
+    
+    SQLRETURN rc;
+    
+    OdbcStatement * stmt = [self newStatement];
+    
+    rc = SQLTables (stmt.hstmt,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)SQL_ALL_TABLE_TYPES,SQL_NTS);
+    
+    CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
+    
+    NSMutableArray * tableTypes = [NSMutableArray new];
+    
+    while ([stmt fetch]) {
+        
+        NSString * tableType = [stmt getStringByName : @"TABLE_TYPE"];
+                
+        [tableTypes addObject : tableType];
+    }
+    
+    [stmt closeCursor];
+    
+    return tableTypes;
+}
 
 - (NSArray *) schemas {
     

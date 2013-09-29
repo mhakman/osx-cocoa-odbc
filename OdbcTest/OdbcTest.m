@@ -27,6 +27,15 @@
     [self catalogs];
     
     [self schemas];
+    
+    [self tableTypes];
+}
+
+- (void) tableTypes {
+    
+    NSArray * tableTypes = [self->connection tableTypes];
+    
+    NSLog (@"%s table types %@",__PRETTY_FUNCTION__,tableTypes);
 }
 
 - (void) schemas {

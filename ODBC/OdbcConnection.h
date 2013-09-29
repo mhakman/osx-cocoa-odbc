@@ -37,6 +37,8 @@
 
 @property (readonly,nonatomic) NSArray * schemas;
 
+@property (readonly,nonatomic) NSArray * tableTypes;
+
 - (void) connect : (NSString *) server user : (NSString *) user password : (NSString *) password;
 
 - (void) disconnect;
