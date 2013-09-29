@@ -173,6 +173,7 @@
 				6A27E28617D8FC490070E6B7 /* Frameworks */,
 				6A27E28717D8FC490070E6B7 /* Headers */,
 				6A27E28817D8FC490070E6B7 /* Resources */,
+				6A744FC317F88E0E000793B2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -192,7 +193,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mikael Hakman";
 			};
-			buildConfigurationList = 6A27E28417D8FC490070E6B7 /* Build configuration list for PBXProject "ODBC" */;
+			buildConfigurationList = 6A27E28417D8FC490070E6B7 /* Build configuration list for PBXProject "Odbc" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -219,6 +220,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A744FC317F88E0E000793B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ln -s -f -h \"$FRAMEWORK_VERSION\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Versions/Current\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A27E28517D8FC490070E6B7 /* Sources */ = {
@@ -328,6 +345,11 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ODBC/ODBC-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"FRAMEWORK_VERSION=$(FRAMEWORK_VERSION)",
+				);
 				INFOPLIST_FILE = "ODBC/ODBC-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
@@ -356,7 +378,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A27E28417D8FC490070E6B7 /* Build configuration list for PBXProject "ODBC" */ = {
+		6A27E28417D8FC490070E6B7 /* Build configuration list for PBXProject "Odbc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A27E29D17D8FC490070E6B7 /* Debug */,

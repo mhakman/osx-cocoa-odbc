@@ -8,6 +8,9 @@
 
 #import "OdbcEnvironment.h"
 
+#define XSTR(x) STR(x)
+#define STR(x) #x
+
 static OdbcEnvironment * sharedInstance = 0;
 
 @implementation OdbcEnvironment
@@ -37,6 +40,12 @@ static OdbcEnvironment * sharedInstance = 0;
                              NSStringFromClass ([self class]),
                              NSStringFromSelector (@selector (sharedInstance))];
     }
+    
+#if DEBUG
+    
+    NSLog (@"Odbc version %s",XSTR(FRAMEWORK_VERSION));
+    
+#endif
     
     self = [super init];
     
