@@ -25,13 +25,22 @@
     [self connect];
     
     [self catalogs];
+    
+    [self schemas];
+}
+
+- (void) schemas {
+    
+    NSArray * schemas = [self->connection schemas];
+    
+    NSLog (@"%s schemas %@",__PRETTY_FUNCTION__,schemas);
 }
 
 - (void) catalogs {
     
     NSArray * catalogs = [self->connection catalogs];
     
-    NSLog (@"%s %@",__PRETTY_FUNCTION__,catalogs);
+    NSLog (@"%s catalogs %@",__PRETTY_FUNCTION__,catalogs);
 }
 
 - (void) connect {

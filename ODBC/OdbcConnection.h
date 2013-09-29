@@ -35,6 +35,8 @@
 
 @property (readonly,nonatomic) NSArray * catalogs;
 
+@property (readonly,nonatomic) NSArray * schemas;
+
 - (void) connect : (NSString *) server user : (NSString *) user password : (NSString *) password;
 
 - (void) disconnect;

@@ -24,11 +24,43 @@
 
 @property NSArray * catalogs;
 
+@property NSArray * schemas;
+
 @end
 
 @implementation OdbcConnection
 
 @synthesize hdbc;
+
+- (NSArray *) schemas {
+    
+    SQLRETURN rc;
+    
+    OdbcStatement * stmt = [self newStatement];
+    
+    rc = SQLTables (stmt.hstmt,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)SQL_ALL_SCHEMAS,SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS,
+                    (SQLCHAR *)"",SQL_NTS);
+    
+    CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
+    
+    NSMutableArray * schemas = [NSMutableArray new];
+    
+    while ([stmt fetch]) {
+        
+        NSString * schema = [stmt getStringByName : @"TABLE_SCHEM"];
+        
+        if (! schema) schema = @"";
+        
+        [schemas addObject : schema];
+    }
+    
+    [stmt closeCursor];
+    
+    return schemas;
+}
 
 - (NSArray *) catalogs {
     
