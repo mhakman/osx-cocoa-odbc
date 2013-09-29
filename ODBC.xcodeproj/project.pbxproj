@@ -439,6 +439,11 @@
 				FRAMEWORK_VERSION = B;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Odbc/Odbc-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"FRAMEWORK_VERSION=$(FRAMEWORK_VERSION)",
+				);
 				INFOPLIST_FILE = "Odbc/Odbc-Info.plist";
 				PRODUCT_NAME = Odbc;
 				WRAPPER_EXTENSION = framework;
