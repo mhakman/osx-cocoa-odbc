@@ -22,6 +22,6 @@
 
 + (OdbcColumnDescriptor *) descriptorWithStatement : (OdbcStatement *) stmt columnNumber : (int) colNo;
 
-- (OdbcColumnDescriptor *) initWithStatement : (OdbcStatement *) stmt columnNumber : (int) colNo; 
+- (OdbcColumnDescriptor *) initWithStatement : (OdbcStatement *) stmt columnNumber : (int) colNo;
 
 @end

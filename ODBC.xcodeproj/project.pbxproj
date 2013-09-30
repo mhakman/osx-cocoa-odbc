@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		6A744FC417F8E1D6000793B2 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				6A744FC817F8E215000793B2 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6A1F1A1517F0EA980019B7CC /* iODBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F1A1417F0EA980019B7CC /* iODBC.framework */; };
 		6A27E28E17D8FC490070E6B7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
@@ -80,6 +94,7 @@
 		6A744FBA17F867E1000793B2 /* OdbcTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OdbcTest.1; sourceTree = "<group>"; };
 		6A744FBF17F86933000793B2 /* OdbcTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcTest.h; sourceTree = "<group>"; };
 		6A744FC017F86933000793B2 /* OdbcTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcTest.m; sourceTree = "<group>"; };
+		6A744FC917F8E3E9000793B2 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPrepareDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +123,7 @@
 		6A27E28017D8FC490070E6B7 = {
 			isa = PBXGroup;
 			children = (
+				6A744FC917F8E3E9000793B2 /* readme.markdown */,
 				6A27E29317D8FC490070E6B7 /* Odbc */,
 				6A744FB717F867E1000793B2 /* OdbcTest */,
 				6A27E28C17D8FC490070E6B7 /* Frameworks */,
@@ -274,6 +290,7 @@
 			targets = (
 				6A27E28917D8FC490070E6B7 /* Odbc */,
 				6A744FB317F867E1000793B2 /* OdbcTest */,
+				6A744FC417F8E1D6000793B2 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -315,6 +332,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ln -s -f -h \"$FRAMEWORK_VERSION\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Versions/Current\"";
+		};
+		6A744FC817F8E215000793B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/Documentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/Documentation/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -487,6 +517,20 @@
 			};
 			name = Release;
 		};
+		6A744FC517F8E1D6000793B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6A744FC617F8E1D6000793B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -516,6 +560,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A744FC517F8E1D6000793B2 /* Debug */,
+				6A744FC617F8E1D6000793B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
