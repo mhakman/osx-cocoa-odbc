@@ -162,6 +162,38 @@
     return targetValue;
 }
 
+- (NSDate *) getDateByName : (NSString *) columnName {
+    
+    int colNumber = [self.resultDescriptor columnNumberFor : columnName];
+
+    return [self getDate : colNumber];
+}
+
+- (NSDate *) getDate : (int) colNumber {
+    
+    SQL_DATE_STRUCT targetValue;
+    
+    [self getData : colNumber valueType : SQL_C_TYPE_DATE targetPtr : &targetValue valueSize : sizeof(targetValue)];
+    
+    if (self->wasNull) return nil;
+    
+    NSDateComponents * dateComps = [NSDateComponents new];
+    
+    dateComps.year = targetValue.year;
+    
+    dateComps.month = targetValue.month;
+    
+    dateComps.day = targetValue.day;
+        
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    NSDate * date = [gregorian dateFromComponents: dateComps];
+    
+    return date;
+}
+
 - (void) getData : (int) columnNumber
        valueType : (short) valueType
        targetPtr : (void *) targetPtr
@@ -286,6 +318,13 @@
     OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
     
     desc.doubleValue = value;
+}
+
+- (void) setDate : (int) parameterNumber value : (NSDate *) value{
+
+    OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
+
+    desc.dateValue = value;
 }
 
 - (void) execute {

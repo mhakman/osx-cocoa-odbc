@@ -132,6 +132,29 @@
     strcpy (self.parameterValue.charPtr,valuec);
 }
 
+- (void) setDateValue : (NSDate *) value {
+    
+    SQLSMALLINT type = SQL_C_TYPE_DATE;
+    
+    SQLULEN size = sizeof (SQL_DATE_STRUCT);
+    
+    [self bindIfRequiredType : type size : size];
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+        
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents * dateComps = [gregorian components : unitFlags fromDate : value];
+    
+    self.parameterValue.datePtr->year = dateComps.year;
+    
+    self.parameterValue.datePtr->month = dateComps.month;
+    
+    self.parameterValue.datePtr->day = dateComps.day;
+}
+
 - (void) bindIfRequiredType : (SQLSMALLINT) type size : (SQLULEN) size {
  
     SQLRETURN rc;

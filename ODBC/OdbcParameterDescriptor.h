@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #import <sql.h>
+#import <sqlext.h>
+#import <sqltypes.h>
 
 @class OdbcStatement;
 
 typedef union parameter_value_def {
     
-    void   * voidPtr;
-    long   * longPtr;
-    char   * charPtr;
-    double * doublePtr;
+    void            * voidPtr;
+    long            * longPtr;
+    char            * charPtr;
+    double          * doublePtr;
+    SQL_DATE_STRUCT * datePtr;
     
 } PARAMETER_VALUE;
 
@@ -48,6 +51,7 @@ typedef union parameter_value_def {
 @property (nonatomic) long             longValue;
 @property (nonatomic) NSString       * stringValue;
 @property (nonatomic) double           doubleValue;
+@property (nonatomic) NSDate         * dateValue;
 
 + (OdbcParameterDescriptor *) descriptorWithStatement : (OdbcStatement *) stmt parameterNumber : (int) paramNumber;
 

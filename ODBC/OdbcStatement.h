@@ -55,10 +55,16 @@
 
 - (double) getDoubleByName : (NSString *) columnName;
 
+- (NSDate *) getDate : (int) columnNumber;
+
+- (NSDate *) getDateByName : (NSString *) columnName;
+
 - (void) setLong : (int) parameterNumber value : (long) value;
 
 - (void) setString : (int) parameterNumber value : (NSString *) value;
 
 - (void) setDouble : (int) parameterNumber value : (double) value;
+
+- (void) setDate : (int) parameterNumber value : (NSDate *) value;
 
 @end

@@ -22,6 +22,25 @@
     [super tearDown];
 }
 
+- (NSDate *) dateYear : (int) year month : (int) month day : (int) day {
+    
+    NSDateComponents * dateComps = [NSDateComponents new];
+    
+    dateComps.year = year;
+    
+    dateComps.month = month;
+    
+    dateComps.day = day;
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    NSDate * date = [gregorian dateFromComponents: dateComps];
+    
+    return date;
+}
+
 - (void) testStatementWithConnection {
     
     OdbcStatement * stmt = [OdbcStatement statementWithConnection : self->connection];
@@ -202,6 +221,12 @@
         double price = [self->statement getDouble : 3];
         
         STAssertEquals (price,3.3,@"");
+        
+        NSDate * date1 = [self->statement getDate : 4];
+        
+        NSDate * date2 = [self dateYear : 2003 month : 3 day : 3];
+        
+        STAssertEquals (date1,date2,@"");
     }
     
     STAssertEquals(rowCount,3,@"");
@@ -234,6 +259,12 @@
         double price = [self->statement getDoubleByName : @"price"];
         
         STAssertEquals (price,3.3,@"");
+        
+        NSDate * date1 = [self->statement getDateByName : @"date"];
+                
+        NSDate * date2 = [self dateYear : 2003 month : 3 day : 3];
+
+        STAssertEquals (date1,date2,@"");
     }
     
     STAssertEquals (rowCount,3,@"");
@@ -245,13 +276,17 @@
 
 - (void) testSetData {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ?"];
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ?"];
     
     [self->statement setLong : 1 value : 1];
     
     [self->statement setString : 2 value : @"Name 1"];
     
     [self->statement setDouble : 3 value : 1.1];
+    
+    NSDate * date = [self dateYear : 2001 month : 1 day : 1];
+    
+    [self->statement setDate : 4 value : date];
     
     [self->statement execute];
     
@@ -272,6 +307,10 @@
     [self->statement setString : 2 value : @"Name 2"];
     
     [self->statement setDouble : 3 value : 2.2];
+    
+    date = [self dateYear : 2002 month : 2 day : 2];
+    
+    [self->statement setDate : 4 value : date];
     
     [self->statement execute];
     

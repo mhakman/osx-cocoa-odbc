@@ -53,7 +53,7 @@
 
 - (void) testCommit {
     
-    NSString * sql = @"insert into testtab values (10,'Testing commit',10)";
+    NSString * sql = @"insert into testtab values (10,'Testing commit',10,'2010-10-10')";
     
     OdbcStatement * stmt = [self->connection newStatement];
     
@@ -88,7 +88,7 @@
 
 - (void) testRollback {
     
-    NSString * sql = @"insert into testtab values (10,'Testing commit',10)";
+    NSString * sql = @"insert into testtab values (10,'Testing commit',10,'2010-10-10')";
     
     OdbcStatement * stmt = [self->connection newStatement];
     

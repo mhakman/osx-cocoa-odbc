@@ -45,9 +45,9 @@
     
     [self deleteTestRows];
     
-    NSString * sql = @"insert into testtab values (1,'Name 1',1.1),"
-                      "                           (2,'Name 2',2.2),"
-                      "                           (3,'Name 3',3.3)";
+    NSString * sql = @"insert into testtab values (1,'Name 1',1.1,'2001-01-01'),"
+                      "                           (2,'Name 2',2.2,'2002-02-02'),"
+                      "                           (3,'Name 3',3.3,'2003-03-03')";
     
     OdbcStatement * stmt = [self->connection newStatement];
     
@@ -74,7 +74,8 @@
     NSString * createSql = @"create table testtab ("
                             " id    bigint not null unique primary key,"
                             " name  varchar(128) not null unique,"
-                            " price decimal(13,2)"
+                            " price decimal(13,2),"
+                            " date  date"
                             ")";
     
     OdbcStatement * createStmt = [self->connection newStatement];
