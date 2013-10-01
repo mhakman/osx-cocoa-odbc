@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OdbcTests/OdbcTests.m"
-         timestampString = "402273508.436561"
+         timestampString = "402323718.064141"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "92"
-         endingLineNumber = "92"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
          landmarkName = "-dropTestTable"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OdbcTests/OdbcTests.m"
-         timestampString = "402273508.436561"
+         timestampString = "402323718.064141"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
          landmarkName = "-dropTestTable"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OdbcTests/OdbcTests.m"
-         timestampString = "402273508.436561"
+         timestampString = "402323718.064141"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "107"
+         endingLineNumber = "107"
          landmarkName = "-tearDown"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OdbcTests/OdbcTests.m"
-         timestampString = "402273508.436561"
+         timestampString = "402323718.064141"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "109"
+         endingLineNumber = "109"
          landmarkName = "-tearDown"
          landmarkType = "5">
       </FileBreakpoint>

@@ -10,120 +10,30 @@
 
 #import <Odbc/Odbc.h>
 
-@interface ConnectionTests () {
+@interface ConnectionTests ()
     
-@protected
-    
-    OdbcConnection * connection;
-}
-
 @end
 
 @implementation ConnectionTests
 
 - (void) setUp {
     
-    [super setUp];
-    
-    [self connect];
-    
-    [self createTestTable];
-    
-    [self insertTestRows];
-}
-
-- (void) connect {
-    
-    self->connection = [OdbcConnection new];
-    
-    [self->connection connect : @"testdb" user : @"root" password : nil];    
-}
-
-- (void) disconnect {
-    
-    [self->connection disconnect];
-}
-
-- (void) insertTestRows {
-    
-    [self deleteTestRows];
-    
-    NSString * sql = @"insert into testtab values (1,'Name 1',1.1),"
-                      "                           (2,'Name 2',2.2),"
-                      "                           (3,'Name 3',3.3)";
-    
-    OdbcStatement * stmt = [self->connection newStatement];
-    
-    [stmt execDirect : sql];
-    
-    [self->connection commit];
-}
-
-- (void) deleteTestRows {
-        
-    NSString * sql = @"delete from testtab";
-    
-    OdbcStatement * stmt = [self->connection newStatement];
-    
-    [stmt execDirect : sql];
-    
-    [self->connection commit];
-}
-
-- (void) createTestTable {
-    
-    [self dropTestTable];
-    
-    NSString * createSql = @"create table testtab ("
-                            " id    bigint not null unique primary key,"
-                            " name  varchar(128) not null unique,"
-                            " price decimal(13,2)"
-                            ")";
-    
-    OdbcStatement * createStmt = [self->connection newStatement];
-    
-    [createStmt execDirect : createSql];
-    
-    [self->connection commit];
-}
-
-- (void) dropTestTable {
-    
-    NSString * dropSql = @"drop table testtab";
-    
-    OdbcStatement * dropStmt = [self->connection newStatement];
-    
-    bool tableExists = YES;
-    
-    @try {
-        
-        [dropStmt execDirect : dropSql];
-        
-    } @catch (OdbcException * exception) {
-        
-        tableExists = NO;
-    }
-    
-    [self->connection commit];
+    [super setUp];    
 }
 
 - (void) tearDown {
     
-    //[self dropTestTable];
-    
-    [self->connection disconnect];
-    
-    [super tearDown];
+    [super tearDown];    
 }
 
-- (void) testConnectionNew {
+- (void) testNew {
     
     OdbcConnection * newConnection = [OdbcConnection new];
     
     STAssertNotNil (newConnection,@"Cannot create connection");
 }
 
-- (void) testConnectionConnect {
+- (void) testConnect {
     
     OdbcConnection * newConnection = [OdbcConnection new];
     
@@ -132,7 +42,7 @@
     [newConnection disconnect];
 }
 
-- (void) testConnectionDisconnect {
+- (void) testDisconnect {
 
     OdbcConnection * newConnection = [OdbcConnection new];
     
@@ -141,7 +51,7 @@
     [newConnection disconnect];
 }
 
-- (void) testConnectionCommit {
+- (void) testCommit {
     
     NSString * sql = @"insert into testtab values (10,'Testing commit',10)";
     
@@ -176,7 +86,7 @@
     [self->connection commit];
 }
 
-- (void) testConnectionRollback {
+- (void) testRollback {
     
     NSString * sql = @"insert into testtab values (10,'Testing commit',10)";
     
@@ -203,14 +113,14 @@
     [stmt closeCursor];    
 }
 
-- (void) testConnectionNewStatement {
+- (void) testNewStatement {
     
     OdbcStatement * stmt = [self->connection newStatement];
     
     STAssertNotNil (stmt,@"Stmt is nil");
 }
 
-- (void) testConnectionTablesCatalogSchemaTableTableTypes {
+- (void) testTablesCatalogSchemaTableTableTypes {
     
     OdbcStatement * stmt = [self->connection tablesCatalog : @"testdb"
                                                     schema : @"%"
@@ -246,7 +156,7 @@
     [self->connection commit];
 }
 
-- (void) testConnectionHdbc {
+- (void) testHdbc {
     
     if (! self->connection.hdbc) {
         
@@ -254,12 +164,12 @@
     }
 }
 
-- (void) testConnectionEnv {
+- (void) testEnv {
     
     STAssertNotNil (self->connection.env,@"ENV is nil");
 }
 
-- (void) testConnectionConnected {
+- (void) testConnected {
     
     [self disconnect];
     
@@ -270,7 +180,7 @@
     STAssertTrue (self->connection.connected,@"Connected is false");
 }
 
-- (void) testConnectionTransactionIsolation {
+- (void) testTransactionIsolation {
     
     long curTxnIsolation = self->connection.transactionIsolation;
     
@@ -289,7 +199,7 @@
     STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"Wrong isolation level");
 }
 
-- (void) testConnectionAutocommit {
+- (void) testAutocommit {
     
     STAssertFalse (self->connection.autocommit,@"");
     

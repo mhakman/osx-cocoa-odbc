@@ -8,6 +8,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface ConnectionTests : SenTestCase
+#import "OdbcTests.h"
+
+@interface ConnectionTests : OdbcTests
 
 @end

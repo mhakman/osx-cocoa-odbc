@@ -8,6 +8,17 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface OdbcTests : SenTestCase
+@class OdbcConnection;
+
+@interface OdbcTests : SenTestCase {
+    
+@protected
+    
+    OdbcConnection * connection;
+}
+
+- (void) connect;
+
+- (void) disconnect;
 
 @end
