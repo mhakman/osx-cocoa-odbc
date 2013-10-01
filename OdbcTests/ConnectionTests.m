@@ -30,7 +30,7 @@
     
     OdbcConnection * newConnection = [OdbcConnection new];
     
-    STAssertNotNil (newConnection,@"Cannot create connection");
+    STAssertNotNil (newConnection,@"");
 }
 
 - (void) testConnect {
@@ -73,7 +73,7 @@
     
     bool found = [stmt fetch];
     
-    STAssertTrue (found,@"Row not found");
+    STAssertTrue (found,@"");
     
     [stmt closeCursor];
     
@@ -108,7 +108,7 @@
     
     bool found = [stmt fetch];
     
-    STAssertFalse (found,@"Row found");
+    STAssertFalse (found,@"");
     
     [stmt closeCursor];    
 }
@@ -117,7 +117,7 @@
     
     OdbcStatement * stmt = [self->connection newStatement];
     
-    STAssertNotNil (stmt,@"Stmt is nil");
+    STAssertNotNil (stmt,@"");
 }
 
 - (void) testTablesCatalogSchemaTableTableTypes {
@@ -129,27 +129,27 @@
     
     bool found = [stmt fetch];
     
-    STAssertTrue (found,@"Table not found");
+    STAssertTrue (found,@"");
     
     NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
     
-    STAssertEqualObjects (@"testdb",catalog,@"Catalog is wrong");
+    STAssertEqualObjects (@"testdb",catalog,@"");
     
     NSString * schema = [stmt getStringByName : @"TABLE_SCHEM"];
     
-    STAssertNil (schema,@"Schema is not nil");
+    STAssertNil (schema,@"");
     
     NSString * table = [stmt getStringByName : @"TABLE_NAME"];
     
-    STAssertEqualObjects (@"testtab",table,@"Table is wrong");
+    STAssertEqualObjects (@"testtab",table,@"");
     
     NSString * tableType = [stmt getStringByName : @"TABLE_TYPE"];
     
-    STAssertEqualObjects (@"TABLE",tableType,@"Table type is wrong");
+    STAssertEqualObjects (@"TABLE",tableType,@"");
     
     found = [stmt fetch];
     
-    STAssertFalse (found,@"Found more than 1 table");
+    STAssertFalse (found,@"");
     
     [stmt closeCursor];
     
@@ -166,37 +166,37 @@
 
 - (void) testEnv {
     
-    STAssertNotNil (self->connection.env,@"ENV is nil");
+    STAssertNotNil (self->connection.env,@"");
 }
 
 - (void) testConnected {
     
     [self disconnect];
     
-    STAssertFalse (self->connection.connected,@"Connected is true");
+    STAssertFalse (self->connection.connected,@"");
     
     [self connect];
     
-    STAssertTrue (self->connection.connected,@"Connected is false");
+    STAssertTrue (self->connection.connected,@"");
 }
 
 - (void) testTransactionIsolation {
     
     long curTxnIsolation = self->connection.transactionIsolation;
     
-    STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"Wrong isolation level");
+    STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"");
     
     self->connection.transactionIsolation = SQL_TXN_READ_UNCOMMITTED;
     
     long newTxnIsolation = self->connection.transactionIsolation;
     
-    STAssertEquals (newTxnIsolation,SQL_TXN_READ_UNCOMMITTED,@"Wrong isolation level");
+    STAssertEquals (newTxnIsolation,SQL_TXN_READ_UNCOMMITTED,@"");
     
     self->connection.transactionIsolation = SQL_TXN_REPEATABLE_READ;
     
     curTxnIsolation = self->connection.transactionIsolation;
     
-    STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"Wrong isolation level");
+    STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"");
 }
 
 - (void) testAutocommit {
@@ -210,6 +210,49 @@
     self->connection.autocommit = NO;
     
     STAssertFalse (self->connection.autocommit,@"");
+}
+
+- (void) testDataSource {
+    
+    STAssertEqualObjects (self->connection.dataSource,@"testdb",@"");
+}
+
+- (void) testUsername {
+    
+    STAssertEqualObjects(self->connection.username,@"root",@"");
+}
+
+- (void) testCatalogs {
+    
+    NSArray * catalogs = self->connection.catalogs;
+    
+    STAssertTrue ([catalogs count] > 0,@"");
+    
+    long index = [catalogs indexOfObject : @"testdb"];
+    
+    STAssertTrue (index >= 0,@"");
+    
+    NSString * catalog = [catalogs objectAtIndex : index];
+    
+    STAssertEqualObjects (catalog,@"testdb",@"");
+}
+
+- (void) testScemas {
+    
+    NSArray * schemas = self->connection.schemas;
+    
+    long count = [schemas count];
+    
+    STAssertTrue (count > 0,@"");
+}
+
+- (void) testTableTypes {
+    
+    NSArray * tableTypes = self->connection.tableTypes;
+    
+    long index = [tableTypes indexOfObject : @"TABLE"];
+    
+    STAssertTrue (index >= 0,@"");
 }
 
 @end
