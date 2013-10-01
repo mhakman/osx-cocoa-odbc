@@ -47,6 +47,7 @@
 		6A744FFA17FAED37000793B2 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FF917FAED36000793B2 /* ConnectionTests.m */; };
 		6A744FFD17FAEDBE000793B2 /* OdbcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FFC17FAEDBE000793B2 /* OdbcTests.m */; };
 		6A74500617FAEE6F000793B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A74500417FAEE6F000793B2 /* InfoPlist.strings */; };
+		6AA4548E17FAFFAD00BB2EC9 /* StatementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		6A74500017FAEDFA000793B2 /* OdbcTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OdbcTests-Info.plist"; sourceTree = "<group>"; };
 		6A74500117FAEDFA000793B2 /* OdbcTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OdbcTests-Prefix.pch"; sourceTree = "<group>"; };
 		6A74500517FAEE6F000793B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6AA4548C17FAFFAD00BB2EC9 /* StatementTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementTests.h; sourceTree = "<group>"; };
+		6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementTests.m; sourceTree = "<group>"; };
 		6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPrepareDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +201,8 @@
 				6A744FF817FAED36000793B2 /* ConnectionTests.h */,
 				6A744FF917FAED36000793B2 /* ConnectionTests.m */,
 				6A744FEB17F9EC90000793B2 /* Supporting Files */,
+				6AA4548C17FAFFAD00BB2EC9 /* StatementTests.h */,
+				6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */,
 			);
 			path = OdbcTests;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 			files = (
 				6A744FFA17FAED37000793B2 /* ConnectionTests.m in Sources */,
 				6A744FFD17FAEDBE000793B2 /* OdbcTests.m in Sources */,
+				6AA4548E17FAFFAD00BB2EC9 /* StatementTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

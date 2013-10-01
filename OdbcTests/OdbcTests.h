@@ -9,12 +9,15 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 @class OdbcConnection;
+@class OdbcStatement;
 
 @interface OdbcTests : SenTestCase {
     
 @protected
     
     OdbcConnection * connection;
+    
+    OdbcStatement  * statement;
 }
 
 - (void) connect;
