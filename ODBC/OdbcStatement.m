@@ -76,6 +76,8 @@
     
     SQLRETURN rc;
     
+    if (! self.connection.connected) return;
+    
     rc = SQLFreeHandle (SQL_HANDLE_STMT,self.hstmt);
     
     if (rc == SQL_INVALID_HANDLE) {
@@ -87,7 +89,6 @@
         RAISE_ODBC_HANDLE ("SQLFreeHandle",SQL_HANDLE_STMT,self.hstmt);
     }
 }
-
 
 - (OdbcResultDescriptor *) resultDescriptor {
     
@@ -211,7 +212,7 @@
         
         RAISE_INVALID_HANDLE ("SQLExecDirect");
         
-    } else if (rc != SQL_SUCCESS) {
+    } else if (rc != SQL_SUCCESS && rc != SQL_NO_DATA) {
         
         RAISE_ODBC_HANDLE ("SQLExecDirect",SQL_HANDLE_STMT,self.hstmt);
     }

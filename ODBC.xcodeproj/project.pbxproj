@@ -40,12 +40,18 @@
 		6A27E2C017D8FCAF0070E6B7 /* OdbcStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2B017D8FCAF0070E6B7 /* OdbcStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */; };
 		6A27E2CA17D90EC20070E6B7 /* Odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E29A17D8FC490070E6B7 /* Odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A2D3F4017FAF4B200154AF4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
 		6A744FB617F867E1000793B2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A744FB517F867E1000793B2 /* CoreFoundation.framework */; };
 		6A744FB917F867E1000793B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FB817F867E1000793B2 /* main.m */; };
 		6A744FBB17F867E1000793B2 /* OdbcTest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A744FBA17F867E1000793B2 /* OdbcTest.1 */; };
 		6A744FC117F86933000793B2 /* OdbcTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FC017F86933000793B2 /* OdbcTest.m */; };
 		6A744FC217F86B30000793B2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
+		6A744FE917F9EC8F000793B2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
+		6A744FF717F9ECC2000793B2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
+		6A744FFA17FAED37000793B2 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FF917FAED36000793B2 /* ConnectionTests.m */; };
+		6A744FFD17FAEDBE000793B2 /* OdbcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A744FFC17FAEDBE000793B2 /* OdbcTests.m */; };
+		6A74500617FAEE6F000793B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A74500417FAEE6F000793B2 /* InfoPlist.strings */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +92,7 @@
 		6A27E2AF17D8FCAF0070E6B7 /* OdbcResultDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcResultDescriptor.m; sourceTree = "<group>"; };
 		6A27E2B017D8FCAF0070E6B7 /* OdbcStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStatement.h; sourceTree = "<group>"; };
 		6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStatement.m; sourceTree = "<group>"; };
+		6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FB417F867E1000793B2 /* OdbcTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OdbcTest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +102,14 @@
 		6A744FBF17F86933000793B2 /* OdbcTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcTest.h; sourceTree = "<group>"; };
 		6A744FC017F86933000793B2 /* OdbcTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcTest.m; sourceTree = "<group>"; };
 		6A744FC917F8E3E9000793B2 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
+		6A744FE617F9EC8F000793B2 /* OdbcTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdbcTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A744FF817FAED36000793B2 /* ConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionTests.h; sourceTree = "<group>"; };
+		6A744FF917FAED36000793B2 /* ConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionTests.m; sourceTree = "<group>"; };
+		6A744FFB17FAEDBE000793B2 /* OdbcTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcTests.h; sourceTree = "<group>"; };
+		6A744FFC17FAEDBE000793B2 /* OdbcTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcTests.m; sourceTree = "<group>"; };
+		6A74500017FAEDFA000793B2 /* OdbcTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OdbcTests-Info.plist"; sourceTree = "<group>"; };
+		6A74500117FAEDFA000793B2 /* OdbcTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OdbcTests-Prefix.pch"; sourceTree = "<group>"; };
+		6A74500517FAEE6F000793B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPrepareDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +132,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A744FE217F9EC8F000793B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A744FE917F9EC8F000793B2 /* Cocoa.framework in Frameworks */,
+				6A744FF717F9ECC2000793B2 /* Odbc.framework in Frameworks */,
+				6A2D3F4017FAF4B200154AF4 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -126,6 +151,7 @@
 				6A744FC917F8E3E9000793B2 /* readme.markdown */,
 				6A27E29317D8FC490070E6B7 /* Odbc */,
 				6A744FB717F867E1000793B2 /* OdbcTest */,
+				6A744FEA17F9EC8F000793B2 /* OdbcTests */,
 				6A27E28C17D8FC490070E6B7 /* Frameworks */,
 				6A27E28B17D8FC490070E6B7 /* Products */,
 			);
@@ -136,6 +162,7 @@
 			children = (
 				6A27E28A17D8FC490070E6B7 /* Odbc.framework */,
 				6A744FB417F867E1000793B2 /* OdbcTest */,
+				6A744FE617F9EC8F000793B2 /* OdbcTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +170,7 @@
 		6A27E28C17D8FC490070E6B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */,
 				6A1F1A1417F0EA980019B7CC /* iODBC.framework */,
 				6A27E28D17D8FC490070E6B7 /* Cocoa.framework */,
 				6A744FB517F867E1000793B2 /* CoreFoundation.framework */,
@@ -207,6 +235,28 @@
 			path = OdbcTest;
 			sourceTree = "<group>";
 		};
+		6A744FEA17F9EC8F000793B2 /* OdbcTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A744FFB17FAEDBE000793B2 /* OdbcTests.h */,
+				6A744FFC17FAEDBE000793B2 /* OdbcTests.m */,
+				6A744FF817FAED36000793B2 /* ConnectionTests.h */,
+				6A744FF917FAED36000793B2 /* ConnectionTests.m */,
+				6A744FEB17F9EC90000793B2 /* Supporting Files */,
+			);
+			path = OdbcTests;
+			sourceTree = "<group>";
+		};
+		6A744FEB17F9EC90000793B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6A74500417FAEE6F000793B2 /* InfoPlist.strings */,
+				6A74500017FAEDFA000793B2 /* OdbcTests-Info.plist */,
+				6A74500117FAEDFA000793B2 /* OdbcTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -267,6 +317,24 @@
 			productReference = 6A744FB417F867E1000793B2 /* OdbcTest */;
 			productType = "com.apple.product-type.tool";
 		};
+		6A744FE517F9EC8F000793B2 /* OdbcTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A744FF417F9EC90000793B2 /* Build configuration list for PBXNativeTarget "OdbcTests" */;
+			buildPhases = (
+				6A744FE117F9EC8F000793B2 /* Sources */,
+				6A744FE217F9EC8F000793B2 /* Frameworks */,
+				6A744FE317F9EC8F000793B2 /* Resources */,
+				6A744FE417F9EC8F000793B2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OdbcTests;
+			productName = OdbcTests;
+			productReference = 6A744FE617F9EC8F000793B2 /* OdbcTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -291,6 +359,7 @@
 				6A27E28917D8FC490070E6B7 /* Odbc */,
 				6A744FB317F867E1000793B2 /* OdbcTest */,
 				6A744FC417F8E1D6000793B2 /* Documentation */,
+				6A744FE517F9EC8F000793B2 /* OdbcTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +370,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A27E29817D8FC490070E6B7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A744FE317F9EC8F000793B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A74500617FAEE6F000793B2 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +423,19 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/Documentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/Documentation/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
+		6A744FE417F9EC8F000793B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -373,6 +463,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A744FE117F9EC8F000793B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A744FFA17FAED37000793B2 /* ConnectionTests.m in Sources */,
+				6A744FFD17FAEDBE000793B2 /* OdbcTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -380,6 +479,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				6A27E29717D8FC490070E6B7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6A74500417FAEE6F000793B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A74500517FAEE6F000793B2 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -531,6 +638,42 @@
 			};
 			name = Release;
 		};
+		6A744FF517F9EC90000793B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					/Library/Frameworks,
+					/Users/mhakman/Projects/Xcode/Cocoa/Odbc/DerivedData/Odbc/Build/Products/Debug,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OdbcTests/OdbcTests-Prefix.pch";
+				INFOPLIST_FILE = "OdbcTests/OdbcTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "/Library/Frameworks \"$(SRCROOT)/DerivedData/Odbc/Build/Products/Debug\"";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		6A744FF617F9EC90000793B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					/Library/Frameworks,
+					/Users/mhakman/Projects/Xcode/Cocoa/Odbc/DerivedData/Odbc/Build/Products/Debug,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OdbcTests/OdbcTests-Prefix.pch";
+				INFOPLIST_FILE = "OdbcTests/OdbcTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "/Library/Frameworks \"$(SRCROOT)/DerivedData/Odbc/Build/Products/Debug\"";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -568,6 +711,16 @@
 				6A744FC617F8E1D6000793B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A744FF417F9EC90000793B2 /* Build configuration list for PBXNativeTarget "OdbcTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A744FF517F9EC90000793B2 /* Debug */,
+				6A744FF617F9EC90000793B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -160,7 +160,7 @@
     
     unsigned long autoc = (autocommit ? SQL_AUTOCOMMIT_ON : SQL_AUTOCOMMIT_OFF);
     
-    rc = SQLSetConnectAttr (self.hdbc,SQL_ATTR_AUTOCOMMIT,&autoc,0);
+    rc = SQLSetConnectAttr (self.hdbc,SQL_ATTR_AUTOCOMMIT,(void *)autoc,8);
     
     CHECK_ERROR ("SQLSetConnectAttr",rc,SQL_HANDLE_DBC,self.hdbc);
 }
@@ -189,7 +189,7 @@
     
     SQLRETURN rc;
     
-    rc = SQLSetConnectAttr (self.hdbc,SQL_ATTR_TXN_ISOLATION,&txnIsolation,8);
+    rc = SQLSetConnectAttr (self.hdbc,SQL_ATTR_TXN_ISOLATION,(void *) txnIsolation,8);
     
     if (rc == SQL_INVALID_HANDLE) {
         
@@ -284,6 +284,8 @@
     self.connected = YES;
     
     self.autocommit = NO;
+    
+    self.transactionIsolation = SQL_TXN_REPEATABLE_READ;
     
     self.dataSource = server;
     
