@@ -41,6 +41,55 @@
     return date;
 }
 
+- (NSDate *) timeHour : (int) hour minute : (int) minute second : (int) second {
+    
+    NSDateComponents * dateComps = [NSDateComponents new];
+    
+    dateComps.hour = hour;
+    
+    dateComps.minute = minute;
+    
+    dateComps.second = second;
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    NSDate * date = [gregorian dateFromComponents: dateComps];
+    
+    return date;
+}
+
+- (NSDate *) timestampYear : (int) year
+                     month : (int) month
+                       day : (int) day
+                      hour : (int) hour
+                    minute : (int) minute
+                    second : (int) second {
+    
+    NSDateComponents * dateComps = [NSDateComponents new];
+    
+    dateComps.year = year;
+    
+    dateComps.month = month;
+    
+    dateComps.day = day;
+    
+    dateComps.hour = hour;
+    
+    dateComps.minute = minute;
+    
+    dateComps.second = second;
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    NSDate * date = [gregorian dateFromComponents: dateComps];
+    
+    return date;
+}
+
 - (void) testStatementWithConnection {
     
     OdbcStatement * stmt = [OdbcStatement statementWithConnection : self->connection];
@@ -106,13 +155,25 @@
 
 - (void) testPrepare {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ?"];
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
     
     [self->statement setLong : 1 value : 1];
     
     [self->statement setString : 2 value : @"Name 1"];
     
     [self->statement setDouble : 3 value : 1.1];
+    
+    NSDate * date = [self dateYear : 2001 month : 1 day:1];
+    
+    [self->statement setDate : 4 value : date];
+    
+    NSDate * time = [self timeHour : 1 minute : 1 second : 1];
+    
+    [self->statement setTime : 5 value : time];
+    
+    NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    [self->statement setTimestamp : 6 value : ts];
     
     [self->statement execute];
     
@@ -133,6 +194,18 @@
     [self->statement setString : 2 value : @"Name 2"];
     
     [self->statement setDouble : 3 value : 2.2];
+    
+    date = [self dateYear : 2002 month : 2 day:2];
+    
+    [self->statement setDate : 4 value : date];
+    
+    time = [self timeHour : 2 minute : 2 second : 2];
+    
+    [self->statement setTime : 5 value : time];
+    
+    ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
+    
+    [self->statement setTimestamp : 6 value : ts];
     
     [self->statement execute];
     
@@ -153,13 +226,25 @@
 
 - (void) testExecute {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ?"];
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
     
     [self->statement setLong : 1 value : 1];
     
     [self->statement setString : 2 value : @"Name 1"];
     
     [self->statement setDouble : 3 value : 1.1];
+    
+    NSDate * date = [self dateYear : 2001 month : 1 day:1];
+    
+    [self->statement setDate : 4 value : date];
+    
+    NSDate * time = [self timeHour : 1 minute : 1 second : 1];
+    
+    [self->statement setTime : 5 value : time];
+    
+    NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    [self->statement setTimestamp : 6 value : ts];
     
     [self->statement execute];
     
@@ -180,6 +265,18 @@
     [self->statement setString : 2 value : @"Name 2"];
     
     [self->statement setDouble : 3 value : 2.2];
+    
+    date = [self dateYear : 2002 month : 2 day:2];
+    
+    [self->statement setDate : 4 value : date];
+    
+    time = [self timeHour : 2 minute : 2 second : 2];
+    
+    [self->statement setTime : 5 value : time];
+    
+    ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
+    
+    [self->statement setTimestamp : 6 value : ts];
     
     [self->statement execute];
     
@@ -276,7 +373,7 @@
 
 - (void) testSetData {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ?"];
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
     
     [self->statement setLong : 1 value : 1];
     
@@ -284,10 +381,18 @@
     
     [self->statement setDouble : 3 value : 1.1];
     
-    NSDate * date = [self dateYear : 2001 month : 1 day : 1];
+    NSDate * date = [self dateYear : 2001 month : 1 day:1];
     
     [self->statement setDate : 4 value : date];
     
+    NSDate * time = [self timeHour : 1 minute : 1 second : 1];
+    
+    [self->statement setTime : 5 value : time];
+    
+    NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    [self->statement setTimestamp : 6 value : ts];
+
     [self->statement execute];
     
     bool found = [self->statement fetch];
@@ -308,9 +413,17 @@
     
     [self->statement setDouble : 3 value : 2.2];
     
-    date = [self dateYear : 2002 month : 2 day : 2];
+    date = [self dateYear : 2002 month : 2 day:2];
     
     [self->statement setDate : 4 value : date];
+    
+    time = [self timeHour : 2 minute : 2 second : 2];
+    
+    [self->statement setTime : 5 value : time];
+    
+    ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
+    
+    [self->statement setTimestamp : 6 value : ts];
     
     [self->statement execute];
     
@@ -331,7 +444,7 @@
 
 - (void) testSetObject {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ?"];
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and ts = ?"];
     
     [self->statement setObject : 1 value : @1];
     
@@ -339,9 +452,9 @@
     
     [self->statement setObject : 3 value : @1.1];
     
-    NSDate * date = [self dateYear : 2001 month : 1 day : 1];
-    
-    [self->statement setObject : 4 value : date];
+    NSDate * ts = [self timestampYear:2001 month:1 day:1 hour:1 minute:1 second:1];
+        
+    [self->statement setObject : 4 value : ts];
     
     [self->statement execute];
     
@@ -363,9 +476,9 @@
     
     [self->statement setObject : 3 value : @2.2];
     
-    date = [self dateYear : 2002 month : 2 day : 2];
+    ts = [self timestampYear:2002 month:2 day:2 hour:2 minute:2 second:2];
     
-    [self->statement setObject : 4 value : date];
+    [self->statement setObject : 4 value : ts];
     
     [self->statement execute];
     

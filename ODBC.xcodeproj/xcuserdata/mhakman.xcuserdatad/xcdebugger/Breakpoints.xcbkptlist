@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Odbc/OdbcParameterDescriptor.m"
-         timestampString = "402500739.727629"
+         timestampString = "402512506.101198"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
          landmarkName = "-setObjectValue:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -16,11 +16,13 @@
 
 typedef union parameter_value_def {
     
-    void            * voidPtr;
-    long            * longPtr;
-    char            * charPtr;
-    double          * doublePtr;
-    SQL_DATE_STRUCT * datePtr;
+    void                 * voidPtr;
+    long                 * longPtr;
+    char                 * charPtr;
+    double               * doublePtr;
+    SQL_DATE_STRUCT      * datePtr;
+    SQL_TIME_STRUCT      * timePtr;
+    SQL_TIMESTAMP_STRUCT * timestampPtr;
     
 } PARAMETER_VALUE;
 
@@ -54,6 +56,8 @@ typedef union parameter_value_def {
 @property (nonatomic) NSDate         * dateValue;
 @property (nonatomic) id               objectValue;
 @property (nonatomic) NSNumber       * numberValue;
+@property (nonatomic) NSDate         * timeValue;
+@property (nonatomic) NSDate         * timestampValue;
 
 + (OdbcParameterDescriptor *) descriptorWithStatement : (OdbcStatement *) stmt parameterNumber : (int) paramNumber;
 

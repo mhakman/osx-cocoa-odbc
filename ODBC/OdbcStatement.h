@@ -69,4 +69,8 @@
 
 - (void) setObject : (int) parameterNumber value : (id) value;
 
+- (void) setTime : (int) parameterNumber value : (NSDate *) value;
+
+- (void) setTimestamp : (int) parameterNumber value : (NSDate *) value;
+
 @end

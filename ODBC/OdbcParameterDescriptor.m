@@ -34,7 +34,7 @@
 
 @synthesize valueType,valueSize,parameterValue,longValue,stringValue,doubleValue,strLenOrInd;
 
-@synthesize dateValue, objectValue, numberValue;
+@synthesize dateValue, objectValue, numberValue, timeValue, timestampValue;
 
 + (OdbcParameterDescriptor *) descriptorWithStatement : (OdbcStatement *) stmt parameterNumber : (int) paramNumber {
     
@@ -157,6 +157,61 @@
     self.parameterValue.datePtr->day = dateComps.day;
 }
 
+- (void) setTimeValue : (NSDate *) value {
+    
+    SQLSMALLINT type = SQL_C_TYPE_TIME;
+    
+    SQLULEN size = sizeof (SQL_TIME_STRUCT);
+    
+    [self bindIfRequiredType : type size : size];
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    unsigned unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit |  NSSecondCalendarUnit;
+    
+    NSDateComponents * dateComps = [gregorian components : unitFlags fromDate : value];
+    
+    self.parameterValue.timePtr->hour = dateComps.hour;
+    
+    self.parameterValue.timePtr->minute = dateComps.minute;
+    
+    self.parameterValue.timePtr->second = dateComps.second;
+}
+
+- (void) setTimestampValue : (NSDate *) value {
+    
+    SQLSMALLINT type = SQL_C_TYPE_TIMESTAMP;
+    
+    SQLULEN size = sizeof (SQL_TIMESTAMP_STRUCT);
+    
+    [self bindIfRequiredType : type size : size];
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit  |  NSDayCalendarUnit |
+                         NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    NSDateComponents * dateComps = [gregorian components : unitFlags fromDate : value];
+    
+    self.parameterValue.timestampPtr->year = dateComps.year;
+    
+    self.parameterValue.timestampPtr->month = dateComps.month;
+    
+    self.parameterValue.timestampPtr->day = dateComps.day;
+    
+    self.parameterValue.timestampPtr->hour = dateComps.hour;
+    
+    self.parameterValue.timestampPtr->minute = dateComps.minute;
+    
+    self.parameterValue.timestampPtr->second = dateComps.second;
+    
+    self.parameterValue.timestampPtr->fraction = 0;
+}
+
 - (void) setObjectValue : (id) object {
 
     if ([object isKindOfClass : [NSString class]]) {
@@ -165,7 +220,7 @@
         
     } else if ([object isKindOfClass: [NSDate class]]) {
         
-        self.dateValue = object;
+        self.timestampValue = object;
         
     } else if ([object isKindOfClass:[NSNumber class]]) {
         

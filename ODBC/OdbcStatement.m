@@ -334,6 +334,20 @@
     desc.objectValue = value;
 }
 
+- (void) setTime : (int) parameterNumber value : (NSDate *) value {
+    
+    OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
+
+    desc.timeValue = value;
+}
+
+- (void) setTimestamp : (int) parameterNumber value : (NSDate *) value {
+    
+    OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
+
+    desc.timestampValue = value;
+}
+
 - (void) execute {
     
     SQLRETURN rc;
