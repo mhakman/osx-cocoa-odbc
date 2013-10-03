@@ -167,7 +167,7 @@
     
     NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
     
-    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
     
     unsigned unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit |  NSSecondCalendarUnit;
     
@@ -190,7 +190,7 @@
     
     NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
     
-    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
     
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit  |  NSDayCalendarUnit |
                          NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;

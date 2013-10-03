@@ -59,6 +59,18 @@
 
 - (NSDate *) getDateByName : (NSString *) columnName;
 
+- (NSDate *) getTime : (int) columnNumber;
+
+- (NSDate *) getTimeByName : (NSString *) columnName;
+
+- (NSDate *) getTimestamp : (int) columnNumber;
+
+- (NSDate *) getTimestampByName : (NSString *) columnName;
+
+- (id) getObject : (int) columnNumber;
+
+- (id) getObjectByName : (NSString *) columnName;
+
 - (void) setLong : (int) parameterNumber value : (long) value;
 
 - (void) setString : (int) parameterNumber value : (NSString *) value;

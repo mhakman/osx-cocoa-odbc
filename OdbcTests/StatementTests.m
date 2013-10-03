@@ -53,7 +53,7 @@
     
     NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
     
-    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
     
     NSDate * date = [gregorian dateFromComponents: dateComps];
     
@@ -83,7 +83,7 @@
     
     NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
     
-    gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
     
     NSDate * date = [gregorian dateFromComponents: dateComps];
     
@@ -323,7 +323,19 @@
         
         NSDate * date2 = [self dateYear : 2003 month : 3 day : 3];
         
-        STAssertEquals (date1,date2,@"");
+        STAssertEqualObjects (date1,date2,@"");
+
+        NSDate * time1 = [self->statement getTime : 5];
+        
+        NSDate * time2 = [self timeHour : 3 minute : 3 second : 3];
+        
+        STAssertEqualObjects(time1,time2,@"");
+        
+        NSDate * ts1 = [self->statement getTimestamp : 6];
+        
+        NSDate * ts2 = [self timestampYear:2003 month:3 day:3 hour : 3 minute : 3 second : 3];
+        
+        STAssertEqualObjects (ts1,ts2,@"");
     }
     
     STAssertEquals(rowCount,3,@"");
@@ -361,7 +373,19 @@
                 
         NSDate * date2 = [self dateYear : 2003 month : 3 day : 3];
 
-        STAssertEquals (date1,date2,@"");
+        STAssertEqualObjects (date1,date2,@"");
+        
+        NSDate * time1 = [self->statement getTimeByName : @"time"];
+        
+        NSDate * time2 = [self timeHour : 3 minute : 3 second : 3];
+        
+        STAssertEqualObjects(time1,time2,@"");
+        
+        NSDate * ts1 = [self->statement getTimestampByName : @"ts"];
+        
+        NSDate * ts2 = [self timestampYear:2003 month:3 day:3 hour : 3 minute : 3 second : 3];
+        
+        STAssertEqualObjects (ts1,ts2,@"");
     }
     
     STAssertEquals (rowCount,3,@"");
@@ -370,8 +394,58 @@
     
     [self->connection commit];
 }
-
-- (void) testSetData {
+/*
+- (void) testGetData {
+    
+    [self->statement execDirect : @"select * from testtab order by id"];
+    
+    int rowCount = 0;
+    
+    while ([self->statement fetch]) {
+        
+        rowCount ++;
+        
+        if (rowCount < 3) continue;
+        
+        long objId = [self->statement getLong : 1];
+        
+        STAssertEquals (objId,3L,@"");
+        
+        NSString * name = [self->statement getString : 2];
+        
+        STAssertEqualObjects (name,@"Name 3",@"");
+        
+        double price = [self->statement getDouble : 3];
+        
+        STAssertEquals (price,3.3,@"");
+        
+        NSDate * date1 = [self->statement getDate : 4];
+        
+        NSDate * date2 = [self dateYear : 2003 month : 3 day : 3];
+        
+        STAssertEqualObjects (date1,date2,@"");
+        
+        NSDate * time1 = [self->statement getTime : 5];
+        
+        NSDate * time2 = [self timeHour : 3 minute : 3 second : 3];
+        
+        STAssertEqualObjects(time1,time2,@"");
+        
+        NSDate * ts1 = [self->statement getTimestamp : 6];
+        
+        NSDate * ts2 = [self timestampYear:2003 month:3 day:3 hour : 3 minute : 3 second : 3];
+        
+        STAssertEqualObjects (ts1,ts2,@"");
+    }
+    
+    STAssertEquals(rowCount,3,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->connection commit];
+}
+*/
+- (void) testGetObjectByName {
     
     [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
     
@@ -401,9 +475,41 @@
     
     if (! found) return;
     
-    long objId = [self->statement getLongByName : @"id"];
+    NSNumber * objId1 = [self->statement getObjectByName : @"id"];
     
-    STAssertEquals (objId,1L,@"");
+    NSNumber * objId2 = [NSNumber numberWithLong : 1L];
+    
+    STAssertEqualObjects (objId1,objId2,@"");
+    
+    NSString * name1 = [self->statement getObjectByName : @"name"];
+    
+    NSString * name2 = @"Name 1";
+    
+    STAssertEqualObjects(name1,name2,@"");
+    
+    NSNumber * price1 = [self->statement getObjectByName : @"price"];
+    
+    NSNumber * price2 = @(1.1);
+    
+    STAssertEqualObjects(price1,price2,@"");
+    
+    NSDate * date1 = [self->statement getObjectByName : @"date"];
+    
+    NSDate * date2 = [self dateYear : 2001 month : 1 day : 1];
+    
+    STAssertEqualObjects(date1,date2,@"");
+    
+    NSDate * time1 = [self->statement getObjectByName : @"time"];
+    
+    NSDate * time2 = [self timeHour : 1 minute : 1 second : 1];
+    
+    STAssertEqualObjects(time1,time2,@"");
+    
+    NSDate * ts1 = [self->statement getObjectByName : @"ts"];
+    
+    NSDate * ts2 = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    STAssertEqualObjects(ts1,ts2,@"");
     
     [self->statement closeCursor];
     
@@ -433,9 +539,116 @@
     
     if (! found) return;
     
-    objId = [self->statement getLongByName : @"id"];
+    objId1 = [self->statement getObjectByName : @"id"];
     
-    STAssertEquals (objId,2L,@"");
+    objId2 = [NSNumber numberWithLong : 2L];
+    
+    STAssertEqualObjects (objId1,objId2,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->connection commit];
+}
+
+- (void) testGetObject {
+    
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
+    
+    [self->statement setLong : 1 value : 1];
+    
+    [self->statement setString : 2 value : @"Name 1"];
+    
+    [self->statement setDouble : 3 value : 1.1];
+    
+    NSDate * date = [self dateYear : 2001 month : 1 day:1];
+    
+    [self->statement setDate : 4 value : date];
+    
+    NSDate * time = [self timeHour : 1 minute : 1 second : 1];
+    
+    [self->statement setTime : 5 value : time];
+    
+    NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    [self->statement setTimestamp : 6 value : ts];
+    
+    [self->statement execute];
+    
+    bool found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    if (! found) return;
+    
+    NSNumber * objId1 = [self->statement getObject : 1];
+    
+    NSNumber * objId2 = [NSNumber numberWithLong : 1L];
+    
+    STAssertEqualObjects (objId1,objId2,@"");
+    
+    NSString * name1 = [self->statement getObject : 2];
+    
+    NSString * name2 = @"Name 1";
+    
+    STAssertEqualObjects(name1,name2,@"");
+    
+    NSNumber * price1 = [self->statement getObject : 3];
+    
+    NSNumber * price2 = @(1.1);
+    
+    STAssertEqualObjects(price1,price2,@"");
+    
+    NSDate * date1 = [self->statement getObject : 4];
+    
+    NSDate * date2 = [self dateYear : 2001 month : 1 day : 1];
+    
+    STAssertEqualObjects(date1,date2,@"");
+    
+    NSDate * time1 = [self->statement getObject : 5];
+    
+    NSDate * time2 = [self timeHour : 1 minute : 1 second : 1];
+    
+    STAssertEqualObjects(time1,time2,@"");
+    
+    NSDate * ts1 = [self->statement getObject : 6];
+    
+    NSDate * ts2 = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    STAssertEqualObjects(ts1,ts2,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->statement setLong : 1 value : 2];
+    
+    [self->statement setString : 2 value : @"Name 2"];
+    
+    [self->statement setDouble : 3 value : 2.2];
+    
+    date = [self dateYear : 2002 month : 2 day:2];
+    
+    [self->statement setDate : 4 value : date];
+    
+    time = [self timeHour : 2 minute : 2 second : 2];
+    
+    [self->statement setTime : 5 value : time];
+    
+    ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
+    
+    [self->statement setTimestamp : 6 value : ts];
+    
+    [self->statement execute];
+    
+    found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    if (! found) return;
+    
+    objId1 = [self->statement getObjectByName : @"id"];
+    
+    objId2 = [NSNumber numberWithLong : 2L];
+    
+    STAssertEqualObjects (objId1,objId2,@"");
     
     [self->statement closeCursor];
     

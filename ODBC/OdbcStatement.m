@@ -194,6 +194,158 @@
     return date;
 }
 
+- (NSDate *) getTime : (int) columnNumber {
+    
+    SQL_TIME_STRUCT targetValue;
+    
+    [self getData : columnNumber valueType : SQL_C_TYPE_TIME targetPtr : &targetValue valueSize : sizeof(targetValue)];
+    
+    if (self->wasNull) return nil;
+    
+    NSDateComponents * dateComps = [NSDateComponents new];
+    
+    dateComps.hour = targetValue.hour;
+    
+    dateComps.minute = targetValue.minute;
+    
+    dateComps.second = targetValue.second;
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    NSDate * date = [gregorian dateFromComponents: dateComps];
+    
+    return date;
+}
+
+- (NSDate *) getTimeByName : (NSString *) columnName {
+  
+    int colNumber = [self.resultDescriptor columnNumberFor : columnName];
+    
+    return [self getTime : colNumber];
+}
+
+- (NSDate *) getTimestamp : (int) columnNumber {
+    
+    SQL_TIMESTAMP_STRUCT targetValue;
+    
+    [self getData : columnNumber valueType : SQL_C_TYPE_TIMESTAMP targetPtr : &targetValue valueSize : sizeof(targetValue)];
+    
+    if (self->wasNull) return nil;
+    
+    NSDateComponents * dateComps = [NSDateComponents new];
+    
+    dateComps.year = targetValue.year;
+    
+    dateComps.month = targetValue.month;
+    
+    dateComps.day = targetValue.day;
+    
+    dateComps.hour = targetValue.hour;
+    
+    dateComps.minute = targetValue.minute;
+    
+    dateComps.second = targetValue.second;
+    
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
+    
+    NSDate * date = [gregorian dateFromComponents: dateComps];
+    
+    return date;
+}
+
+- (NSDate *) getTimestampByName : (NSString *) columnName {
+    
+    int colNumber = [self.resultDescriptor columnNumberFor : columnName];
+    
+    return [self getTimestamp : colNumber];
+}
+
+- (id) getObject : (int) columnNumber {
+    
+    id result;
+    
+    OdbcColumnDescriptor * cd = [self.resultDescriptor.columnDescriptors objectAtIndex : columnNumber - 1];
+    
+    switch (cd.dataType) {
+            
+        case SQL_CHAR:
+        case SQL_VARCHAR:
+        case SQL_LONGVARCHAR: {
+            
+            result = [self getString : columnNumber];
+            
+            break;
+        }
+            
+        case SQL_SMALLINT:
+        case SQL_INTEGER:
+        case SQL_TINYINT:
+        case SQL_BIGINT: {
+            
+            long l = [self getLong : columnNumber];
+            
+            result = [NSNumber numberWithLong : l];
+            
+            break;
+        }
+          
+        case SQL_DECIMAL:
+        case SQL_NUMERIC:
+        case SQL_REAL:
+        case SQL_FLOAT: {
+            
+            double d = [self getDouble : columnNumber];
+            
+            result = [NSNumber numberWithDouble : d];
+            
+            break;
+        }
+            
+        case SQL_TYPE_DATE: {
+            
+            result = [self getDate : columnNumber];
+            
+            break;
+        }
+            
+        case SQL_TYPE_TIME: {
+            
+            result = [self getTime : columnNumber];
+            
+            break;
+        }
+            
+        case SQL_TYPE_TIMESTAMP: {
+            
+            result = [self getTimestamp : columnNumber];
+            
+            break;
+        }
+            
+        default: {
+            
+            NSString * msg = [NSString stringWithFormat : @"Unsupported column type '%hd'",cd.dataType];
+            
+            RAISE_ODBC_EXCEPTION ("getObject",msg.UTF8String);
+        }
+    }
+    
+    return result;
+}
+
+- (id) getObjectByName : (NSString *) columnName {
+    
+    int colNumber = [self.resultDescriptor columnNumberFor : columnName];
+    
+    return [self getObject : colNumber];
+}
+
+
+
 - (void) getData : (int) columnNumber
        valueType : (short) valueType
        targetPtr : (void *) targetPtr
