@@ -52,6 +52,8 @@ typedef union parameter_value_def {
 @property (nonatomic) NSString       * stringValue;
 @property (nonatomic) double           doubleValue;
 @property (nonatomic) NSDate         * dateValue;
+@property (nonatomic) id               objectValue;
+@property (nonatomic) NSNumber       * numberValue;
 
 + (OdbcParameterDescriptor *) descriptorWithStatement : (OdbcStatement *) stmt parameterNumber : (int) paramNumber;
 

@@ -67,4 +67,6 @@
 
 - (void) setDate : (int) parameterNumber value : (NSDate *) value;
 
+- (void) setObject : (int) parameterNumber value : (id) value;
+
 @end

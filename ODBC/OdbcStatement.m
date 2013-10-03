@@ -320,11 +320,18 @@
     desc.doubleValue = value;
 }
 
-- (void) setDate : (int) parameterNumber value : (NSDate *) value{
+- (void) setDate : (int) parameterNumber value : (NSDate *) value {
 
     OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
 
     desc.dateValue = value;
+}
+
+- (void) setObject : (int) parameterNumber value : (id) value {
+    
+    OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
+    
+    desc.objectValue = value;
 }
 
 - (void) execute {

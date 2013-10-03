@@ -329,6 +329,61 @@
     [self->connection commit];
 }
 
+- (void) testSetObject {
+    
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ?"];
+    
+    [self->statement setObject : 1 value : @1];
+    
+    [self->statement setObject : 2 value : @"Name 1"];
+    
+    [self->statement setObject : 3 value : @1.1];
+    
+    NSDate * date = [self dateYear : 2001 month : 1 day : 1];
+    
+    [self->statement setObject : 4 value : date];
+    
+    [self->statement execute];
+    
+    bool found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    if (! found) return;
+    
+    long objId = [self->statement getLongByName : @"id"];
+    
+    STAssertEquals (objId,1L,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->statement setObject : 1 value : @2];
+    
+    [self->statement setObject : 2 value : @"Name 2"];
+    
+    [self->statement setObject : 3 value : @2.2];
+    
+    date = [self dateYear : 2002 month : 2 day : 2];
+    
+    [self->statement setObject : 4 value : date];
+    
+    [self->statement execute];
+    
+    found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    if (! found) return;
+    
+    objId = [self->statement getLongByName : @"id"];
+    
+    STAssertEquals (objId,2L,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->connection commit];
+}
+
 - (void) testHstmt {
     
     STAssertTrue (self->statement.hstmt != 0,@"");

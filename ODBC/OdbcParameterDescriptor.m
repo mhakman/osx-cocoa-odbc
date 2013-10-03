@@ -34,6 +34,8 @@
 
 @synthesize valueType,valueSize,parameterValue,longValue,stringValue,doubleValue,strLenOrInd;
 
+@synthesize dateValue, objectValue, numberValue;
+
 + (OdbcParameterDescriptor *) descriptorWithStatement : (OdbcStatement *) stmt parameterNumber : (int) paramNumber {
     
     OdbcParameterDescriptor * desc =
@@ -133,7 +135,7 @@
 }
 
 - (void) setDateValue : (NSDate *) value {
-    
+            
     SQLSMALLINT type = SQL_C_TYPE_DATE;
     
     SQLULEN size = sizeof (SQL_DATE_STRUCT);
@@ -153,6 +155,55 @@
     self.parameterValue.datePtr->month = dateComps.month;
     
     self.parameterValue.datePtr->day = dateComps.day;
+}
+
+- (void) setObjectValue : (id) object {
+
+    if ([object isKindOfClass : [NSString class]]) {
+        
+        self.stringValue = object;
+        
+    } else if ([object isKindOfClass: [NSDate class]]) {
+        
+        self.dateValue = object;
+        
+    } else if ([object isKindOfClass:[NSNumber class]]) {
+        
+        self.numberValue = object;
+    
+    } else {
+        
+        NSString * msg = [NSString stringWithFormat : @"Unsupported object type '%@'",[object class]];
+        
+        RAISE_ODBC_EXCEPTION ("setObjectValue",msg.UTF8String);
+    }
+}
+
+- (void) setNumberValue : (NSNumber *) number {
+    
+    const char * ctype = number.objCType;
+    
+    switch (ctype[0]) {
+        
+        case 'f':
+        case 'd': {
+            
+            double value = number.doubleValue;
+            
+            self.doubleValue = value;
+            
+            break;
+        }
+            
+        default: {
+            
+            long value = number.longValue;
+            
+            self.longValue = value;
+            
+            break;
+        }            
+    }
 }
 
 - (void) bindIfRequiredType : (SQLSMALLINT) type size : (SQLULEN) size {
