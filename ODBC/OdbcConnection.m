@@ -22,17 +22,73 @@
 
 @property NSString * username;
 
-@property NSArray * catalogs;
-
-@property NSArray * schemas;
-
-@property NSArray * tableTypes;
-
 @end
 
 @implementation OdbcConnection
 
 @synthesize hdbc;
+
+- (NSString *) currentSchema {
+    
+    NSString * schemaTerm = self.schemaTerm;
+    
+    if (schemaTerm.length <= 0) return @"";
+    
+    NSString * schema = [self.currentUser copy];
+    
+    return schema;
+}
+
+- (NSString *) schemaTerm {
+    
+    SQLRETURN rc;
+    
+    char termc [128] = "";
+    
+    SQLSMALLINT len = 0;
+    
+    rc = SQLGetInfo (self.hdbc,SQL_SCHEMA_TERM,termc,sizeof(termc),&len);
+    
+    CHECK_ERROR ("SQLGetInfo",rc,SQL_HANDLE_DBC,self.hdbc);
+    
+    NSString * term = [NSString stringWithUTF8String : termc];
+    
+    return term;
+}
+
+- (NSString *) currentUser {
+    
+    SQLRETURN rc;
+    
+    char userc [128] = "";
+    
+    SQLSMALLINT len = 0;
+    
+    rc = SQLGetInfo (self.hdbc,SQL_USER_NAME,userc,sizeof(userc),&len);
+    
+    CHECK_ERROR ("SqlGetInfo",rc,SQL_HANDLE_DBC,self.hdbc);
+    
+    NSString * user = [NSString stringWithUTF8String : userc];
+    
+    return user;
+}
+
+- (NSString *) currentCatalog {
+    
+    SQLRETURN rc;
+    
+    char catalogc [128] = "";
+    
+    SQLINTEGER len = 0;
+    
+    rc = SQLGetConnectAttr (self.hdbc,SQL_ATTR_CURRENT_CATALOG,catalogc,sizeof(catalogc),&len);
+    
+    CHECK_ERROR ("SQLGetConnectAttr",rc,SQL_HANDLE_DBC,self.hdbc);
+    
+    NSString * catalog = [NSString stringWithUTF8String : catalogc];
+    
+    return catalog;
+}
 
 - (OdbcStatement *) tablesCatalog : (NSString *) catalog
                            schema : (NSString *) schema

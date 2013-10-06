@@ -39,6 +39,14 @@
 
 @property (readonly,nonatomic) NSArray * tableTypes;
 
+@property (readonly,nonatomic) NSString * currentCatalog;
+
+@property (readonly,nonatomic) NSString * currentUser;
+
+@property (readonly,nonatomic) NSString * schemaTerm;
+
+@property (readonly,nonatomic) NSString * currentSchema;
+
 - (void) connect : (NSString *) server user : (NSString *) user password : (NSString *) password;
 
 - (void) disconnect;

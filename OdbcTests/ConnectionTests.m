@@ -255,4 +255,38 @@
     STAssertTrue (index >= 0,@"");
 }
 
+- (void) testCurrentCatalog {
+    
+    NSString * catalog = self->connection.currentCatalog;
+    
+    if (catalog.length > 0) {
+        
+        STAssertEqualObjects (catalog,@"testdb",@"");
+    }
+}
+
+- (void) testCurrentUser {
+    
+    NSString * user = self->connection.currentUser;
+    
+    STAssertEqualObjects (user,@"root",@"");
+}
+
+- (void) testSchemaTerm {
+    
+    NSString * term = self->connection.schemaTerm;
+    
+    STAssertNotNil (term,@"");
+}
+
+- (void) testCurrentSchema {
+    
+    NSString * schema = self->connection.currentSchema;
+    
+    if (schema.length > 0) {
+        
+        STAssertEqualObjects (schema,self->connection.currentUser,@"");
+    }
+}
+
 @end

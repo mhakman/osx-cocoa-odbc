@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		6A744FC417F8E1D6000793B2 /* Documentation */ = {
+		6A744FC417F8E1D6000793B2 /* OdbcDocumentation */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildConfigurationList = 6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "OdbcDocumentation" */;
 			buildPhases = (
 				6A744FC817F8E215000793B2 /* ShellScript */,
 			);
 			dependencies = (
 			);
-			name = Documentation;
+			name = OdbcDocumentation;
 			productName = Documentation;
 		};
 /* End PBXAggregateTarget section */
@@ -300,7 +300,7 @@
 			projectRoot = "";
 			targets = (
 				6A27E28917D8FC490070E6B7 /* Odbc */,
-				6A744FC417F8E1D6000793B2 /* Documentation */,
+				6A744FC417F8E1D6000793B2 /* OdbcDocumentation */,
 				6A744FE517F9EC8F000793B2 /* OdbcTests */,
 			);
 		};
@@ -363,7 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/Documentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/Documentation/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/OdbcDocumentation/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6A744FE417F9EC8F000793B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -611,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+		6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "OdbcDocumentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A744FC517F8E1D6000793B2 /* Debug */,
