@@ -115,7 +115,7 @@
         rowCount ++;
     }
     
-    STAssertEquals (rowCount,3,@"");
+    STAssertEquals (rowCount,4,@"");
     
     [self->statement closeCursor];
     
@@ -133,7 +133,7 @@
         rowCount ++;
     }
     
-    STAssertEquals (rowCount,3,@"");
+    STAssertEquals (rowCount,4,@"");
     
     [self->statement closeCursor];
     
@@ -305,7 +305,7 @@
         
         rowCount ++;
         
-        if (rowCount < 3) continue;
+        if (rowCount != 3) continue;
         
         long objId = [self->statement getLong : 1];
         
@@ -338,7 +338,7 @@
         STAssertEqualObjects (ts1,ts2,@"");
     }
     
-    STAssertEquals(rowCount,3,@"");
+    STAssertEquals(rowCount,4,@"");
     
     [self->statement closeCursor];
     
@@ -355,7 +355,7 @@
         
         rowCount ++;
         
-        if (rowCount < 3) continue;
+        if (rowCount != 3) continue;
         
         long objId = [self->statement getLongByName : @"id"];
         
@@ -388,7 +388,7 @@
         STAssertEqualObjects (ts1,ts2,@"");
     }
     
-    STAssertEquals (rowCount,3,@"");
+    STAssertEquals (rowCount,4,@"");
     
     [self->statement closeCursor];
     
@@ -655,6 +655,79 @@
     [self->connection commit];
 }
 
+- (void) testSetData {
+    
+    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and ts = ?"];
+    
+    [self->statement setLong : 1 value : 1];
+    
+    [self->statement setString : 2 value : @"Name 1"];
+    
+    [self->statement setDouble : 3 value : 1.1];
+    
+    NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
+    
+    [self->statement setTimestamp : 4 value : ts];
+    
+    [self->statement execute];
+    
+    bool found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    if (! found) return;
+    
+    long objId = [self->statement getLongByName : @"id"];
+    
+    STAssertEquals (objId,1L,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->statement setLong : 1 value : 4];
+    
+    [self->statement setString : 2 value : @"N4"];
+    
+    [self->statement setDouble : 3 value : 4.4];
+    
+    ts = [self timestampYear : 2004 month : 4 day : 4 hour : 4 minute : 4 second : 4];
+    
+    [self->statement setTimestamp : 4 value : ts];
+    
+    [self->statement execute];
+    
+    found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    if (! found) return;
+    
+    objId = [self->statement getLongByName : @"id"];
+    
+    STAssertEquals (objId,4L,@"");
+    
+    [self->statement closeCursor];
+    
+    [self->statement setLong : 1 value : 2];
+    
+    [self->statement setString : 2 value : @"Name 2"];
+    
+    [self->statement setDouble : 3 value : 2.2];
+    
+    ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
+    
+    [self->statement setTimestamp : 4 value : ts];
+    
+    [self->statement execute];
+    
+    found = [self->statement fetch];
+    
+    STAssertTrue (found,@"");
+    
+    [self->statement closeCursor];
+
+    [self->connection commit];
+}
+
 - (void) testSetObject {
     
     [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and ts = ?"];
@@ -750,7 +823,7 @@
         }
     }
     
-    STAssertEquals (rowCount,4,@"");
+    STAssertEquals (rowCount,5,@"");
     
     [self->statement closeCursor];
     

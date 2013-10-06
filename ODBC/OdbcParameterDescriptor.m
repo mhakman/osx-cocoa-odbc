@@ -129,7 +129,9 @@
     
     SQLULEN size = strlen (valuec);
     
-    [self bindIfRequiredType : type size : size];
+    [self bindIfRequiredType : type size : size nts : YES];
+    
+    bzero (self.parameterValue.charPtr,size + 1);
     
     strcpy (self.parameterValue.charPtr,valuec);
 }
@@ -262,6 +264,11 @@
 }
 
 - (void) bindIfRequiredType : (SQLSMALLINT) type size : (SQLULEN) size {
+    
+    [self bindIfRequiredType : type size : size nts : NO];
+}
+
+- (void) bindIfRequiredType : (SQLSMALLINT) type size : (SQLULEN) size nts : (bool) nts {
  
     SQLRETURN rc;
     
@@ -269,13 +276,19 @@
         
         if (self.parameterValue.voidPtr) free (self.parameterValue.voidPtr);
         
-        self->parameterValue.voidPtr = malloc (size + 1);
+        SQLULEN mallocSize = size;
+        
+        if (nts) mallocSize ++;
+        
+        self->parameterValue.voidPtr = malloc (mallocSize);
         
         self->valueType = type;
         
         self->valueSize = size;
         
-        self->strLenOrInd = size;
+        self->strLenOrInd = mallocSize;
+        
+        if (nts) self->strLenOrInd = SQL_NTS;
         
         rc = SQLBindParam (self.statement.hstmt,
                            self.parameterNumber,
