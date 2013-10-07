@@ -31,114 +31,6 @@
 				</div>
 				<div id="container">
 					
-					<div class="section section-overview index-overview">
-						
-						
-						<h1>Odbc framework documentation</h1>
-
-<p>Odbc framework is Cocoa framework providing access to ODBC databases. It works on
-top of iODBC framework which is a low level C-oriented framework of ODBC routines
-that follow ODBC specification. The framework includes also an experimental Cocoa
-Core Data Persistent Store for Odbc.</p>
-
-<p>ODBC framework consists of a number of classes. Currently only <a href="Classes/OdbcConnection.html">OdbcConnection</a> and
-<a href="Classes/OdbcStatement.html">OdbcStatement</a> are used in non-Core Data applications. <a href="Classes/OdbcStore.html">OdbcStore</a> class is used in
-Core Data applications. The rest is for internal framework use.</p>
-
-<p>In order to use Odbc framework you <strong>don&rsquo;t</strong> need to know ODBC specification. You
-<strong>do</strong> need to know some basics of SQL, relational databases and of course Objective-C.</p>
-
-<p>The documntation consists of:</p>
-
-<ul>
-<li>This overview page</li>
-<li>Class hierarchy page</li>
-<li>Invidual pages for each class</li>
-</ul>
-
-
-<p>This repository contains XCode project with 4 targets:</p>
-
-<ul>
-<li>Odbc - builds the framework itself</li>
-<li>OdbcDocumentation - generates the documentation</li>
-<li>OdbcExample - builds Cocoa Core Data application using Odbc</li>
-<li>OdbcTests - performs unit tests of the framework</li>
-</ul>
-
-
-<h1>Example console application</h1>
-
-<p>The following is a simple Cocoa console application that uses Odbc framework.</p>
-
-<pre><code>// main.m
-
-#import &lt;Cocoa/Cocoa.h&gt;
-
-int main (int argc, char * argv []) {
-
-    OdbcConnection * connection = [OdbcConnection new];
-
-    [connection connect: @"testdb" user: @"root" password: nil];
-
-    OdbcStatement * stmt = [connection newStatment];
-
-    [stmt execDirect: @"select * from book order by title"];
-
-    while ([stmt fetch]) {
-
-        long bookId = [stmt getLongByName: @"bookId"];
-
-        NSString * title = [stmt getStringByName: @"title"];
-
-        double price = [stmt getDoubleByName: @"price"];
-
-        NSLog (@"%ld %@ %f",bookId,title,price);
-    }
-
-    [stmt closeCursor];
-
-    return 0;
-}
-</code></pre>
-
-<p>In this application we first create an <a href="Classes/OdbcConnection.html">OdbcConnection</a> and then use it to connect to
-ODBC data source named &lsquo;testdb&rsquo; with username &lsquo;root&rsquo;. Then we create a new <a href="Classes/OdbcStatement.html">OdbcStatement</a>.
-We use this statement to execute SQl query &lsquo;select * from book order by title&rsquo;.
-After that we go into a loop fetching a new row each time aroud. We get &lsquo;bookId&rsquo;,
-&lsquo;title&rsquo; and &lsquo;price&rsquo;. Then we write them to the console. When the loop terminates
-we close the statement.</p>
-
-<h1>Prerequisites</h1>
-
-<p>First and foremost you need XCode installed on your Mac. If you don&rsquo;t have it go
-to AppStore download and install it. It&rsquo;s free of charge. Test your installation
-by writting and running a small application.</p>
-
-<p>Next you need a database manager, either standalone on your Mac, or on accessible
-network server. If you don&rsquo;t have you need to download and install it. MySql Community
-Edition is free of charge. Download it and install. You can start/stop it by an
-applet in System Preferences. You also need to dowload and install MySqlWorkbench.
-Go ahead and try it out. Create new database (schema) named &lsquo;testdb&rsquo;. Create table
-&lsquo;book&rsquo; in it. You also need MySql ODBC driver. Download it and install.</p>
-
-<p>Next comes iODBC framework (Odbc framework builds upon iODBC framework). If you
-don&rsquo;t have it go to iOdbc site, download and install it. Among other things it will
-install &lsquo;iOdbc Administrator&rsquo; application. You use it in a 2-step process. First you register
-your ODBC driver - this is done under &lsquo;ODBC Driver&rsquo; tab. Then you register your
-database under either &lsquo;User DSN&rsquo; or &lsquo;System DSN&rsquo; tab.</p>
-
-<p>Test overall installation, perhaps by running the application above.</p>
-
-<h1>Cocoa Core Data example</h1>
-
-<p>The example uses the following Core Data model:</p>
-
-<p><img src="docs/Images/ExampleCoreDataModel.png" alt="ExampleCoreDataModel.png"></p>
-						
-						
-					</div>
-					
                         
                     
 					
@@ -181,7 +73,7 @@ database under either &lsquo;User DSN&rsquo; or &lsquo;System DSN&rsquo; tab.</p
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Datakonsulten AB. All rights reserved. (Last updated: 2013-10-07)</span><br />
+						<p><span class="copyright">&copy; 2013 Datakonsulten AB. All rights reserved. (Last updated: 2013-10-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
 						
