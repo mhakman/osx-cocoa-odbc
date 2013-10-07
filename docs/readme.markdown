@@ -2,11 +2,12 @@
 
 Odbc framework is Cocoa framework providing access to ODBC databases. It works on
 top of iODBC framework which is a low level C-oriented framework of ODBC routines
-that follow ODBC specification.
+that follow ODBC specification. The framework includes also an experimental Cocoa
+Core Data Persistent Store for Odbc.
 
 ODBC framework consists of a number of classes. Currently only OdbcConnection and
-OdbcStatement are used in an application. The rest is for internal framework use.
-Neverthless all classes are documented here.
+OdbcStatement are used in non-Core Data applications. OdbcStore class is used in
+Core Data applications. The rest is for internal framework use.
 
 In order to use Odbc framework you **don't** need to know ODBC specification. You
 **do** need to know some basics of SQL, relational databases and of course Objective-C. 
@@ -17,7 +18,14 @@ The documntation consists of:
 * Class hierarchy page
 * Invidual pages for each class
 
-#Example application#
+This repository contains XCode project with 4 targets:
+
+* Odbc - builds the framework itself
+* OdbcDocumentation - generates the documentation
+* OdbcExample - builds Cocoa Core Data application using Odbc
+* OdbcTests - performs unit tests of the framework
+
+#Example console application#
 
 The following is a simple Cocoa console application that uses Odbc framework.
 
@@ -77,5 +85,14 @@ install 'iOdbc Administrator' application. You use it in a 2-step process. First
 your ODBC driver - this is done under 'ODBC Driver' tab. Then you register your 
 database under either 'User DSN' or 'System DSN' tab.
 
-Test overall installation, perhaps by running the application above. 
+Test overall installation, perhaps by running the application above.
+
+#Cocoa Core Data example#
+
+The example uses the following Core Data model:
+
+<img src="docs/Images/ExampleCoreDataModel.png" alt="ExampleCoreDataModel.png">
+
+
+
  

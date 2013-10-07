@@ -14,15 +14,25 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>OdbcTests.xcscheme</key>
+		<key>OdbcExample.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
+		</dict>
+		<key>OdbcTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>6A27E28917D8FC490070E6B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A5EE5F41803308C005E5942</key>
 		<dict>
 			<key>primary</key>
 			<true/>
