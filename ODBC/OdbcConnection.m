@@ -28,6 +28,15 @@
 
 @synthesize hdbc;
 
+- (OdbcStatement *) execDirect : (NSString *) sql {
+    
+    OdbcStatement * stmt = [self newStatement];
+    
+    [stmt execDirect : sql];
+    
+    return stmt;
+}
+
 - (NSString *) currentSchema {
     
     NSString * schemaTerm = self.schemaTerm;

@@ -289,4 +289,15 @@
     }
 }
 
+- (void) testExecDirect {
+    
+    OdbcStatement * stmt = [self->connection execDirect : @"select * from testtab"];
+    
+    bool found = [stmt fetch];
+    
+    STAssertTrue (found,@"");
+    
+    [stmt closeCursor];
+}
+
 @end

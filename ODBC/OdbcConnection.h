@@ -62,4 +62,6 @@
                             table : (NSString *) table
                        tableTypes : (NSString *) tableTypes;
 
+- (OdbcStatement *) execDirect : (NSString *) sql;
+
 @end
