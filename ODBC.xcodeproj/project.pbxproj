@@ -59,8 +59,8 @@
 		6A5EE618180331D8005E5942 /* AuthorsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE612180331D8005E5942 /* AuthorsController.m */; };
 		6A5EE619180331D8005E5942 /* BookAuthorsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE614180331D8005E5942 /* BookAuthorsController.m */; };
 		6A5EE61A180331D8005E5942 /* BooksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE616180331D8005E5942 /* BooksController.m */; };
-		6A5EE61D18033209005E5942 /* OdbcExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE61B18033209005E5942 /* OdbcExample.xcdatamodeld */; };
 		6A5EE61E180332B2005E5942 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
+		6A5EE62418036DE9005E5942 /* OdbcExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE62218036DE9005E5942 /* OdbcExample.xcdatamodeld */; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
 		6A744FE917F9EC8F000793B2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
 		6A744FF717F9ECC2000793B2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
@@ -119,7 +119,7 @@
 		6A5EE614180331D8005E5942 /* BookAuthorsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookAuthorsController.m; sourceTree = "<group>"; };
 		6A5EE615180331D8005E5942 /* BooksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksController.h; sourceTree = "<group>"; };
 		6A5EE616180331D8005E5942 /* BooksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksController.m; sourceTree = "<group>"; };
-		6A5EE61C18033209005E5942 /* Library1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Library1.xcdatamodel; sourceTree = "<group>"; };
+		6A5EE62318036DE9005E5942 /* OdbcExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OdbcExample.xcdatamodel; sourceTree = "<group>"; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FB517F867E1000793B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -268,7 +268,7 @@
 				6A5EE6031803308C005E5942 /* AppDelegate.h */,
 				6A5EE6041803308C005E5942 /* AppDelegate.m */,
 				6A5EE6061803308D005E5942 /* MainMenu.xib */,
-				6A5EE61B18033209005E5942 /* OdbcExample.xcdatamodeld */,
+				6A5EE62218036DE9005E5942 /* OdbcExample.xcdatamodeld */,
 				6A5EE5F81803308C005E5942 /* Supporting Files */,
 			);
 			path = OdbcExample;
@@ -559,7 +559,7 @@
 				6A5EE618180331D8005E5942 /* AuthorsController.m in Sources */,
 				6A5EE619180331D8005E5942 /* BookAuthorsController.m in Sources */,
 				6A5EE61A180331D8005E5942 /* BooksController.m in Sources */,
-				6A5EE61D18033209005E5942 /* OdbcExample.xcdatamodeld in Sources */,
+				6A5EE62418036DE9005E5942 /* OdbcExample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,12 +856,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6A5EE61B18033209005E5942 /* OdbcExample.xcdatamodeld */ = {
+		6A5EE62218036DE9005E5942 /* OdbcExample.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6A5EE61C18033209005E5942 /* Library1.xcdatamodel */,
+				6A5EE62318036DE9005E5942 /* OdbcExample.xcdatamodel */,
 			);
-			currentVersion = 6A5EE61C18033209005E5942 /* Library1.xcdatamodel */;
+			currentVersion = 6A5EE62318036DE9005E5942 /* OdbcExample.xcdatamodel */;
 			path = OdbcExample.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
