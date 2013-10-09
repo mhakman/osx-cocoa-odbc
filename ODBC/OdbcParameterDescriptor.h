@@ -18,6 +18,7 @@ typedef union parameter_value_def {
     
     void                 * voidPtr;
     long                 * longPtr;
+    unsigned long        * unsignedLongPtr;
     char                 * charPtr;
     double               * doublePtr;
     SQL_DATE_STRUCT      * datePtr;
@@ -51,6 +52,7 @@ typedef union parameter_value_def {
 @property (readonly)  long             strLenOrInd;
 @property (nonatomic) PARAMETER_VALUE  parameterValue;
 @property (nonatomic) long             longValue;
+@property (nonatomic) unsigned long    unsignedLongValue;
 @property (nonatomic) NSString       * stringValue;
 @property (nonatomic) double           doubleValue;
 @property (nonatomic) NSDate         * dateValue;

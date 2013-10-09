@@ -822,7 +822,7 @@
 
 - (void) connectDataSource : (NSString *) dataSource username : (NSString *) username password : (NSString *) password {
     
-    [self->odbcConnection connect : dataSource user : username password : password];
+    [self->odbcConnection connect : dataSource username : username password : password];
     
     self->odbcConnection.transactionIsolation = SQL_TXN_SERIALIZABLE;
     
@@ -935,7 +935,12 @@
     
     NSString * tableName = entity.name;
     
-    if ([self tableExists : tableName]) return;
+    if ([self tableExists : tableName]) {
+        
+        [self checkTableId : tableName];
+        
+        return;
+    }
     
     NSMutableString * sql =
     
@@ -959,6 +964,37 @@
     [sql appendString : @")"];
     
     [self->odbcConnection execDirect : sql];
+}
+
+- (void) checkTableId : (NSString *) tableName {
+    
+    NSString * sql = [NSString stringWithFormat : @"select max(id) from %@",tableName];
+    
+    OdbcStatement * stmt = [self->odbcConnection execDirect : sql];
+    
+    unsigned long maxIdTable = 0;
+    
+    if ([stmt fetch]) {
+        
+        maxIdTable = [stmt getUnsignedLong : 1];
+        
+        if (stmt.wasNull) maxIdTable = 0;
+    }
+    
+    [stmt closeCursor];
+    
+    unsigned long maxIdSystem = 0;
+    
+    [self fetchCoreDataEntityForName : tableName lastId : &maxIdSystem];
+    
+    if (maxIdTable > maxIdSystem) {
+        
+        NSString * msg = [NSString stringWithFormat : @"Primary key '%lu' used in table '%@' is greather than corresponding"
+                                                       "in table CoreDataEntity. Did you change table values manually?",
+                                                        maxIdTable,tableName];
+        
+        RAISE_ODBC_EXCEPTION ("checkTableId",msg.UTF8String);
+    }
 }
 
 - (NSString *) sqlColumnTypeForAttribute : (NSAttributeDescription *) attribute {

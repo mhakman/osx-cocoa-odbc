@@ -31,7 +31,7 @@
     
     self->connection = [OdbcConnection new];
     
-    [self->connection connect : @"testdb" user : @"root" password : nil];
+    [self->connection connect : @"testdb" username : @"root" password : nil];
     
     self->statement = [self->connection newStatement];
 }

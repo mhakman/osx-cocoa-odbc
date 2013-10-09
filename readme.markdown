@@ -32,6 +32,7 @@ The following is a simple Cocoa console application that uses Odbc framework.
     // main.m
     
     #import <Cocoa/Cocoa.h>
+    #import <Odbc/Odbc.h>
     
     int main (int argc, char * argv []) {
     

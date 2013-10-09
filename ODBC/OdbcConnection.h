@@ -47,7 +47,17 @@
 
 @property (readonly,nonatomic) NSString * currentSchema;
 
-- (void) connect : (NSString *) server user : (NSString *) user password : (NSString *) password;
++ (OdbcConnection *) connectionWithDataSource : (NSString *) newDataSource
+                                     username : (NSString *) username
+                                     password : (NSString *) password;
+    
+    
+- (OdbcConnection *) initWithDataSource : (NSString *) newDataSource
+                               username : (NSString *) username
+                               password : (NSString *) password;
+
+
+- (void) connect : (NSString *) server username : (NSString *) user password : (NSString *) password;
 
 - (void) disconnect;
 

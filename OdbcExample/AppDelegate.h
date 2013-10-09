@@ -16,11 +16,9 @@ extern NSString * DraggedBooksType;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+@property (readonly) IBOutlet NSWindow * window;
 
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly,nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @property NSArray * booksSortDescriptors;
 @property NSArray * authorsSortDescriptors;

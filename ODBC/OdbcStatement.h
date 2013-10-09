@@ -47,6 +47,10 @@
 
 - (long) getLongByName : (NSString *) columnName;
 
+- (unsigned long) getUnsignedLong : (int) columnNumber;
+
+- (unsigned long) getUnsignedLongByName : (NSString *) columnName;
+
 - (NSString *) getString : (int) columnNumber;
 
 - (NSString *) getStringByName : (NSString *) columnName;
@@ -72,6 +76,8 @@
 - (id) getObjectByName : (NSString *) columnName;
 
 - (void) setLong : (int) parameterNumber value : (long) value;
+
+- (void) setUnsignedLong : (int) parameterNumber value : (unsigned long) value;
 
 - (void) setString : (int) parameterNumber value : (NSString *) value;
 

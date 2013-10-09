@@ -37,7 +37,7 @@
     
     OdbcConnection * newConnection = [OdbcConnection new];
     
-    [newConnection connect : @"testdb" user : @"root" password : nil];
+    [newConnection connect : @"testdb" username : @"root" password : nil];
     
     [newConnection disconnect];
 }
@@ -46,7 +46,7 @@
 
     OdbcConnection * newConnection = [OdbcConnection new];
     
-    [newConnection connect : @"testdb" user : @"root" password : nil];
+    [newConnection connect : @"testdb" username : @"root" password : nil];
     
     [newConnection disconnect];
 }

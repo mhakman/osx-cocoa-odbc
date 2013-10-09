@@ -28,6 +28,31 @@
 
 @synthesize hdbc;
 
++ (OdbcConnection *) connectionWithDataSource : (NSString *) newDataSource
+                                     username : (NSString *) newUsername
+                                     password : (NSString *) newPassword {
+    
+    OdbcConnection * connection = [[OdbcConnection alloc] initWithDataSource : newDataSource
+                                                                    username : newUsername
+                                                                    password : newPassword];
+    
+    return connection;
+}
+
+- (OdbcConnection *) initWithDataSource : (NSString *) newDataSource
+                               username : (NSString *) newUsername
+                               password : (NSString *) newPassword {
+    
+    self = [self init];
+    
+    if (! self) return self;
+    
+    [self connect : newDataSource username : newUsername password : newPassword];
+    
+    return self;
+}
+
+
 - (OdbcStatement *) execDirect : (NSString *) sql {
     
     OdbcStatement * stmt = [self newStatement];
@@ -305,7 +330,7 @@
     }
 }
 
-- (void) connect : (NSString *) server user : (NSString *) user password : (NSString *) password {
+- (void) connect : (NSString *) server username : (NSString *) user password : (NSString *) password {
     
     SQLRETURN rc;
     

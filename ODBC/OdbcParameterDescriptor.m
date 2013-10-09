@@ -101,13 +101,24 @@
 
 - (void) setLongValue : (long) value {
     
-    SQLSMALLINT type = SQL_C_LONG;
+    SQLSMALLINT type = SQL_C_SBIGINT;
     
     SQLULEN size = sizeof (long);
     
     [self bindIfRequiredType : type size : size];
         
     (* self->parameterValue.longPtr) = value;
+}
+
+- (void) setUnsignedLongValue : (unsigned long) value {
+    
+    SQLSMALLINT type = SQL_C_UBIGINT;
+    
+    SQLULEN size = sizeof (unsigned long);
+    
+    [self bindIfRequiredType : type size : size];
+    
+    (* self->parameterValue.unsignedLongPtr) = value;
 }
 
 - (void) setDoubleValue : (double) value {

@@ -141,7 +141,23 @@
     
     long targetValue = 0;
     
-    [self getData : colNumber valueType : SQL_C_LONG targetPtr : &targetValue valueSize : sizeof(long)];
+    [self getData : colNumber valueType : SQL_C_SBIGINT targetPtr : &targetValue valueSize : sizeof(long)];
+    
+    return targetValue;
+}
+
+- (unsigned long) getUnsignedLongByName : (NSString *) columnName {
+    
+    int colNumber = [self.resultDescriptor columnNumberFor : columnName];
+    
+    return [self getUnsignedLong : colNumber];
+}
+
+- (unsigned long) getUnsignedLong : (int) colNumber {
+    
+    unsigned long targetValue = 0;
+    
+    [self getData : colNumber valueType : SQL_C_UBIGINT targetPtr : &targetValue valueSize : sizeof(unsigned long)];
     
     return targetValue;
 }
@@ -456,6 +472,13 @@
     OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
     
     desc.longValue = value;
+}
+
+- (void) setUnsignedLong : (int) parameterNumber value : (unsigned long) value {
+    
+    OdbcParameterDescriptor * desc = [self.prepareDescriptor parameterDescriptorAtIndex : parameterNumber];
+    
+    desc.unsignedLongValue = value;
 }
 
 - (void) setString : (int) parameterNumber value : (NSString *) value {
