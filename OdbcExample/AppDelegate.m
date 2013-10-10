@@ -97,7 +97,7 @@ NSString * DraggedBooksType;
     
     NSString * productName = [self productName];
         
-    NSString * storeFileName = [NSString stringWithFormat:@"%@.storedata",productName];
+    NSString * storeFileName = [NSString stringWithFormat : @"%@.storedata",productName];
     
     NSURL * url = [self.applicationFilesDirectory URLByAppendingPathComponent : storeFileName];
     
@@ -111,6 +111,16 @@ NSString * DraggedBooksType;
     NSString * productName = [bundleInfo objectForKey : @"CFBundleName"];
     
     return productName;
+}
+
+- (IBAction) reloadData : (id) sender {
+    
+    NSSet * objects = self.managedObjectContext.registeredObjects;
+    
+    for (NSManagedObject * object in objects) {
+        
+        [self.managedObjectContext refreshObject : object mergeChanges : YES];
+    }
 }
 //
 //------------------------------------------------------------------------------
@@ -128,6 +138,8 @@ NSString * DraggedBooksType;
     self->managedObjectContext = [NSManagedObjectContext new];
                                   
     [self->managedObjectContext setPersistentStoreCoordinator : coordinator];
+    
+    [self->managedObjectContext setStalenessInterval : 0.0];
     
     return self->managedObjectContext;
 }
@@ -150,7 +162,7 @@ NSString * DraggedBooksType;
     
     NSPersistentStoreCoordinator * coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel : mom];
     //
-    // Using global variable StoreType instead of a constant as it was in XCode generated code
+    // Using global variable PersistentStoreType instead of a constant as it was in XCode generated code
     //
     if (! [coordinator addPersistentStoreWithType : PersistentStoreType
                                     configuration : nil
@@ -204,7 +216,7 @@ NSString * DraggedBooksType;
 //
 // Returns the directory the application uses to store the Core Data store file.
 //
-// Note that this method is not used when running agaist 'OdbcStore'.
+// Note that this method is not used when running against 'OdbcStore'.
 //
 - (NSURL *) applicationFilesDirectory {
     
@@ -298,7 +310,11 @@ NSString * DraggedBooksType;
 //
 - (IBAction) saveAction : (id) sender {
     
-    NSError * error = nil;
+    NSError * error = nil;    
+    //
+    // Added disable commitChangesButton
+    //
+    [self.commitChangesButton setEnabled : NO];
     
     if (! self->managedObjectModel) return;
     
@@ -325,10 +341,6 @@ NSString * DraggedBooksType;
         
         return;
     }
-    //
-    // Added disable commitChangesButton
-    //
-    [self.commitChangesButton setEnabled : NO];
 }
 //
 // Called when application is about to terminate

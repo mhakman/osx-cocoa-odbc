@@ -61,6 +61,10 @@
 		6A5EE61A180331D8005E5942 /* BooksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE616180331D8005E5942 /* BooksController.m */; };
 		6A5EE61E180332B2005E5942 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
 		6A5EE62418036DE9005E5942 /* OdbcExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE62218036DE9005E5942 /* OdbcExample.xcdatamodeld */; };
+		6A5EE62718059B08005E5942 /* OdbcStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE62618059B08005E5942 /* OdbcStoreTests.m */; };
+		6A5EE62A18059C64005E5942 /* OdbcStoreTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE62818059C64005E5942 /* OdbcStoreTests.xcdatamodeld */; };
+		6A5EE6321806062D005E5942 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE6311806062D005E5942 /* Author.m */; };
+		6A5EE6351806067E005E5942 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE6341806067E005E5942 /* Book.m */; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
 		6A744FE917F9EC8F000793B2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
 		6A744FF717F9ECC2000793B2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
@@ -70,6 +74,17 @@
 		6AA4548E17FAFFAD00BB2EC9 /* StatementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		6A5EE62C1805BFCC005E5942 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.model.coredata;
+			fileType = wrapper.xcdatamodel;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		6A1F1A1417F0EA980019B7CC /* iODBC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iODBC.framework; path = /Library/Frameworks/iODBC.framework; sourceTree = "<absolute>"; };
@@ -120,6 +135,13 @@
 		6A5EE615180331D8005E5942 /* BooksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksController.h; sourceTree = "<group>"; };
 		6A5EE616180331D8005E5942 /* BooksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksController.m; sourceTree = "<group>"; };
 		6A5EE62318036DE9005E5942 /* OdbcExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OdbcExample.xcdatamodel; sourceTree = "<group>"; };
+		6A5EE62518059B08005E5942 /* OdbcStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStoreTests.h; sourceTree = "<group>"; };
+		6A5EE62618059B08005E5942 /* OdbcStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStoreTests.m; sourceTree = "<group>"; };
+		6A5EE62918059C64005E5942 /* OdbcStoreTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OdbcStoreTests.xcdatamodel; sourceTree = "<group>"; };
+		6A5EE6301806062D005E5942 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		6A5EE6311806062D005E5942 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		6A5EE6331806067E005E5942 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		6A5EE6341806067E005E5942 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FB517F867E1000793B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -289,13 +311,20 @@
 		6A744FEA17F9EC8F000793B2 /* OdbcTests */ = {
 			isa = PBXGroup;
 			children = (
+				6A5EE6301806062D005E5942 /* Author.h */,
+				6A5EE6311806062D005E5942 /* Author.m */,
+				6A5EE6331806067E005E5942 /* Book.h */,
+				6A5EE6341806067E005E5942 /* Book.m */,
 				6A744FFB17FAEDBE000793B2 /* OdbcTests.h */,
 				6A744FFC17FAEDBE000793B2 /* OdbcTests.m */,
 				6A744FF817FAED36000793B2 /* ConnectionTests.h */,
 				6A744FF917FAED36000793B2 /* ConnectionTests.m */,
-				6A744FEB17F9EC90000793B2 /* Supporting Files */,
+				6A5EE62818059C64005E5942 /* OdbcStoreTests.xcdatamodeld */,
+				6A5EE62518059B08005E5942 /* OdbcStoreTests.h */,
+				6A5EE62618059B08005E5942 /* OdbcStoreTests.m */,
 				6AA4548C17FAFFAD00BB2EC9 /* StatementTests.h */,
 				6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */,
+				6A744FEB17F9EC90000793B2 /* Supporting Files */,
 			);
 			path = OdbcTests;
 			sourceTree = "<group>";
@@ -383,6 +412,7 @@
 				6A744FE417F9EC8F000793B2 /* ShellScript */,
 			);
 			buildRules = (
+				6A5EE62C1805BFCC005E5942 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -570,6 +600,10 @@
 				6A744FFA17FAED37000793B2 /* ConnectionTests.m in Sources */,
 				6A744FFD17FAEDBE000793B2 /* OdbcTests.m in Sources */,
 				6AA4548E17FAFFAD00BB2EC9 /* StatementTests.m in Sources */,
+				6A5EE62718059B08005E5942 /* OdbcStoreTests.m in Sources */,
+				6A5EE62A18059C64005E5942 /* OdbcStoreTests.xcdatamodeld in Sources */,
+				6A5EE6321806062D005E5942 /* Author.m in Sources */,
+				6A5EE6351806067E005E5942 /* Book.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +814,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OdbcTests/OdbcTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SRCDIR=\"\\\"$(PROJECT_DIR)\\\"\"",
+					"TARGET_BUILD_DIR=\"\\\"$(TARGET_BUILD_DIR)\\\"\"",
+				);
 				INFOPLIST_FILE = "OdbcTests/OdbcTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "/Library/Frameworks \"$(SRCROOT)/DerivedData/Odbc/Build/Products/Debug\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -798,6 +836,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OdbcTests/OdbcTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SRCDIR=\"\\\"$(PROJECT_DIR)\\\"\"",
+					"TARGET_BUILD_DIR=\"\\\"$(TARGET_BUILD_DIR)\\\"\"",
+				);
 				INFOPLIST_FILE = "OdbcTests/OdbcTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "/Library/Frameworks \"$(SRCROOT)/DerivedData/Odbc/Build/Products/Debug\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -863,6 +905,16 @@
 			);
 			currentVersion = 6A5EE62318036DE9005E5942 /* OdbcExample.xcdatamodel */;
 			path = OdbcExample.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		6A5EE62818059C64005E5942 /* OdbcStoreTests.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6A5EE62918059C64005E5942 /* OdbcStoreTests.xcdatamodel */,
+			);
+			currentVersion = 6A5EE62918059C64005E5942 /* OdbcStoreTests.xcdatamodel */;
+			path = OdbcStoreTests.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

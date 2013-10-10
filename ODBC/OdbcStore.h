@@ -10,4 +10,6 @@
 
 @interface OdbcStore : NSIncrementalStore
 
+- (void) dropTablesForModel : (NSManagedObjectModel *) model;
+
 @end

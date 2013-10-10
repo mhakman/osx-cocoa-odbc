@@ -26,6 +26,19 @@
     [super tearDown];    
 }
 
+- (void) testConnectionWith {
+    
+    OdbcConnection * newConnection =
+    
+    [OdbcConnection connectionWithDataSource : DataSourceName username : Username password : Password];
+
+    STAssertNotNil (newConnection,@"");
+    
+    STAssertTrue (newConnection.connected,@"");
+    
+    [newConnection disconnect];
+}
+
 - (void) testNew {
     
     OdbcConnection * newConnection = [OdbcConnection new];
@@ -37,7 +50,7 @@
     
     OdbcConnection * newConnection = [OdbcConnection new];
     
-    [newConnection connect : @"testdb" username : @"root" password : nil];
+    [newConnection connect : DataSourceName username : Username password : Password];
     
     [newConnection disconnect];
 }
@@ -46,7 +59,7 @@
 
     OdbcConnection * newConnection = [OdbcConnection new];
     
-    [newConnection connect : @"testdb" username : @"root" password : nil];
+    [newConnection connect : DataSourceName username : Username password : Password];
     
     [newConnection disconnect];
 }
@@ -122,7 +135,9 @@
 
 - (void) testTablesCatalogSchemaTableTableTypes {
     
-    OdbcStatement * stmt = [self->connection tablesCatalog : @"testdb"
+    NSString * catalogName = [self->connection currentCatalog];
+    
+    OdbcStatement * stmt = [self->connection tablesCatalog : catalogName
                                                     schema : @"%"
                                                      table : @"testtab"
                                                 tableTypes : @""];
@@ -133,7 +148,7 @@
     
     NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
     
-    STAssertEqualObjects (@"testdb",catalog,@"");
+    STAssertEqualObjects (catalogName,catalog,@"");
     
     NSString * schema = [stmt getStringByName : @"TABLE_SCHEM"];
     
@@ -214,12 +229,12 @@
 
 - (void) testDataSource {
     
-    STAssertEqualObjects (self->connection.dataSource,@"testdb",@"");
+    STAssertEqualObjects (self->connection.dataSource,DataSourceName,@"");
 }
 
 - (void) testUsername {
     
-    STAssertEqualObjects(self->connection.username,@"root",@"");
+    STAssertEqualObjects(self->connection.username,Username,@"");
 }
 
 - (void) testCatalogs {
@@ -228,13 +243,15 @@
     
     STAssertTrue ([catalogs count] > 0,@"");
     
-    long index = [catalogs indexOfObject : @"testdb"];
+    NSString * currentCatalog = self->connection.currentCatalog;
+    
+    long index = [catalogs indexOfObject : currentCatalog];
     
     STAssertTrue (index >= 0,@"");
     
     NSString * catalog = [catalogs objectAtIndex : index];
     
-    STAssertEqualObjects (catalog,@"testdb",@"");
+    STAssertEqualObjects (catalog,currentCatalog,@"");
 }
 
 - (void) testScemas {
@@ -261,7 +278,7 @@
     
     if (catalog.length > 0) {
         
-        STAssertEqualObjects (catalog,@"testdb",@"");
+        STAssertEqualObjects (catalog,DataSourceName,@"");
     }
 }
 
@@ -269,7 +286,7 @@
     
     NSString * user = self->connection.currentUser;
     
-    STAssertEqualObjects (user,@"root",@"");
+    STAssertEqualObjects (user,Username,@"");
 }
 
 - (void) testSchemaTerm {

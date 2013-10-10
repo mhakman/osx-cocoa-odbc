@@ -10,11 +10,24 @@
 
 #import <Odbc/Odbc.h>
 
+NSString * DataSourceName;
+NSString * Username;
+NSString * Password;
+
 @interface OdbcTests () 
 
 @end
 
 @implementation OdbcTests
+
++ (void) initialize {
+    
+    DataSourceName = @"testdb";
+    
+    Username = @"root";
+    
+    Password = nil;
+}
 
 - (void) setUp {
     
@@ -31,7 +44,7 @@
     
     self->connection = [OdbcConnection new];
     
-    [self->connection connect : @"testdb" username : @"root" password : nil];
+    [self->connection connect : DataSourceName username : Username password : Password];
     
     self->statement = [self->connection newStatement];
 }

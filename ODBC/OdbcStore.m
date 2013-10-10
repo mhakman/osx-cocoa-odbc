@@ -26,6 +26,13 @@
 
 @implementation OdbcStore
 
+- (void) dropTablesForModel : (NSManagedObjectModel *) model {
+    
+    [self->database dropTablesForModel : model];
+    
+    [self->database commit];
+}
+
 - (id) initWithPersistentStoreCoordinator : (NSPersistentStoreCoordinator *) root
                         configurationName : (NSString *) name
                                       URL : (NSURL *) url

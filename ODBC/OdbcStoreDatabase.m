@@ -244,6 +244,11 @@
     
     NSMutableString * sql = [NSMutableString stringWithFormat : @"select id from %@",tableName];
     
+    if (request.predicate != nil) {
+        
+        RAISE_ODBC_EXCEPTION (__PRETTY_FUNCTION__,"Fetch predicates are not supported yet");
+    }
+    
     if (request.sortDescriptors != nil && request.sortDescriptors.count > 0) {
         
         [sql appendString : @" order by " ];
@@ -1068,6 +1073,54 @@
     }
     
     return YES;
+}
+
+- (void) dropTablesForModel : (NSManagedObjectModel *) model {
+        
+    NSArray * entities = model.entities;
+    
+    for (NSEntityDescription * ed in entities) {
+        
+        NSDictionary * rsDict = ed.relationshipsByName;
+        
+        for (NSRelationshipDescription * rd in rsDict.allValues) {
+            
+            @try {
+            
+                [self dropTableForRelationship : rd];
+                
+            } @catch (NSException * exception) {}
+        }
+    }
+    
+    for (NSEntityDescription * ed in entities) {
+        
+        @try {
+            
+            [self dropTable : ed.name];
+            
+        } @catch (NSException * exception) {}
+    }
+    
+    @try {
+        
+        [self dropTable : @"CoreDataEntity"];
+        
+    } @catch (NSException * exception) {}
+}
+
+- (void) dropTableForRelationship : (NSRelationshipDescription *) relationship {
+    
+    NSString * tabName = [self tableForRelationship : relationship];
+    
+    [self dropTable : tabName];
+}
+
+- (void) dropTable : (NSString *) tableName {
+    
+    NSString * sql = [NSString stringWithFormat : @"drop table %@",tableName];
+    
+    [self->odbcConnection execDirect : sql];
 }
 
 @end

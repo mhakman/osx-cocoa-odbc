@@ -27,4 +27,6 @@ extern NSString * DraggedBooksType;
 
 - (IBAction) saveAction : (id) sender;
 
+- (IBAction) reloadData : (id) sender;
+
 @end

@@ -8,6 +8,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+extern NSString * DataSourceName;
+extern NSString * Username;
+extern NSString * Password;
+
 @class OdbcConnection;
 @class OdbcStatement;
 

@@ -25,7 +25,7 @@
     
     [super awakeFromNib];
     
-    [self setUpDragAndDrop];
+    [self setUpDragAndDrop];    
 }
 
 - (void) setUpDragAndDrop {
@@ -64,7 +64,5 @@ writeRowsWithIndexes : (NSIndexSet   *) rowIndexes
     
     return YES;
 }
-
-
 
 @end
