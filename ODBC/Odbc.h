@@ -16,3 +16,5 @@
 #import "OdbcPrepareDescriptor.h"
 #import "OdbcResultDescriptor.h"
 #import "OdbcStatement.h"
+#import "OdbcStore.h"
+#import "OdbcAppDelegate.h"
