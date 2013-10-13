@@ -43,7 +43,7 @@
 		6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */; };
 		6A27E2CA17D90EC20070E6B7 /* Odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E29A17D8FC490070E6B7 /* Odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A2D3F4017FAF4B200154AF4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */; };
-		6A5EE5EB18032FE8005E5942 /* OdbcStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E518032FE8005E5942 /* OdbcStore.h */; };
+		6A5EE5EB18032FE8005E5942 /* OdbcStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E518032FE8005E5942 /* OdbcStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A5EE5EC18032FE8005E5942 /* OdbcStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE5E618032FE8005E5942 /* OdbcStore.m */; };
 		6A5EE5ED18032FE8005E5942 /* OdbcStoreDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E718032FE8005E5942 /* OdbcStoreDatabase.h */; };
 		6A5EE5EE18032FE8005E5942 /* OdbcStoreDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE5E818032FE8005E5942 /* OdbcStoreDatabase.m */; };
