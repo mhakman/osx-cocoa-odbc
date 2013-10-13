@@ -65,7 +65,7 @@
 		6A5EE62A18059C64005E5942 /* OdbcStoreTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE62818059C64005E5942 /* OdbcStoreTests.xcdatamodeld */; };
 		6A5EE6321806062D005E5942 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE6311806062D005E5942 /* Author.m */; };
 		6A5EE6351806067E005E5942 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE6341806067E005E5942 /* Book.m */; };
-		6A5EE638180706F0005E5942 /* OdbcAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */; };
+		6A5EE638180706F0005E5942 /* OdbcAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A5EE639180706F0005E5942 /* OdbcAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE637180706F0005E5942 /* OdbcAppDelegate.m */; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
 		6A744FE917F9EC8F000793B2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
