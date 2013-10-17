@@ -246,7 +246,9 @@
     
     if (request.predicate != nil) {
         
-        RAISE_ODBC_EXCEPTION (__PRETTY_FUNCTION__,"Fetch predicates are not supported yet");
+        NSString * where = [[OdbcPredicate new] genSqlFromPredicate : request.predicate];
+        
+        [sql appendFormat : @" %@",where];
     }
     
     if (request.sortDescriptors != nil && request.sortDescriptors.count > 0) {

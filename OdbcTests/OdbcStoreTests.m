@@ -365,7 +365,7 @@ NSURL    * PersistentStoreUrl;
     [mikaelAuthor addAuthorBooksObject : thirdBook];
 }
 
-- (void) testExecuteFetchRequestError {
+- (void) testExecuteFetchRequest {
     
     NSError * error = nil;
     
@@ -381,6 +381,43 @@ NSURL    * PersistentStoreUrl;
     }
             
     STAssertEquals (authors.count,(NSUInteger)2,@"");
+    
+    fr = [NSFetchRequest fetchRequestWithEntityName : @"Book"];
+    
+    NSArray * books = [self.moc executeFetchRequest : fr error : &error];
+    
+    if (! books) {
+        
+        STFail (error.description);
+        
+        return;
+    }
+    
+    STAssertEquals (books.count,(NSUInteger)3,@"");
+}
+
+- (void) testExecuteFetchRequestWithPredicate {
+    
+    NSError * error = nil;
+    
+    NSFetchRequest * fr = [NSFetchRequest fetchRequestWithEntityName : @"Author"];
+    
+    NSPredicate * pred =
+    
+    [NSPredicate predicateWithFormat:@"firstName beginswith 'I' and lastName endsWith 'n'"];
+    
+    fr.predicate = pred;
+    
+    NSArray * authors = [self.moc executeFetchRequest : fr error : &error];
+    
+    if (! authors) {
+        
+        STFail (error.description);
+        
+        return;
+    }
+    
+    STAssertEquals (authors.count,(NSUInteger)1,@"");
     
     fr = [NSFetchRequest fetchRequestWithEntityName : @"Book"];
     

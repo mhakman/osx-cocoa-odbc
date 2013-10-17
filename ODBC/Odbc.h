@@ -18,4 +18,5 @@
 #import "OdbcStatement.h"
 #import "OdbcStore.h"
 #import "OdbcAppDelegate.h"
+#import "OdbcPredicate.h"
 
