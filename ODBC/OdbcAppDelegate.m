@@ -47,12 +47,6 @@ NSString * PersistentStoreClass = @"OdbcStore";
 //
 - (NSString *) persistentStoreClass {
     
-    if (PersistentStoreClass) {
-        
-        [NSPersistentStoreCoordinator registerStoreClass : NSClassFromString (PersistentStoreClass)
-                                            forStoreType : self.persistentStoreType];
-    }
-    
     return PersistentStoreClass;
 }
 //
@@ -167,7 +161,17 @@ NSString * PersistentStoreClass = @"OdbcStore";
     // Using a method to get URL instead of a constant as it was in XCode generated code
     //
     NSURL * url = self.persistentStoreUrl;
-    
+    //
+    // Register custom store type
+    //
+    if (self.persistentStoreType && self.persistentStoreClass) {
+        
+        [NSPersistentStoreCoordinator registerStoreClass : NSClassFromString (self.persistentStoreClass)
+                                            forStoreType : self.persistentStoreType];
+    }
+    //
+    // Create persisten store coordinator
+    //
     NSPersistentStoreCoordinator * coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel : mom];
     //
     // Using global variable PersistentStoreType instead of a constant as it was in XCode generated code
