@@ -199,7 +199,7 @@
     
     long curTxnIsolation = self->connection.transactionIsolation;
     
-    STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"");
+    STAssertEquals (curTxnIsolation,SQL_TXN_SERIALIZABLE,@"");
     
     self->connection.transactionIsolation = SQL_TXN_READ_UNCOMMITTED;
     

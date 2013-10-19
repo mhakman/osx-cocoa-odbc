@@ -8,17 +8,23 @@
 
 #import "OdbcAppDelegate.h"
 
-#import <Odbc.h>
+#import <Odbc/Odbc.h>
 
 NSString * PersistentStoreType  = @"OdbcStore";
 NSString * PersistentStoreClass = @"OdbcStore";
 
-@interface OdbcAppDelegate ()
+@interface OdbcAppDelegate () {
+    
+    bool terminating;
+}
+
+@property bool terminating;
 
 @end
 
 @implementation OdbcAppDelegate;
 
+@synthesize terminating;
 @synthesize persistentStoreType;
 @synthesize persistentStoreClass;
 @synthesize persistentStoreUrl;
@@ -29,6 +35,19 @@ NSString * PersistentStoreClass = @"OdbcStore";
 
 @synthesize productName;
 @synthesize applicationFilesDirectory;
+//
+// Initialize object
+//
+- (OdbcAppDelegate *) init {
+    
+    self = [super init];
+    
+    if (! self) return self;
+    
+    self->terminating = NO;
+    
+    return self;
+}
 //
 // Nothing to do right now
 //
@@ -328,7 +347,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     NSError * error = nil;
     
-    if (! self->managedObjectModel) return;
+    if (! self->managedObjectModel || ! self->managedObjectContext || ! self->persistentStoreCoordinator) return;
     
     if (! [[self managedObjectContext] commitEditing]) {
         
@@ -347,6 +366,27 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     if (! [[self managedObjectContext] save : &error]) {
         
+        if (! self.terminating) {
+            
+            if ([error.domain isEqualToString : @"Transaction rolled back"]) {
+                
+                NSString * desc = @"The database was modified during your work."
+                                   "Your transaction was rolled back in order to keep database integrity."
+                                   "Your data will be reloaded and your changes will be reaplied."
+                                   "Press OK button now and retry your last command.";
+                
+                NSDictionary * userInfo = [NSDictionary dictionaryWithObject:desc forKey:NSLocalizedDescriptionKey];
+                
+                NSError * err = [NSError errorWithDomain : @"Transaction rolled back" code : 0 userInfo : userInfo];
+                
+                [[NSApplication sharedApplication] presentError : err];
+                
+                [self reloadAction : self];
+
+                return;
+            }
+        }
+        
         [[NSApplication sharedApplication] presentError : error];
         
         [[NSApplication sharedApplication] terminate : self];
@@ -358,6 +398,8 @@ NSString * PersistentStoreClass = @"OdbcStore";
 // Called when application is about to terminate
 //
 - (NSApplicationTerminateReply) applicationShouldTerminate : (NSApplication *) sender {
+    
+    self.terminating = YES;
     //
     // Save changes in the application's managed object context before the application terminates.
     //

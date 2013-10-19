@@ -699,6 +699,11 @@
     [self->odbcConnection commit];
 }
 
+- (void) rollback {
+    
+    [self->odbcConnection rollback];
+}
+
 - (unsigned long) objectIdForName : (NSString *) name {
     
     unsigned long lastId;
@@ -838,6 +843,8 @@
     self->schema = self->odbcConnection.currentSchema;
     
     [self createTablesIfRequired];
+    
+    [self commit];
 }
 
 - (void) disconnect {

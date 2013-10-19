@@ -32,7 +32,7 @@
 
 @implementation OdbcStatement
 
-@synthesize hstmt,connection,wasNull,resultDescriptor,prepareDescriptor;
+@synthesize hstmt,connection,wasNull,resultDescriptor,prepareDescriptor,concurrency;
 
 + (OdbcStatement *) statementWithConnection : newConnection {
     
@@ -40,7 +40,6 @@
     
     return statement;
 }
-
 
 - (OdbcStatement *) initWithConnection : newConnection {
     
@@ -88,6 +87,28 @@
         
         RAISE_ODBC_HANDLE ("SQLFreeHandle",SQL_HANDLE_STMT,self.hstmt);
     }
+}
+
+- (unsigned long) concurrency {
+    
+    SQLRETURN rc;
+    
+    unsigned long attr;
+    
+    rc = SQLGetStmtAttr (self->hstmt,SQL_ATTR_CONCURRENCY,&attr,sizeof(unsigned long),0);
+    
+    CHECK_ERROR ("SQLGetAttr",rc,SQL_HANDLE_STMT,self->hstmt);
+    
+    return attr;
+}
+
+- (void) setConcurrency : (unsigned long) newConcurrency {
+
+    SQLRETURN rc;
+    
+    rc = SQLSetStmtAttr (self->hstmt,SQL_ATTR_CONCURRENCY,(void *)newConcurrency,sizeof(unsigned long));
+    
+    CHECK_ERROR ("SQLSetStmtAttr",rc,SQL_HANDLE_STMT,self->hstmt);
 }
 
 - (OdbcResultDescriptor *) resultDescriptor {
@@ -312,7 +333,8 @@
         case SQL_DECIMAL:
         case SQL_NUMERIC:
         case SQL_REAL:
-        case SQL_FLOAT: {
+        case SQL_FLOAT:
+        case SQL_DOUBLE: {
             
             double d = [self getDouble : columnNumber];
             

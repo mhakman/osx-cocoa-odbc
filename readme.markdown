@@ -177,4 +177,204 @@ Download and install the MySQL Community Server, MySQL ODBC connector and MySQLW
 ODBC data source.
 9. Now you shoud be able to run the unit tests and example application.
 
+# Creating new XCode project using Persistent Store for ODBC #
+
+In this section I will guide you in creating a new XCode project using Persistent
+Store for ODBC. The section contains the following topics:
+
+1. [Creating new project](#Creating new project).
+2. [Adding required frameworks](#Adding required frameworks).
+3. [Modifying AppDelegate](#Modifying AppDelegate).
+4. [Creating new data model](#Creating new data model).
+5. [Adding NSArrayController](#Adding NSArrayController).
+6. [Adding NSTableView](#Adding NSTableView).
+7. [Adding buttons](#Adding buttons).
+
+### <a id="Creating new project"></a>Creating new project
+
+Create new XCode project of type 'Application/Cocoa Application'. Uncheck 'Use
+Core Data' checkbox. If you check it then it will generate a lot of code in your AppDelegate.
+This code is already contained in Odbc.framework and therefore we do not want to
+generate it.
+
+Build and run your new application. It should build without errors and warnings. 
+It should run without problems. Quit the application.
+
+### <a id="Adding required frameworks"></a>Adding required frameworks
+
+Copy Odbc.framework and ParseKit.framework from Odbc project directory to either
+/System/Library/Frameworks or to your project directory. Copying to 
+/System/library/Frameworks makes things a lttle easier and you will have the frameworks
+in right place for other projects.
+
+Select 'Frameworks' in your project Project Navigator. Add files Odbc.framework 
+and ParseKit.framework. Uncheck 'Copy items to destination...' checkbox. You find
+the files in either your project directory or in '/System/Library/frameworks/ 
+depending where you copied them.
+
+Select 'Frameworks' in your project Project Navigator. Add file 'CoreData.framework'
+from /System/Library/Frameworks. Uncheck 'Copy items to destination...'.
+
+If you copied Odbc.framework and ParseKit.framework to your project directorry then
+you need to modify your project settings. If you copied the frameworks to 
+/System/Library/Frameworks/ then you don't need to do the following. Select your
+project in Project Navigator. You should see the Project Editor now. Select your
+project in Project Editor. Select 'Build Settings' tab. Find 'Run Search Path' in
+the build settings area. Select 'Run Search Path", click on the settings row and
+enter $(PROJECT_DIR).
+
+Build and run your application. There shouldn't be any problems. Quit your application.
+
+### <a id="Modifying AppDelegate"></a>Modifying AppDelegate
+
+Modify your AppDelegate.h. Add the following line to imports directives:
+
+    #import <Odbc/Odbc.h"
+    
+Modify the @interface statement to read:
+
+    @interface AppDelegate : OdbcAppDelegate <NSApplicationDelegate>
+    
+Your AppDelegate.h should now look like the following:
+
+    #import <Cocoa/Cocoa.h>
+
+    #import <Odbc/Odbc.h>
+
+    @interface AppDelegate : OdbcAppDelegate <NSApplicationDelegate>
+
+    @property (assign) IBOutlet NSWindow * window;
+
+    @end
+
+Modify your AppDelegate.m. Add the following method:
+
+    - (NSURL *) persistentStoreUrl {
+    
+        return [NSURL URLWithString : @"odbc:///testdb?username=root&password=secret"];
+    }
+    
+In the above the string 'testdb' is name of an ODBC data source to use. You should
+replace it with your own data source name (unless you have data source 'testdb'.
+The string 'username=root' specifies database username. Replace 'root' by your username.
+The string 'password=secret' specifies password to use. Replace it with your
+password. Your AppDelegate.m should now look like the followig:
+
+    #import "AppDelegate.h"
+
+    @implementation AppDelegate
+
+    - (void) applicationDidFinishLaunching:(NSNotification *) notification {
+    
+        // Insert code here to initialize your application
+    }
+
+    - (NSURL *) persistentStoreUrl {
+    
+        return [NSURL URLWithString : @"odbc:///testdb?username=root"];
+    }
+
+    @end
+
+Build and run your application. There shouldn't be any problems. Quit the application.
  
+### <a id="Creating new data model"></a> Creating new data model
+
+In this section we will create a data model for your application.
+
+Select your application in the Project Navigator, right or control click on it. 
+Select 'New File...' on the popup menu. Select 'Core Data'/'Data Model' on the
+dialog. Press 'Next' button. On the 'Save As' dialog specify name of the model. 
+__Currently the name must be the same as your application__. Press 'Create' button.
+
+Buid and run your application. It shouldn't and problems. Quit the application.
+
+Now your are set up and can continue to build your application as any other Core
+Data application. However if you don't know Core Data very well then you may follow
+the guide below. We will create an application that does something real. The application
+will display a list of authors from the data base and let the user add, modify, 
+and delete authors.
+
+Select your model file in the Project Navigator. You should see Model Editor now.
+Press 'Add Entity' button. Specifiy entity name 'Author'. Add attribute 'firstName' 
+of type string, non optional. Add attribute 'lastName' of type String, non aptional.
+
+Now we have a simple data model with entity 'Author' with 2 attributes 'firstName' 
+and 'lastName'. In model editor this looks like the following:
+
+<img src="docs/Images/OwnCoreDataModelAuthor.png" alt="OwnCoreDataModelAuthor.png">
+
+Build and run your application. There shouldn't be any problems. Quit the application.
+
+### <a id="Adding NSArrayController"></a>Adding NSArrayController
+
+Now we will continue the work in XCode Interface Builder. Select the 'MainMenu.xib' 
+file in the Project Navigator. You should see the Inderface Builer UI.
+
+Add an Array Controller to the list of objects contained within the xib file.
+Select the new 'Array Controller' object. In the Inspector pane select 'Attributes Inspector'.
+Specify 'Entity Name' in the 'Mode' field. Specify 'Author' in the 'Entity Name' field.
+Check the 'Prepare Content' checkbox. The Attributes Inspector should look as following:
+
+<img src="docs/Images/OwnCoreDataArrayControllerAttributes.png" alt="OwnCoreDataArrayControlerAttributes.png">
+
+Select Bindings Inspector in the Inspector pane. Find 'Parameters' heading. Find
+'Managed Object Context' and expand it. Check the 'Bind to' checkbox and choose 
+'App Delegate' in the drop down box. Specify 'managedObjectContext' in 
+'Model Key Path' field. The Bindings Inspector should look as following:
+
+<img src="docs/Images/OwnCoreDataArrayControllerBindnings.png" alt="OwnCoreDataArrayControllerBindnings.png">
+
+
+Build and run your application. There shouldn't be any problems. Quit the application.
+
+### <a id="Adding NSTableView"></a>Adding NSTableView
+
+Still in the Interface Builder add a Table View to your view. 
+
+Specify the following
+for the first table column. In Attributes Inspector set Title to 'First Name'. 
+In Bindings Inspector heading Value check 'Bind to' check box, select 'Array Controller' 
+in the drop down list, Controller Key should be 'arrangedObjects' and Model Key 
+Path set to 'firstName'. This is depicted below:
+
+<img src="docs/Images/OwnCoreDataFirstColumnBindnings.png" alt="OwnCoreFirstColumnBindnings.png">
+
+
+Specify following for the second table column. In Attributes Inspector set Title to 'Last Name'. 
+In Bindings Inspector heading Value check 'Bind to' check box, select 'Array Controller' 
+in the drop down list, Controller Key should be 'arrangedObjects' and Model Key 
+Path set to 'lastName'. This is depicted below:
+
+<img src="docs/Images/OwnCoreDataSecondColumnBindnings.png" alt="OwnCoreDataSecondColumnBindnings.png">
+
+Build and run your application. There shouldn't be any problems. It should present
+a nice table with 2 columns named 'First Name' and 'Last Name'. It still lacks
+means to enter the data. Quit the application.
+
+### <a id="Adding buttons"> </a>Adding buttons
+
+Still in Inderface Builder.
+
+Add Square Button to the view. In Attributes Inspector find 'Image' drop down list.
+Select 'NSAddTemplate'. Control-click (or use right mouse button) on the button 
+in the view and drag to 'Array Controller' object. Drop there and select 'add:' on
+the popup menu.
+
+Add another Square Button to the view. In Attributes Inspector find 'Image' drop down list. 
+Select 'NSRemoveTemplate'. Control-click (or use right mouse button) on the button 
+in the view and drag to 'Array Controller' object. Drop there and select 'remove:' on
+the popup menu.
+
+Control-click (or right-click) on the Array Controller. You should obtain the following popup:
+
+<img src="docs/Images/OwnCoreDataArrayControllerPopup.png" alt="OwnCoreDataArrayControllerPopup.png">
+
+Build and run the application. It should display a window like following:
+
+<img src="docs/Images/OwnCoreDataApplication.png" alt="OwnCoreDataapplication.png">
+
+When you run your application for the first time, the table will be empty. You 
+can add an author using + button.
+You can remove an author using - button. You can modify an author by double-clicking on it.
+Your chages will automatically be saved to the database when you quit the application.

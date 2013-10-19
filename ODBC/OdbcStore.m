@@ -28,6 +28,8 @@
 
 - (void) dropTablesForModel : (NSManagedObjectModel *) model {
     
+    [self->database rollback];
+    
     [self->database dropTablesForModel : model];
     
     [self->database commit];
@@ -91,7 +93,7 @@
             
                 result = [self->database fetchObjects : request context : context];
             
-                [self->database commit];
+                //[self->database commit];
             
                 break;
             }
@@ -151,8 +153,29 @@
             
             [self->database updateRelationshipsForObject : object];
         }
+        
+        @try {
     
-        [self->database commit];
+            [self->database commit];
+            
+        } @catch (OdbcException * exception) {
+            
+            if (! exception.userInfo) [exception raise];
+            
+            NSString * sqlState = [exception.userInfo objectForKey : @"sqlState"];
+            
+            if (! [sqlState isEqualToString : @"25S03"] && ! [sqlState isEqualToString : @"40001"]) [exception raise];
+            
+            NSDictionary * userInfo =
+            
+            [NSDictionary dictionaryWithObject : @"The database was modified by another user or application. "
+                                                  "Your transaction has been rolled back"
+                                        forKey : NSLocalizedDescriptionKey];
+            
+            (* error) = [NSError errorWithDomain : @"Transaction rolled back" code : 0 userInfo : userInfo];
+            
+            return nil;
+        }
         
     } @catch (NSException * exception) {
         
@@ -219,7 +242,7 @@
         
         result = [self->database fetchRelationship : relationship objectId : objectID context : context];
         
-        [self->database commit];
+        //[self->database commit];
         
     } @catch (NSException * exception) {
                 
@@ -239,7 +262,7 @@
         
         NSDictionary * values = [self->database fetchObjectId : objectID context : context];
         
-        [self->database commit];
+        //[self->database commit];
         
         NSIncrementalStoreNode * node =
         
@@ -272,7 +295,7 @@
             [ids addObject : objId];
         }
         
-        [self->database commit];
+        //[self->database commit];
         
     } @catch (NSException * exception) {
         
@@ -286,19 +309,9 @@
 
 - (NSError *) errorForException : (NSException *) exception {
     
-    NSString * description;
-    
-    if ([exception respondsToSelector : @selector (userDescription)]) {
-        
-        description = [(id)exception userDescription];
-        
-    } else {
-        
-        description = exception.description;
-    }
     
     NSDictionary * userInfo = @{@"Data Source Url"        : self->odbcUrl.description,
-                                NSLocalizedDescriptionKey : description};
+                                NSLocalizedDescriptionKey : exception.description};
     
     NSError * error = [NSError errorWithDomain : exception.name code : 0 userInfo : userInfo];
     

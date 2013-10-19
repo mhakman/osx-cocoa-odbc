@@ -249,6 +249,12 @@ NSURL    * PersistentStoreUrl;
     
     NSError * error = nil;
     
+    self->moc = nil;
+    
+    self->psc = nil;
+    
+    self->mom = nil;
+    
     [self dropTables];
     
     [self setUpObjectsAndRelationships];
@@ -435,6 +441,13 @@ NSURL    * PersistentStoreUrl;
 
 - (void) tearDownCoreData {
     
+    [self dropTables];
+    
+    self->moc = nil;
+    
+    self->psc = nil;
+    
+    self->mom = nil;
 }
 
 @end

@@ -10,41 +10,49 @@
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
-void raiseInvalidHandle (const char * file, int line, const char * function) {
+void raiseInvalidHandle (const char * method, const char * function) {
     
-    [OdbcException raiseInvalidHandle : file line : line function : function];
+    [OdbcException raiseInvalidHandle : method function : function];
     
 }
 
-void raiseOdbcHandle (const char * file, int line, const char * function, SQLSMALLINT handleType, SQLHANDLE handle) {
+void raiseOdbcHandle (const char * method, const char * function, SQLSMALLINT handleType, SQLHANDLE handle) {
     
-    [OdbcException raiseOdbcHandle : file line : line function : function handleType : handleType handle : handle];
+    [OdbcException raiseOdbcHandle : method function : function handleType : handleType handle : handle];
 }
 
-void raiseOdbcException (const char * file, int line, const char * function, const char * message) {
+void raiseOdbcException (const char * method, const char * function, const char * message) {
     
-    [OdbcException raiseOdbcException : file line : line function : function message : message];
+    [OdbcException raiseOdbcException : method function : function message : message];
 }
 
 @interface OdbcException ()
-
-@property NSString * userDescription;
 
 @end
 
 
 @implementation OdbcException
 
-@synthesize userDescription;
-
-- (NSString *) userDescription {
+- (NSString *) description {
     
-    NSRange range = [self.description rangeOfString : @": "];
+    if (! self.userInfo) return [super description];
     
-    NSString * text = [self.description substringFromIndex:range.location + 2];
+    NSString * sqlState = [self.userInfo objectForKey : @"sqlState"];
     
-    return text;
-
+    NSString * nativeError = [self.userInfo objectForKey : @"nativeError"];
+    
+    NSString * messageText = [self.userInfo objectForKey : @"messageText"];
+    
+    NSString * sqlFunction = [self.userInfo objectForKey : @"sqlFunction"];
+    
+    NSString * odbcMethod = [self.userInfo objectForKey : @"odbcMethod"];
+    
+    NSString * desc =
+    
+    [NSString stringWithFormat : @"Odbc Error\n\nOdbc errror in %@ at %@ sql state: %@ native error: %@ message text: %@",
+                                 odbcMethod,sqlFunction,sqlState,nativeError,messageText];
+    
+    return desc;
 }
 
 - (NSString *) name {
@@ -52,50 +60,45 @@ void raiseOdbcException (const char * file, int line, const char * function, con
     return NSStringFromClass ([self class]);
 }
 
-+ (void) raiseInvalidHandle : (const char *) file
-                       line : (int) line
++ (void) raiseInvalidHandle : (const char *) method
                    function : (const char *) function {
     
     [OdbcException raise : NSStringFromClass ([self class])
-                  format : @"Error in %s line %d: %s invalid handle",file,line,function];
+                  format : @"Error in %s at %s: invalid handle",method,function];
     
 }
 
-+ (void) raiseOdbcHandle : (const char *) file
-                    line : (int) line
++ (void) raiseOdbcHandle : (const char *) method
                 function : (const char *) function
               handleType : (SQLSMALLINT) handleType
                   handle : (SQLHANDLE) handle {
     
-    NSDictionary * diagRec = [self diagRec : handleType handle : handle];
+    NSMutableDictionary * diagRec = [self diagRec : handleType handle : handle];
+    
+    [diagRec setObject : [NSString stringWithUTF8String : function] forKey : @"sqlFunction"];
+    
+    [diagRec setObject : [NSString stringWithUTF8String : method] forKey : @"odbcMethod"];
         
-    [OdbcException raise : NSStringFromClass ([self class])
-                  format : @"Error in %s line %d: %s sqlState: %@ nativeError: %@ messageText: %@",
-                           file,
-                           line,
-                           function,
-                           [diagRec objectForKey : @"sqlState"],
-                           [diagRec objectForKey : @"nativeError"],
-                           [diagRec objectForKey : @"messageText"]];
-     
+    OdbcException * exception = (OdbcException *) [OdbcException exceptionWithName : NSStringFromClass ([self class])
+                                                                            reason : @"Odbc Error"
+                                                                          userInfo : diagRec];
+    [exception raise];
     
 }
 
-+ (void) raiseOdbcException : (const char *) file
-                       line : (int) line
++ (void) raiseOdbcException : (const char *) method
                    function : (const char *) function
                     message : (const char *) message {
     
     [OdbcException raise : NSStringFromClass ([self class])
-                  format : @"error in %s line %d: %s: %s",
-                           file,
-                           line,
+                  format : @"error in %s at %s: %s",
+                           method,
                            function,
                            message];
 }
 
 
-+ (NSDictionary *) diagRec : (SQLSMALLINT) handleType handle : (SQLHANDLE) handle {
++ (NSMutableDictionary *) diagRec : (SQLSMALLINT) handleType handle : (SQLHANDLE) handle {
   
     SQLRETURN rc;
     
@@ -138,12 +141,12 @@ void raiseOdbcException (const char * file, int line, const char * function, con
         strcpy ((char *)sqlState,"00000");
     }
 
-    NSDictionary * diagDict =
+    NSMutableDictionary * diagDict =
 
-    [NSDictionary dictionaryWithObjectsAndKeys : [NSString stringWithUTF8String : sqlState]   ,@"sqlState",
-                                                 [NSNumber numberWithShort      : nativeError],@"nativeError",
-                                                 [NSString stringWithUTF8String : messageText],@"messageText",
-                                                 nil];
+    [NSMutableDictionary dictionaryWithObjectsAndKeys : [NSString stringWithUTF8String : sqlState]   ,@"sqlState",
+                                                        [NSNumber numberWithShort      : nativeError],@"nativeError",
+                                                        [NSString stringWithUTF8String : messageText],@"messageText",
+                                                        nil];
     
     return diagDict;
 }

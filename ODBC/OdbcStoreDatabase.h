@@ -25,6 +25,8 @@
 
 - (void) commit;
 
+- (void) rollback;
+
 - (void) deleteObject : (NSManagedObject *) object;
 
 - (void) insertObject : (NSManagedObject *) object;

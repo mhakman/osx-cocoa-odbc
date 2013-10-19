@@ -22,9 +22,10 @@
     OdbcPrepareDescriptor * prepareDescriptor;
 }
 
-@property (readonly) SQLHANDLE        hstmt;
-@property (readonly) OdbcConnection * connection;
-@property (readonly) BOOL             wasNull;
+@property (readonly)  SQLHANDLE        hstmt;
+@property (readonly)  OdbcConnection * connection;
+@property (readonly)  BOOL             wasNull;
+@property (nonatomic) unsigned long    concurrency;
 
 @property (readonly,nonatomic) OdbcResultDescriptor  * resultDescriptor;
 @property (readonly,nonatomic) OdbcPrepareDescriptor * prepareDescriptor;

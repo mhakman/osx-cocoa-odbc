@@ -46,6 +46,8 @@ NSString * Password;
     
     [self->connection connect : DataSourceName username : Username password : Password];
     
+    self->connection.transactionIsolation = SQL_TXN_SERIALIZABLE;
+    
     self->statement = [self->connection newStatement];
 }
 

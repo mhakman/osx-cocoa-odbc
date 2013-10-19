@@ -830,4 +830,37 @@
     [self->connection rollback];
 }
 
+- (void) testConcurency {
+    
+    unsigned long concurency = self->statement.concurrency;
+        
+    STAssertTrue (concurency > 0,@"");
+}
+
+- (void) testSetConcurency {
+    
+    [self setAndTestConcurency : SQL_CONCUR_READ_ONLY];
+    
+    [self setAndTestConcurency : SQL_CONCUR_LOCK];
+    
+    [self setAndTestConcurency : SQL_CONCUR_ROWVER];
+    
+    [self setAndTestConcurency : SQL_CONCUR_VALUES];
+}
+
+- (void) setAndTestConcurency : (unsigned long) concurency {
+    
+    self->statement.concurrency = concurency;
+    
+    [self->statement execDirect :@"select * from testtab"];
+    
+    while ([self->statement fetch]) {}
+    
+    [self->statement closeCursor];
+        
+    [self->statement execDirect : @"update testtab set name = 'test' where id = 1"];
+    
+    [self->connection commit];
+}
+
 @end

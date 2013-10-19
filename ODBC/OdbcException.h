@@ -16,17 +16,17 @@
 
 #define RAISE_ODBC_HANDLE(function,handleType,handle) {                         \
                                                                                 \
-    raiseOdbcHandle ((__FILE__),(__LINE__),(function),(handleType),(handle));   \
+    raiseOdbcHandle ((__PRETTY_FUNCTION__),(function),(handleType),(handle));   \
 }
 
 #define RAISE_INVALID_HANDLE(function) {                    \
                                                             \
-    raiseInvalidHandle ((__FILE__),(__LINE__),(function));  \
+    raiseInvalidHandle ((__PRETTY_FUNCTION__),(function));  \
 }
 
 #define RAISE_ODBC_EXCEPTION(function,message) {                        \
                                                                         \
-    raiseOdbcException ((__FILE__),(__LINE__),(function),(message));    \
+    raiseOdbcException ((__PRETTY_FUNCTION__),(function),(message));    \
 }
 
 #define CHECK_ERROR(function,rc,handleType,handle) {                    \
@@ -37,34 +37,29 @@
                                                                         \
     } else if (rc != SQL_SUCCESS) {                                     \
                                                                         \
-        RAISE_ODBC_HANDLE (function,handleType,handle);  \
+        RAISE_ODBC_HANDLE (function,handleType,handle);                 \
     }                                                                   \
 }
 
-void raiseInvalidHandle (const char * file, int line, const char * function);
+void raiseInvalidHandle (const char * method, const char * function);
 
-void raiseOdbcHandle (const char * file, int line, const char * function, SQLSMALLINT handleType, SQLHANDLE handle);
+void raiseOdbcHandle (const char * method, const char * function, SQLSMALLINT handleType, SQLHANDLE handle);
 
-void raiseOdbcException (const char * file, int line, const char * function, const char * message);
+void raiseOdbcException (const char * method, const char * function, const char * message);
 
 @interface OdbcException : NSException
 
-@property (readonly,nonatomic) NSString * userDescription;
-
 - (NSString *) name;
 
-+ (void) raiseInvalidHandle : (const char *) file
-                       line : (int) line
++ (void) raiseInvalidHandle : (const char *) method
                    function : (const char *) function;
 
-+ (void) raiseOdbcHandle : (const char *) file
-                    line : (int) line
++ (void) raiseOdbcHandle : (const char *) method
                 function : (const char *) function
               handleType : (SQLSMALLINT) handleType
                   handle : (SQLHANDLE) handle;
 
-+ (void) raiseOdbcException : (const char *) file
-                       line : (int) line
++ (void) raiseOdbcException : (const char *) method
                    function : (const char *) function
                     message : (const char *) message;
 
