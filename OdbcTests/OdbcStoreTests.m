@@ -7,9 +7,12 @@
 //
 
 #import "OdbcStoreTests.h"
+#import "OdbcTests.h"
 #import "OdbcStore.h"
 #import "Author.h"
 #import "Book.h"
+
+#import <Odbc/Odbc.h>
 
 NSString * PersistentStoreType;
 NSString * PersistentStoreClass;
@@ -36,7 +39,9 @@ NSURL    * PersistentStoreUrl;
     
     PersistentStoreClass = @"OdbcStore";
     
-    PersistentStoreUrl = [NSURL URLWithString : @"odbc:///testdb?username=root"];
+    NSString * url = [NSString stringWithFormat : @"odbc:///%@?username=%@&password=%@",DataSourceName,Username,Password];
+    
+    PersistentStoreUrl = [NSURL URLWithString : url];
     
     if (PersistentStoreClass) {
         
@@ -261,30 +266,43 @@ NSURL    * PersistentStoreUrl;
     
     bool ok = [self.moc save : &error];
     
-    if (! ok) STFail (error.description);
-        
+    if (! ok) STFail (error.description);        
+}
+
+- (void) dropTables {
+    
     self->moc = nil;
     
     self->psc = nil;
     
     self->mom = nil;
-}
-
-- (void) dropTables {
     
-    NSPersistentStore * ps = [self.psc persistentStoreForURL : self.psu];
+    NSArray * tables = @[@"bookAuthors",@"Author",@"Book",@"CoreDataEntity"];
     
-    if ([ps isKindOfClass : NSClassFromString (PersistentStoreClass)]) {
+    for (NSString * table in tables) {
+                
+        @try {
+            
+            NSString * sql = [NSString stringWithFormat : @"delete from %@",table];
+            
+            [self->connection execDirect : sql];
+            
+            [self->connection commit];
+            
+        } @catch (OdbcException * exception) {}
+     }
+    
+    for (NSString * table in tables) {
         
-        OdbcStore * odbcStore = (OdbcStore *) ps;
-        
-        [odbcStore dropTablesForModel : self.mom];
-        
-        self->moc = nil;
-        
-        self->psc = nil;
-        
-        self->mom = nil;
+        @try {
+            
+            NSString * sql = [NSString stringWithFormat : @"drop table %@",table];
+            
+            [self->connection execDirect : sql];
+            
+            [self->connection commit];
+            
+        } @catch (NSException * exception) {}
     }
 }
 
@@ -400,6 +418,8 @@ NSURL    * PersistentStoreUrl;
     }
     
     STAssertEquals (books.count,(NSUInteger)3,@"");
+    
+    [self.moc save : &error];
 }
 
 - (void) testExecuteFetchRequestWithPredicate {
@@ -437,6 +457,8 @@ NSURL    * PersistentStoreUrl;
     }
     
     STAssertEquals (books.count,(NSUInteger)3,@"");
+    
+    [self.moc save : &error];
 }
 
 - (void) tearDownCoreData {

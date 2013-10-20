@@ -62,7 +62,8 @@
         
         [self->columnDescriptors addObject : colDesc];
         
-        [self->columnNameToNumberDict setObject : [NSNumber numberWithInt : icol] forKey : colDesc.columnName];
+        [self->columnNameToNumberDict setObject : [NSNumber numberWithInt : icol]
+                                         forKey : [colDesc.columnName uppercaseString]];
     }
 }
 
@@ -98,7 +99,7 @@
 
 - (int) columnNumberFor : (NSString *) columnName {
     
-    NSNumber * number = [self.columnNameToNumberDict valueForKey : columnName];
+    NSNumber * number = [self.columnNameToNumberDict valueForKey : [columnName uppercaseString]];
     
     if (! number) [NSException raise : NSInvalidArgumentException format : @"cannot find column named %@",columnName];
     

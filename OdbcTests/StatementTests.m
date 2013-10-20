@@ -839,13 +839,18 @@
 
 - (void) testSetConcurency {
     
+    NSString * dbmsName = self->connection.dbmsName;
+    
     [self setAndTestConcurency : SQL_CONCUR_READ_ONLY];
     
-    [self setAndTestConcurency : SQL_CONCUR_LOCK];
+    if (! [[dbmsName lowercaseString] hasPrefix : @"mimer"]) {
     
-    [self setAndTestConcurency : SQL_CONCUR_ROWVER];
+        [self setAndTestConcurency : SQL_CONCUR_LOCK];
     
-    [self setAndTestConcurency : SQL_CONCUR_VALUES];
+        [self setAndTestConcurency : SQL_CONCUR_ROWVER];
+    
+        [self setAndTestConcurency : SQL_CONCUR_VALUES];
+    }
 }
 
 - (void) setAndTestConcurency : (unsigned long) concurency {

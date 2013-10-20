@@ -902,10 +902,10 @@
     
     NSMutableString * sql = [NSMutableString stringWithFormat : @"create table %@ (",tableName];
     
-    [sql appendFormat : @"%@ bigint unsigned not null,",srcEntity.name];
-    [sql appendFormat : @"%@ bigint unsigned not null,",dstEntity.name];
+    [sql appendFormat : @"%@ bigint not null,",srcEntity.name];
+    [sql appendFormat : @"%@ bigint not null,",dstEntity.name];
     [sql appendFormat : @"primary key (%@,%@),",srcEntity.name,dstEntity.name];
-    [sql appendFormat : @"unique key %@Unique (%@,%@),",tableName,srcEntity.name,dstEntity.name];
+    //[sql appendFormat : @"unique key %@Unique (%@,%@),",tableName,srcEntity.name,dstEntity.name];
     
     if (! mainRelationship.isToMany) {
         
@@ -917,7 +917,7 @@
         [sql appendFormat : @"unique key (%@),",dstEntity.name];
     }
     
-    [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update cascade,",
+    [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update no action,",
                         tableName,dstEntity.name,dstEntity.name];
     
     NSString * inverseTableName = [NSString stringWithFormat : @"%@%@",dstEntity.name,srcEntity.name];
@@ -927,10 +927,12 @@
         inverseTableName = mainRelationship.inverseRelationship.name;
     }
     
-    [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update cascade)" ,
+    [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update no action)" ,
                         inverseTableName,srcEntity.name,srcEntity.name];
     
     [self->odbcConnection execDirect : sql];
+    
+    [self commit];
 }
 
 - (void) createEntityTablesIfRequired {
@@ -958,7 +960,7 @@
     
     NSMutableString * sql =
     
-    [NSMutableString stringWithFormat : @"create table %@ (id bigint unsigned not null primary key unique",tableName];
+    [NSMutableString stringWithFormat : @"create table %@ (id bigint not null primary key",tableName];
     
     NSArray * attributes = entity.attributesByName.allValues;
         
@@ -978,6 +980,8 @@
     [sql appendString : @")"];
     
     [self->odbcConnection execDirect : sql];
+    
+    [self commit];
 }
 
 - (void) checkTableId : (NSString *) tableName {
@@ -1023,9 +1027,9 @@
             
         case NSInteger64AttributeType: sqlType = @"bigint";       break;
             
-        case NSDoubleAttributeType:    sqlType = @"double";       break;
+        case NSDoubleAttributeType:    sqlType = @"float";       break;
             
-        case NSFloatAttributeType:     sqlType = @"float";        break;
+        case NSFloatAttributeType:     sqlType = @"real";        break;
             
         case NSStringAttributeType:    sqlType = @"varchar(256)"; break;
             
@@ -1049,14 +1053,18 @@
     if ([self tableExists : @"CoreDataEntity"]) return;
     
     NSString * sql = @"create table CoreDataEntity ("
-                      " entityName varchar(128) primary key not null unique,"
-                      " lastId bigint unsigned not null"
+                      " entityName varchar(128) primary key not null,"
+                      " lastId bigint not null"
                       ")";
     
     [self->odbcConnection execDirect : sql];
+    
+    [self commit];
 }
 
 - (bool) tableExists : (NSString *) tableName {
+    
+    [self commit];
     
     OdbcStatement * tables = [self->odbcConnection tablesCatalog : self->catalog
                                                           schema : self->schema
@@ -1072,6 +1080,8 @@
     
     [tables closeCursor];
     
+    [self commit];
+    
     if (count == 0) return NO;
     
     if (count > 1) {
@@ -1082,54 +1092,6 @@
     }
     
     return YES;
-}
-
-- (void) dropTablesForModel : (NSManagedObjectModel *) model {
-        
-    NSArray * entities = model.entities;
-    
-    for (NSEntityDescription * ed in entities) {
-        
-        NSDictionary * rsDict = ed.relationshipsByName;
-        
-        for (NSRelationshipDescription * rd in rsDict.allValues) {
-            
-            @try {
-            
-                [self dropTableForRelationship : rd];
-                
-            } @catch (NSException * exception) {}
-        }
-    }
-    
-    for (NSEntityDescription * ed in entities) {
-        
-        @try {
-            
-            [self dropTable : ed.name];
-            
-        } @catch (NSException * exception) {}
-    }
-    
-    @try {
-        
-        [self dropTable : @"CoreDataEntity"];
-        
-    } @catch (NSException * exception) {}
-}
-
-- (void) dropTableForRelationship : (NSRelationshipDescription *) relationship {
-    
-    NSString * tabName = [self tableForRelationship : relationship];
-    
-    [self dropTable : tabName];
-}
-
-- (void) dropTable : (NSString *) tableName {
-    
-    NSString * sql = [NSString stringWithFormat : @"drop table %@",tableName];
-    
-    [self->odbcConnection execDirect : sql];
 }
 
 @end

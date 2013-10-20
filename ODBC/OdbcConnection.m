@@ -52,6 +52,22 @@
     return self;
 }
 
+- (NSString *) dbmsName {
+    
+    SQLRETURN rc;
+    
+    char namec [128] = "";
+    
+    short len = 0;
+    
+    rc = SQLGetInfo (self->hdbc,SQL_DBMS_NAME,namec,sizeof(namec),&len);
+    
+    CHECK_ERROR ("SQLGetInfo",rc,SQL_HANDLE_DBC,self->hdbc);
+    
+    NSString * name = [NSString stringWithUTF8String : namec];
+    
+    return name;
+}
 
 - (OdbcStatement *) execDirect : (NSString *) sql {
     
@@ -206,6 +222,8 @@
     
     SQLRETURN rc;
     
+    NSMutableArray * catalogs = [NSMutableArray new];
+    
     OdbcStatement * stmt = [self newStatement];
     
     rc = SQLTables (stmt.hstmt,
@@ -214,18 +232,29 @@
                     (SQLCHAR *)"",SQL_NTS,
                     (SQLCHAR *)"",SQL_NTS);
     
-    CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
+    @try {
     
-    NSMutableArray * catalogs = [NSMutableArray new];
-    
-    while ([stmt fetch]) {
+        CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
         
-        NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
+        while ([stmt fetch]) {
         
-        [catalogs addObject : catalog];
+            NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
+        
+            [catalogs addObject : catalog];
+        }
+        
+        [stmt closeCursor];
+        
+    } @catch (OdbcException * exception) {
+        
+        NSDictionary * userInfo = exception.userInfo;
+        
+        if (! userInfo) @throw exception;
+        
+        NSString * sqlState = [userInfo objectForKey : @"sqlState"];
+        
+        if (! [sqlState isEqualToString : @"HYC00"]) @throw exception;
     }
-    
-    [stmt closeCursor];
     
     return catalogs;
 }

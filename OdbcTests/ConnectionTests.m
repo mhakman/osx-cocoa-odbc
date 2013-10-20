@@ -66,7 +66,9 @@
 
 - (void) testCommit {
     
-    NSString * sql = @"insert into testtab values (10,'Testing commit',10,'2010-10-10','10:10:10','2010-10-10 10:10:10')";
+    NSString * sql =
+    
+    @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',time '10:10:10',timestamp '2010-10-10 10:10:10')";
     
     OdbcStatement * stmt = [self->connection newStatement];
     
@@ -101,7 +103,9 @@
 
 - (void) testRollback {
     
-    NSString * sql = @"insert into testtab values (10,'Testing commit',10,'2010-10-10','10:10:10','2010-10-10 10:10:10')";
+    NSString * sql =
+    
+    @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',time '10:10:10',timestamp '2010-10-10 10:10:10')";
     
     OdbcStatement * stmt = [self->connection newStatement];
     
@@ -148,15 +152,24 @@
     
     NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
     
+    if (!catalog) catalog = @"";
+    
     STAssertEqualObjects (catalogName,catalog,@"");
     
     NSString * schema = [stmt getStringByName : @"TABLE_SCHEM"];
     
-    STAssertNil (schema,@"");
+    if (! schema) schema = @"";
     
+    if (schema.length > 0) {
+        
+        NSString * username = self->connection.username;
+        
+        STAssertEqualObjects (schema,[username uppercaseString],@"");
+    }
+        
     NSString * table = [stmt getStringByName : @"TABLE_NAME"];
     
-    STAssertEqualObjects (@"testtab",table,@"");
+    STAssertEqualObjects (@"testtab",[table lowercaseString],@"");
     
     NSString * tableType = [stmt getStringByName : @"TABLE_TYPE"];
     
@@ -241,17 +254,20 @@
     
     NSArray * catalogs = self->connection.catalogs;
     
-    STAssertTrue ([catalogs count] > 0,@"");
+    STAssertTrue ([catalogs count] >= 0,@"");
     
-    NSString * currentCatalog = self->connection.currentCatalog;
+    if (catalogs.count > 0) {
     
-    long index = [catalogs indexOfObject : currentCatalog];
+        NSString * currentCatalog = self->connection.currentCatalog;
     
-    STAssertTrue (index >= 0,@"");
+        long index = [catalogs indexOfObject : currentCatalog];
     
-    NSString * catalog = [catalogs objectAtIndex : index];
+        STAssertTrue (index >= 0,@"");
     
-    STAssertEqualObjects (catalog,currentCatalog,@"");
+        NSString * catalog = [catalogs objectAtIndex : index];
+    
+        STAssertEqualObjects (catalog,currentCatalog,@"");
+    }
 }
 
 - (void) testScemas {
@@ -286,7 +302,7 @@
     
     NSString * user = self->connection.currentUser;
     
-    STAssertEqualObjects (user,Username,@"");
+    STAssertEqualObjects ([user uppercaseString],[Username uppercaseString],@"");
 }
 
 - (void) testSchemaTerm {

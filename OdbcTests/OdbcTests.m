@@ -26,7 +26,7 @@ NSString * Password;
     
     Username = @"root";
     
-    Password = nil;
+    Password = @"";
 }
 
 - (void) setUp {
@@ -60,14 +60,19 @@ NSString * Password;
     
     [self deleteTestRows];
     
-    NSString * sql = @"insert into testtab values (1,'Name 1',1.1,'2001-01-01','01:01:01','2001-01-01 01:01:01'),"
-                      "                           (2,'Name 2',2.2,'2002-02-02','02:02:02','2002-02-02 02:02:02'),"
-                      "                           (3,'Name 3',3.3,'2003-03-03','03:03:03','2003-03-03 03:03:03'),"
-                      "                           (4,'N4'    ,4.4,'2004-04-04','04:04:04','2004-04-04 04:04:04')";
+    NSArray * sqls =
+   
+    @[@"insert into testtab values (1,'Name 1',1.1,date '2001-01-01',time '01:01:01',timestamp '2001-01-01 01:01:01')",
+      @"insert into testtab values (2,'Name 2',2.2,date '2002-02-02',time '02:02:02',timestamp '2002-02-02 02:02:02')",
+      @"insert into testtab values (3,'Name 3',3.3,date '2003-03-03',time '03:03:03',timestamp '2003-03-03 03:03:03')",
+      @"insert into testtab values (4,'N4'    ,4.4,date '2004-04-04',time '04:04:04',timestamp '2004-04-04 04:04:04')"];
     
     OdbcStatement * stmt = [self->connection newStatement];
     
-    [stmt execDirect : sql];
+    for (NSString * sql in sqls) {
+    
+        [stmt execDirect : sql];
+    }
     
     [self->connection commit];
 }
@@ -88,7 +93,7 @@ NSString * Password;
     [self dropTestTable];
     
     NSString * createSql = @"create table testtab ("
-                            " id    bigint not null unique primary key,"
+                            " id    bigint not null primary key,"
                             " name  varchar(128) not null unique,"
                             " price decimal(13,2),"
                             " date  date,"

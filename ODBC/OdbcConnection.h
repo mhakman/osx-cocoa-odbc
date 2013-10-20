@@ -47,6 +47,8 @@
 
 @property (readonly,nonatomic) NSString * currentSchema;
 
+@property (readonly,nonatomic) NSString * dbmsName;
+
 + (OdbcConnection *) connectionWithDataSource : (NSString *) newDataSource
                                      username : (NSString *) username
                                      password : (NSString *) password;

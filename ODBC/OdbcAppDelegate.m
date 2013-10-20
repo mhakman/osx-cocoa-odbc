@@ -162,6 +162,10 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     [self->managedObjectContext setStalenessInterval : 0.0];
     
+    NSMergePolicy * policy = [[NSMergePolicy alloc] initWithMergeType : NSMergeByPropertyObjectTrumpMergePolicyType];
+    
+    self->managedObjectContext.mergePolicy = policy;
+    
     return self->managedObjectContext;
 }
 //
@@ -370,9 +374,9 @@ NSString * PersistentStoreClass = @"OdbcStore";
             
             if ([error.domain isEqualToString : @"Transaction rolled back"]) {
                 
-                NSString * desc = @"The database was modified during your work."
-                                   "Your transaction was rolled back in order to keep database integrity."
-                                   "Your data will be reloaded and your changes will be reaplied."
+                NSString * desc = @"The database was modified during your work. "
+                                   "Your transaction was rolled back in order to keep database integrity. "
+                                   "Your data will be reloaded and your changes will be reaplied. "
                                    "Press OK button now and retry your last command.";
                 
                 NSDictionary * userInfo = [NSDictionary dictionaryWithObject:desc forKey:NSLocalizedDescriptionKey];

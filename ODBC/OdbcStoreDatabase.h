@@ -47,6 +47,4 @@
 
 - (void) updateRelationshipsForObject : (NSManagedObject *) object;
 
-- (void) dropTablesForModel : (NSManagedObjectModel *) model;
-
 @end
