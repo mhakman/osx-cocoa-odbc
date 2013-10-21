@@ -31,7 +31,7 @@
 
 - (void) insertObject : (NSManagedObject *) object;
 
-- (void) updateObject : (NSManagedObject *) object;
+- (void) updateObject : (NSManagedObject *) object context : (NSManagedObjectContext *) context;
 
 - (NSArray *) fetchObjects : (NSFetchRequest *) request context : (NSManagedObjectContext *) context;
 
@@ -46,5 +46,12 @@
 - (void) insertRelationshipsForObject : (NSManagedObject *) object;
 
 - (void) updateRelationshipsForObject : (NSManagedObject *) object;
+
+- (void) deleteFetchedObject : (NSManagedObject *) object;
+
+- (void) insertFetchedObject : (NSManagedObject *) object;
+
+- (void) updateFetchedObject : (NSManagedObject *) object;
+
 
 @end

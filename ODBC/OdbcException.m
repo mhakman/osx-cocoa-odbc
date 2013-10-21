@@ -26,6 +26,14 @@ void raiseOdbcException (const char * method, const char * function, const char 
     [OdbcException raiseOdbcException : method function : function message : message];
 }
 
+void raiseOdbcExceptionWithSqlState (const char * method,
+                                     const char * function,
+                                     const char * message,
+                                     const char * sqlState) {
+
+    [OdbcException raiseOdbcException : method function : function message : message sqlState : sqlState];
+}
+
 @interface OdbcException ()
 
 @end
@@ -95,6 +103,21 @@ void raiseOdbcException (const char * method, const char * function, const char 
                            method,
                            function,
                            message];
+}
+
++ (void) raiseOdbcException : (const char *) method
+                   function : (const char *) function
+                    message : (const char *) message
+                   sqlState : (const char *) sqlState {
+    
+    NSDictionary * diagRec =
+    
+    [NSDictionary dictionaryWithObject : [NSString stringWithUTF8String : sqlState] forKey : @"sqlState"];
+    
+    OdbcException * exception = (OdbcException *) [OdbcException exceptionWithName : NSStringFromClass ([self class])
+                                                                            reason : @"Odbc Error"
+                                                                          userInfo : diagRec];
+    [exception raise];
 }
 
 

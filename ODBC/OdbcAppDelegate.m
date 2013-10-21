@@ -162,7 +162,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     [self->managedObjectContext setStalenessInterval : 0.0];
     
-    NSMergePolicy * policy = [[NSMergePolicy alloc] initWithMergeType : NSMergeByPropertyObjectTrumpMergePolicyType];
+    NSMergePolicy * policy = [[NSMergePolicy alloc] initWithMergeType : NSErrorMergePolicyType];
     
     self->managedObjectContext.mergePolicy = policy;
     

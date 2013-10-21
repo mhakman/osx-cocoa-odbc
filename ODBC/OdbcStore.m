@@ -84,7 +84,7 @@
             
                 result = [self->database fetchObjects : request context : context];
             
-                //[self->database commit];
+                [self->database commit];
             
                 break;
             }
@@ -100,6 +100,8 @@
         }
         
     } @catch (NSException * exception) {
+        
+        [self->database rollback];
         
         * error = [self errorForException : exception];
         
@@ -137,7 +139,7 @@
     
         for (NSManagedObject * object in request.updatedObjects) {
         
-            [self->database updateObject : object];
+            [self->database updateObject : object context : context];
         }
         
         for (NSManagedObject * object in request.updatedObjects) {
@@ -145,30 +147,48 @@
             [self->database updateRelationshipsForObject : object];
         }
         
-        @try {
-    
-            [self->database commit];
+        [self->database commit];
+                
+        for (NSManagedObject * object in request.deletedObjects) {
             
-        } @catch (OdbcException * exception) {
-            
-            if (! exception.userInfo) [exception raise];
-            
-            NSString * sqlState = [exception.userInfo objectForKey : @"sqlState"];
-            
-            if (! [sqlState isEqualToString : @"25S03"] && ! [sqlState isEqualToString : @"40001"]) [exception raise];
-            
-            NSDictionary * userInfo =
-            
-            [NSDictionary dictionaryWithObject : @"The database was modified by another user or application. "
-                                                  "Your transaction has been rolled back"
-                                        forKey : NSLocalizedDescriptionKey];
-            
-            (* error) = [NSError errorWithDomain : @"Transaction rolled back" code : 0 userInfo : userInfo];
-            
-            return nil;
+            [self->database deleteFetchedObject : object];
         }
         
+        for (NSManagedObject * object in request.insertedObjects) {
+            
+            [self->database insertFetchedObject : object];
+        }
+                
+        for (NSManagedObject * object in request.updatedObjects) {
+            
+            [self->database updateFetchedObject : object];
+        }
+                    
     } @catch (NSException * exception) {
+        
+        [self->database rollback];
+        
+        if ([exception isKindOfClass : [OdbcException class]]) {
+            
+            if (exception.userInfo) {
+                
+                NSString * sqlState = [exception.userInfo objectForKey : @"sqlState"];
+                
+                if ([sqlState isEqualToString : @"25S03"] || [sqlState isEqualToString : @"40001"]) {
+                 
+                    NSDictionary * userInfo =
+                    
+                    [NSDictionary dictionaryWithObject : @"The database was modified by another user or application. "
+                                                          "Your transaction has been rolled back"
+                                                forKey : NSLocalizedDescriptionKey];
+                    
+                    (* error) = [NSError errorWithDomain : @"Transaction rolled back" code : 0 userInfo : userInfo];
+                    
+                    return nil;
+                }
+                    
+            }
+        }
         
         * error = [self errorForException : exception];
         
@@ -197,8 +217,11 @@
         [self->database connectDataSource : self->odbcUrl.dataSource
                                  username : self->odbcUrl.username
                                  password : self->odbcUrl.password];
+        [self->database commit];
         
     } @catch (NSException * exception) {
+        
+        [self->database rollback];
         
         * errorPtr = [self errorForException : exception];
         
@@ -233,9 +256,11 @@
         
         result = [self->database fetchRelationship : relationship objectId : objectID context : context];
         
-        //[self->database commit];
+        [self->database commit];
         
     } @catch (NSException * exception) {
+        
+        [self->database rollback];
                 
         * error = [self errorForException : exception];
         
@@ -253,7 +278,7 @@
         
         NSDictionary * values = [self->database fetchObjectId : objectID context : context];
         
-        //[self->database commit];
+        [self->database commit];
         
         NSIncrementalStoreNode * node =
         
@@ -262,6 +287,8 @@
         return node;
         
     } @catch (NSException * exception) {
+        
+        [self->database rollback];
         
         * error = [self errorForException : exception];
         
@@ -286,9 +313,11 @@
             [ids addObject : objId];
         }
         
-        //[self->database commit];
+        [self->database commit];
         
     } @catch (NSException * exception) {
+        
+        [self->database rollback];
         
         * error = [self errorForException : exception];
         

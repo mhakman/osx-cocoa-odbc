@@ -79,6 +79,8 @@
 		6AF8178C18106475004F9042 /* OdbcPredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8178918106475004F9042 /* OdbcPredicate.grammar */; };
 		6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF8178A18106475004F9042 /* OdbcPredicate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8178B18106475004F9042 /* OdbcPredicate.m */; };
+		6AF817D618149E66004F9042 /* OdbcObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF817D418149E66004F9042 /* OdbcObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6AF817D718149E66004F9042 /* OdbcObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF817D518149E66004F9042 /* OdbcObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -169,6 +171,8 @@
 		6AF8178918106475004F9042 /* OdbcPredicate.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OdbcPredicate.grammar; sourceTree = "<group>"; };
 		6AF8178A18106475004F9042 /* OdbcPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcPredicate.h; sourceTree = "<group>"; };
 		6AF8178B18106475004F9042 /* OdbcPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPredicate.m; sourceTree = "<group>"; };
+		6AF817D418149E66004F9042 /* OdbcObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcObject.h; sourceTree = "<group>"; };
+		6AF817D518149E66004F9042 /* OdbcObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +270,8 @@
 				6A27E2A717D8FCAF0070E6B7 /* OdbcEnvironment.m */,
 				6A27E2A817D8FCAF0070E6B7 /* OdbcException.h */,
 				6A27E2A917D8FCAF0070E6B7 /* OdbcException.m */,
+				6AF817D418149E66004F9042 /* OdbcObject.h */,
+				6AF817D518149E66004F9042 /* OdbcObject.m */,
 				6A27E2AA17D8FCAF0070E6B7 /* OdbcParameterDescriptor.h */,
 				6A27E2AB17D8FCAF0070E6B7 /* OdbcParameterDescriptor.m */,
 				6A27E2AC17D8FCAF0070E6B7 /* OdbcPrepareDescriptor.h */,
@@ -380,6 +386,7 @@
 				6A5EE5EF18032FE8005E5942 /* OdbcUrl.h in Headers */,
 				6A5EE638180706F0005E5942 /* OdbcAppDelegate.h in Headers */,
 				6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */,
+				6AF817D618149E66004F9042 /* OdbcObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +621,7 @@
 				6A5EE5F018032FE8005E5942 /* OdbcUrl.m in Sources */,
 				6A5EE639180706F0005E5942 /* OdbcAppDelegate.m in Sources */,
 				6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */,
+				6AF817D718149E66004F9042 /* OdbcObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,7 +715,7 @@
 				COPY_PHASE_STRIP = NO;
 				DYLIB_CURRENT_VERSION = "";
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
-				FRAMEWORK_VERSION = B;
+				FRAMEWORK_VERSION = C;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -746,7 +754,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_CURRENT_VERSION = "";
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
-				FRAMEWORK_VERSION = B;
+				FRAMEWORK_VERSION = C;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -770,7 +778,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				FRAMEWORK_VERSION = B;
+				FRAMEWORK_VERSION = C;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Odbc/Odbc-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -794,7 +802,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				FRAMEWORK_VERSION = B;
+				FRAMEWORK_VERSION = C;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Odbc/Odbc-Prefix.pch";
 				INFOPLIST_FILE = "Odbc/Odbc-Info.plist";

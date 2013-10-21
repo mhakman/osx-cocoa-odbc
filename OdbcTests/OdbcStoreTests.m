@@ -266,7 +266,20 @@ NSURL    * PersistentStoreUrl;
     
     bool ok = [self.moc save : &error];
     
-    if (! ok) STFail (error.description);        
+    if (! ok) STFail (error.description);
+    
+    NSSet * objs = self.moc.registeredObjects;
+    
+    for (NSManagedObject * obj in objs) {
+        
+        [self.moc deleteObject : obj];
+    }
+    
+    self->moc = nil;
+    
+    self->psc = nil;
+    
+    self->mom = nil;
 }
 
 - (void) dropTables {
@@ -419,6 +432,20 @@ NSURL    * PersistentStoreUrl;
     
     STAssertEquals (books.count,(NSUInteger)3,@"");
     
+    NSSet * objs = self.moc.registeredObjects;
+    
+    for (NSManagedObject * obj in objs) {
+        
+        NSEntityDescription * ed = obj.entity;
+        
+        for (NSAttributeDescription * ad in ed.attributesByName.allValues) {
+            
+            id val = nil;
+            
+            val = [obj valueForKey : ad.name];
+        }
+    }
+    
     [self.moc save : &error];
 }
 
@@ -457,6 +484,20 @@ NSURL    * PersistentStoreUrl;
     }
     
     STAssertEquals (books.count,(NSUInteger)3,@"");
+    
+    NSSet * objs = self.moc.registeredObjects;
+    
+    for (NSManagedObject * obj in objs) {
+        
+        NSEntityDescription * ed = obj.entity;
+        
+        for (NSAttributeDescription * ad in ed.attributesByName.allValues) {
+            
+            id val = nil;
+            
+            val = [obj valueForKey : ad.name];
+        }
+    }
     
     [self.moc save : &error];
 }

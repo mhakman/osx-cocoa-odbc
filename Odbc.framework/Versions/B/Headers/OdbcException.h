@@ -29,6 +29,12 @@
     raiseOdbcException ((__PRETTY_FUNCTION__),(function),(message));    \
 }
 
+#define RAISE_ODBC_EXCEPTION_WITH_SQLSTATE(function,message,sqlState) {                     \
+                                                                                            \
+    raiseOdbcExceptionWithSqlState ((__PRETTY_FUNCTION__),(function),(message),(sqlState)); \
+}
+
+
 #define CHECK_ERROR(function,rc,handleType,handle) {                    \
                                                                         \
     if (rc == SQL_INVALID_HANDLE) {                                     \
@@ -47,6 +53,8 @@ void raiseOdbcHandle (const char * method, const char * function, SQLSMALLINT ha
 
 void raiseOdbcException (const char * method, const char * function, const char * message);
 
+void raiseOdbcExceptionWithSqlState (const char * method, const char * function, const char * message, const char * sqlState);
+
 @interface OdbcException : NSException
 
 - (NSString *) name;
@@ -62,5 +70,10 @@ void raiseOdbcException (const char * method, const char * function, const char 
 + (void) raiseOdbcException : (const char *) method
                    function : (const char *) function
                     message : (const char *) message;
+
++ (void) raiseOdbcException : (const char *) method
+                   function : (const char *) function
+                    message : (const char *) message
+                   sqlState : (const char *) sqlState;
 
 @end
