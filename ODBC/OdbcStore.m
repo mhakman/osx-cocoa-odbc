@@ -220,9 +220,7 @@
         [self->database commit];
         
     } @catch (NSException * exception) {
-        
-        [self->database rollback];
-        
+                
         * errorPtr = [self errorForException : exception];
         
         return NO;
