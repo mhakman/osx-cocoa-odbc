@@ -3,11 +3,12 @@
 Odbc framework is Cocoa framework providing access to ODBC databases. It works on
 top of iODBC framework which is a low level C-oriented framework of ODBC routines
 that follow ODBC specification. The framework includes also an experimental Cocoa
-Core Data Persistent Store for Odbc.
+Core Data Persistent Store for Odbc. It hass been tested with IBM DB2, Mimer, and MySQL.
 
-ODBC framework consists of a number of classes. Currently only OdbcConnection and
-OdbcStatement are used in non-Core Data applications. OdbcStore class is used in
-Core Data applications. The rest is for internal framework use.
+ODBC framework consists of a number of classes. Currently only OdbcConnection,
+OdbcStatement, and OdbcException are used in non-Core Data applications. 
+OdbcStore class and OdbcAppDelegate class are used in Core Data applications. 
+The rest is for internal framework use.
 
 In order to use Odbc framework you **don't** need to know ODBC specification. You
 **do** need to know some basics of SQL, relational databases and of course Objective-C. 

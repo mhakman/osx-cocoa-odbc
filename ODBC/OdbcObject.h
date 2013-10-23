@@ -14,15 +14,17 @@
 
 + (OdbcObject *) objectWithId : (NSManagedObjectID *) newId
                    attributes : (NSDictionary *) newAttributes
-                relationships : (NSDictionary *) newRelationships;
+                relationships : (NSDictionary *) newRelationships
+                        store : (NSIncrementalStore *) newStore;
 
-+ (OdbcObject *) objectWithObject : (NSManagedObject *) newObj;
++ (OdbcObject *) objectWithObject : (NSManagedObject *) newObj store : (NSIncrementalStore *) newStore;
 
 - (OdbcObject *) initWithId : (NSManagedObjectID *) newId
                  attributes : (NSDictionary *) newAttributes
-              relationships : (NSDictionary *) newRelationships;
+              relationships : (NSDictionary *) newRelationships
+                      store : (NSIncrementalStore *) newStore;
 
-- (OdbcObject *) initWithObject : (NSManagedObject *) newObj;
+- (OdbcObject *) initWithObject : (NSManagedObject *) newObj store : (NSIncrementalStore *) newStore;
 
 
 @end

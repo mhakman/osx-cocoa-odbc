@@ -234,7 +234,10 @@
     
     NSDictionary * attributes = [self fetchObject : objId context : context relationships : &relationships];
     
-    OdbcObject * obj = [OdbcObject objectWithId : objId attributes : attributes relationships:relationships];
+    OdbcObject * obj = [OdbcObject objectWithId : objId
+                                     attributes : attributes
+                                  relationships : relationships
+                                          store : self->odbcStore];
     
     [self addToFetchedObjects : objId object : obj];    
 }
@@ -413,6 +416,10 @@
     OdbcStatement * stmt = [self deleteStmtForObject : object];
     
     [stmt execute];
+    
+    [self commit];
+    
+    [self deleteFetchedObject : object];
 }
 
 - (void) deleteFetchedObject : (NSManagedObject *) obj {
@@ -436,6 +443,8 @@
         
         rd = enumerator.nextObject;
     }
+    
+    [self commit];
 }
 
 - (void) deleteRelationship : (NSRelationshipDescription *) relationship forObject : (NSManagedObject *) object {
@@ -543,11 +552,15 @@
     OdbcStatement * stmt = [self insertStmtForObject : object];
     
     [stmt execute];
+    
+    [self commit];
+    
+    [self insertFetchedObject : object];
 }
 
 - (void) insertFetchedObject : (NSManagedObject *) obj {
         
-    OdbcObject * oo = [OdbcObject objectWithObject : obj];
+    OdbcObject * oo = [OdbcObject objectWithObject : obj store : self->odbcStore];
     
     NSString * key = obj.objectID.URIRepresentation.absoluteString;
     
@@ -573,7 +586,11 @@
         [self insertRelationship : rd forObject : object];
         
         rd = enumerator.nextObject;
-    }    
+    }
+    
+    [self commit];
+    
+    [self updateFetchedObject : object];
 }
 
 - (void) insertRelationship : (NSRelationshipDescription *) relationship forObject : (NSManagedObject *) object {
@@ -587,6 +604,8 @@
         [self setInsertRelationshipParameters : object dstObject : dstObject stmt : stmt];
         
         [stmt execute];
+        
+        [self updateFetchedObject : dstObject];
     }
 }
 
@@ -695,11 +714,15 @@
     OdbcStatement * stmt = [self updateStmtForObject : object];
     
     [stmt execute];
+    
+    [self commit];
+    
+    [self updateFetchedObject : object];
 }
 
 - (void) updateFetchedObject : (NSManagedObject *) obj {
     
-    OdbcObject * oo = [OdbcObject objectWithObject : obj];
+    OdbcObject * oo = [OdbcObject objectWithObject : obj store : self->odbcStore];
     
     NSString * key = obj.objectID.URIRepresentation.absoluteString;
     
@@ -730,12 +753,19 @@
     
     NSDictionary * attributes = [self fetchObject:obj.objectID context : context relationships : &relationships];
     
-    return [OdbcObject objectWithId : obj.objectID attributes : attributes relationships : relationships];
+    return [OdbcObject objectWithId : obj.objectID
+                         attributes : attributes
+                      relationships : relationships
+                              store : self->odbcStore];
 }
 
 - (void) updateRelationshipsForObject : (NSManagedObject *) object {
     
     [self insertRelationshipsForObject : object];
+    
+    [self commit];
+    
+    [self updateFetchedObject : object];
 }
 
 - (OdbcStatement *) updateStmtForObject : (NSManagedObject *) object {

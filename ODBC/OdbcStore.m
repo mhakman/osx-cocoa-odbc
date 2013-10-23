@@ -146,24 +146,7 @@
             
             [self->database updateRelationshipsForObject : object];
         }
-        
-        [self->database commit];
-                
-        for (NSManagedObject * object in request.deletedObjects) {
-            
-            [self->database deleteFetchedObject : object];
-        }
-        
-        for (NSManagedObject * object in request.insertedObjects) {
-            
-            [self->database insertFetchedObject : object];
-        }
-                
-        for (NSManagedObject * object in request.updatedObjects) {
-            
-            [self->database updateFetchedObject : object];
-        }
-                    
+                                            
     } @catch (NSException * exception) {
         
         [self->database rollback];

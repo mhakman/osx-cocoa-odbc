@@ -846,10 +846,13 @@
     if (! [[dbmsName lowercaseString] hasPrefix : @"mimer"]) {
     
         [self setAndTestConcurency : SQL_CONCUR_LOCK];
+        
+        if (! [[dbmsName lowercaseString] hasPrefix : @"db2"]) {
     
-        [self setAndTestConcurency : SQL_CONCUR_ROWVER];
+            [self setAndTestConcurency : SQL_CONCUR_ROWVER];
     
-        [self setAndTestConcurency : SQL_CONCUR_VALUES];
+            [self setAndTestConcurency : SQL_CONCUR_VALUES];
+        }
     }
 }
 

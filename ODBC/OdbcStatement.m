@@ -311,7 +311,10 @@
             
         case SQL_CHAR:
         case SQL_VARCHAR:
-        case SQL_LONGVARCHAR: {
+        case SQL_LONGVARCHAR:
+        case SQL_WCHAR:
+        case SQL_WVARCHAR:
+        case SQL_WLONGVARCHAR: {
             
             result = [self getString : columnNumber];
             

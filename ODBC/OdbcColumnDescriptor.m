@@ -59,7 +59,7 @@
     SQLSMALLINT nameLength = 0;
         
     SQLSMALLINT nullsPermitted = 0;
-    
+        
     rc = SQLDescribeCol (self.statement.hstmt,
                          self->columnNumber,
                          colName,

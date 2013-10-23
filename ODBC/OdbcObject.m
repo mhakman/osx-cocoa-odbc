@@ -11,6 +11,8 @@
 @interface OdbcObject () {
     
     NSMutableString * string;
+    
+    NSIncrementalStore * store;
 }
 
 @property NSString * string;
@@ -23,21 +25,24 @@
 
 + (OdbcObject *) objectWithId : (NSManagedObjectID *) newId
                    attributes : (NSDictionary *) newAttributes
-                relationships : (NSDictionary *) newRelationships {
+                relationships : (NSDictionary *) newRelationships
+                        store : (NSIncrementalStore *) newStore {
     
-    OdbcObject * obj = [[OdbcObject alloc] initWithId : newId attributes : newAttributes relationships : newRelationships];
+    OdbcObject * obj =
     
-    return obj;
-}
-
-+ (OdbcObject *) objectWithObject : (NSManagedObject *) newObj {
-    
-    OdbcObject * obj = [[OdbcObject alloc] initWithObject : newObj];
+    [[OdbcObject alloc] initWithId : newId attributes : newAttributes relationships : newRelationships store : newStore];
     
     return obj;
 }
 
-- (OdbcObject *) initWithObject : (NSManagedObject *) newObj {
++ (OdbcObject *) objectWithObject : (NSManagedObject *) newObj store : (NSIncrementalStore *) newStore {
+    
+    OdbcObject * obj = [[OdbcObject alloc] initWithObject : newObj store : newStore];
+    
+    return obj;
+}
+
+- (OdbcObject *) initWithObject : (NSManagedObject *) newObj store : (NSIncrementalStore *) newStore {
     
     NSManagedObjectID * objId = newObj.objectID;
     
@@ -45,7 +50,7 @@
     
     NSDictionary * relationships = [self relationshipsFor : newObj];
     
-    return [self initWithId : objId attributes : attributes relationships : relationships];
+    return [self initWithId : objId attributes : attributes relationships : relationships store : newStore];
 }
 
 - (NSDictionary *) attributesFor : (NSManagedObject *) obj {
@@ -58,7 +63,7 @@
         
         id value = [obj valueForKey : ad.name];
         
-        [attributes setObject:value forKey : ad.name];
+        [attributes setObject : value forKey : ad.name];
     }
     
     return attributes;
@@ -97,11 +102,14 @@
 
 - (OdbcObject *) initWithId : (NSManagedObjectID *) newId
                  attributes : (NSDictionary *) newAttributes
-              relationships : (NSDictionary *) newRelationships {
+              relationships : (NSDictionary *) newRelationships
+                      store : (NSIncrementalStore *) newStore {
     
     self = [super init];
     
     if (! self) return self;
+    
+    self->store = newStore;
     
     self->string = [NSMutableString new];
     
@@ -131,38 +139,87 @@
 
 - (void) encodeId : (NSManagedObjectID *) objId relationships : (NSDictionary *) relationships {
     
-    for (id relationship in relationships.allValues) {
+    NSArray * sortedRelationships = [self sortRelationships : relationships];
+    
+    for (id relationship in sortedRelationships) {
         
         [self->string appendString : @"\n"];
         
         if ([relationship isKindOfClass : [NSManagedObjectID class]]) {
             
-            NSString * objStr = objId.URIRepresentation.absoluteString;
+            NSNumber * pk = [self->store referenceObjectForObjectID : objId];
             
-            [self->string appendString : objStr];
+            [self->string appendString : pk.stringValue];
             
             continue;
         }
         
         NSArray * objIds = relationship;
         
+        NSArray * sortedObjIds = [self sortObjIds : objIds];
+        
         bool first = YES;
         
-        for (NSManagedObjectID * objId in objIds) {
+        for (NSManagedObjectID * objId in sortedObjIds) {
             
             if (! first) {
                 
                 [self->string appendString : @"\t"];
             }
             
-            NSString * objStr = objId.URIRepresentation.absoluteString;
+            NSNumber * pk = [self->store referenceObjectForObjectID : objId];
             
-            [self->string appendString : objStr];
+            [self->string appendString : pk.stringValue];
             
             first = NO;
         }
     }
 }
+
+- (NSArray *) sortRelationships : (NSDictionary *) relationships {
+    
+    NSMutableArray * result = [NSMutableArray new];
+    
+    NSArray * keys = relationships.allKeys;
+    
+    NSArray * sortedKeys = [keys sortedArrayUsingComparator: ^ (NSString *  obj1, NSString * obj2) {
+        
+        return [obj1 compare : obj2];
+    }];
+    
+    for (NSString * key in sortedKeys) {
+        
+        [result addObject : [relationships valueForKey : key]];
+    }
+    
+    return result;
+}
+
+- (NSArray *) sortObjIds : (NSArray *) objIds {
+    
+    NSArray * sortedObjIds = [objIds sortedArrayUsingComparator: ^ (id objId1, id objId2) {
+        
+        NSNumber * pk1 = [self->store referenceObjectForObjectID : objId1];
+        
+        NSNumber * pk2 = [self->store referenceObjectForObjectID : objId2];
+        
+        if ([pk1 integerValue] > [pk2 integerValue]) {
+            
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if ([pk1 integerValue] < [pk2 integerValue]) {
+            
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+
+    return sortedObjIds;
+}
+
 
 - (BOOL) isEqual : (id) obj {
     

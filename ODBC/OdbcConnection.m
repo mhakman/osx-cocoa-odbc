@@ -147,10 +147,25 @@
     
     SQLRETURN rc;
     
+    const char * catalogc = catalog.UTF8String;
+    
+    NSString * dbms = self.dbmsName;
+    
+    if ([dbms hasPrefix : @"DB2"]) {
+        
+        catalogc = 0;
+        
+        schema = [schema uppercaseString];
+        
+        table = [table uppercaseString];
+        
+        tableTypes = [tableTypes uppercaseString];
+    }
+
     OdbcStatement * stmt = [self newStatement];
     
     rc = SQLTables (stmt.hstmt,
-                    (SQLCHAR *)catalog.UTF8String,SQL_NTS,
+                    (SQLCHAR *)catalogc,SQL_NTS,
                     (SQLCHAR *)schema.UTF8String,SQL_NTS,
                     (SQLCHAR *)table.UTF8String,SQL_NTS,
                     (SQLCHAR *)tableTypes.UTF8String,SQL_NTS);
