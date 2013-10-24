@@ -1,0 +1,1050 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>OdbcStatement Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 961)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Odbc </a></h1>
+				<a id="developerHome" href="../index.html">Datakonsulten AB</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">OdbcStatement Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/concurrency">&nbsp;&nbsp;&nbsp;&nbsp;concurrency</option>
+	
+	<option value="//api/name/connection">&nbsp;&nbsp;&nbsp;&nbsp;connection</option>
+	
+	<option value="//api/name/hstmt">&nbsp;&nbsp;&nbsp;&nbsp;hstmt</option>
+	
+	<option value="//api/name/prepareDescriptor">&nbsp;&nbsp;&nbsp;&nbsp;prepareDescriptor</option>
+	
+	<option value="//api/name/resultDescriptor">&nbsp;&nbsp;&nbsp;&nbsp;resultDescriptor</option>
+	
+	<option value="//api/name/wasNull">&nbsp;&nbsp;&nbsp;&nbsp;wasNull</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/statementWithConnection:">&nbsp;&nbsp;&nbsp;&nbsp;+ statementWithConnection:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/closeCursor">&nbsp;&nbsp;&nbsp;&nbsp;- closeCursor</option>
+	
+	<option value="//api/name/execDirect:">&nbsp;&nbsp;&nbsp;&nbsp;- execDirect:</option>
+	
+	<option value="//api/name/execute">&nbsp;&nbsp;&nbsp;&nbsp;- execute</option>
+	
+	<option value="//api/name/fetch">&nbsp;&nbsp;&nbsp;&nbsp;- fetch</option>
+	
+	<option value="//api/name/getDate:">&nbsp;&nbsp;&nbsp;&nbsp;- getDate:</option>
+	
+	<option value="//api/name/getDateByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getDateByName:</option>
+	
+	<option value="//api/name/getDouble:">&nbsp;&nbsp;&nbsp;&nbsp;- getDouble:</option>
+	
+	<option value="//api/name/getDoubleByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getDoubleByName:</option>
+	
+	<option value="//api/name/getLong:">&nbsp;&nbsp;&nbsp;&nbsp;- getLong:</option>
+	
+	<option value="//api/name/getLongByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getLongByName:</option>
+	
+	<option value="//api/name/getObject:">&nbsp;&nbsp;&nbsp;&nbsp;- getObject:</option>
+	
+	<option value="//api/name/getObjectByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getObjectByName:</option>
+	
+	<option value="//api/name/getString:">&nbsp;&nbsp;&nbsp;&nbsp;- getString:</option>
+	
+	<option value="//api/name/getStringByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getStringByName:</option>
+	
+	<option value="//api/name/getTime:">&nbsp;&nbsp;&nbsp;&nbsp;- getTime:</option>
+	
+	<option value="//api/name/getTimeByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getTimeByName:</option>
+	
+	<option value="//api/name/getTimestamp:">&nbsp;&nbsp;&nbsp;&nbsp;- getTimestamp:</option>
+	
+	<option value="//api/name/getTimestampByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getTimestampByName:</option>
+	
+	<option value="//api/name/getUnsignedLong:">&nbsp;&nbsp;&nbsp;&nbsp;- getUnsignedLong:</option>
+	
+	<option value="//api/name/getUnsignedLongByName:">&nbsp;&nbsp;&nbsp;&nbsp;- getUnsignedLongByName:</option>
+	
+	<option value="//api/name/initWithConnection:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithConnection:</option>
+	
+	<option value="//api/name/prepare:">&nbsp;&nbsp;&nbsp;&nbsp;- prepare:</option>
+	
+	<option value="//api/name/setDate:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setDate:value:</option>
+	
+	<option value="//api/name/setDouble:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setDouble:value:</option>
+	
+	<option value="//api/name/setLong:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setLong:value:</option>
+	
+	<option value="//api/name/setObject:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setObject:value:</option>
+	
+	<option value="//api/name/setString:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setString:value:</option>
+	
+	<option value="//api/name/setTime:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setTime:value:</option>
+	
+	<option value="//api/name/setTimestamp:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setTimestamp:value:</option>
+	
+	<option value="//api/name/setUnsignedLong:value:">&nbsp;&nbsp;&nbsp;&nbsp;- setUnsignedLong:value:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/concurrency">concurrency</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connection">connection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hstmt">hstmt</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareDescriptor">prepareDescriptor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resultDescriptor">resultDescriptor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/wasNull">wasNull</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/statementWithConnection:">statementWithConnection:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/closeCursor">closeCursor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/execDirect:">execDirect:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/execute">execute</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetch">fetch</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDate:">getDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDateByName:">getDateByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDouble:">getDouble:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDoubleByName:">getDoubleByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getLong:">getLong:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getLongByName:">getLongByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getObject:">getObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getObjectByName:">getObjectByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getString:">getString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getStringByName:">getStringByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getTime:">getTime:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getTimeByName:">getTimeByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getTimestamp:">getTimestamp:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getTimestampByName:">getTimestampByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUnsignedLong:">getUnsignedLong:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUnsignedLongByName:">getUnsignedLongByName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithConnection:">initWithConnection:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepare:">prepare:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDate:value:">setDate:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDouble:value:">setDouble:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLong:value:">setLong:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setObject:value:">setObject:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setString:value:">setString:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setTime:value:">setTime:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setTimestamp:value:">setTimestamp:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setUnsignedLong:value:">setUnsignedLong:value:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="OdbcStatement Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">OdbcStatement Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">OdbcStatement.h</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hstmt">&nbsp;&nbsp;hstmt</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connection">&nbsp;&nbsp;connection</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/wasNull">&nbsp;&nbsp;wasNull</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/concurrency">&nbsp;&nbsp;concurrency</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resultDescriptor">&nbsp;&nbsp;resultDescriptor</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareDescriptor">&nbsp;&nbsp;prepareDescriptor</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/statementWithConnection:">+&nbsp;statementWithConnection:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithConnection:">&ndash;&nbsp;initWithConnection:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/execDirect:">&ndash;&nbsp;execDirect:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetch">&ndash;&nbsp;fetch</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/closeCursor">&ndash;&nbsp;closeCursor</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepare:">&ndash;&nbsp;prepare:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/execute">&ndash;&nbsp;execute</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getLong:">&ndash;&nbsp;getLong:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getLongByName:">&ndash;&nbsp;getLongByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getUnsignedLong:">&ndash;&nbsp;getUnsignedLong:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getUnsignedLongByName:">&ndash;&nbsp;getUnsignedLongByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getString:">&ndash;&nbsp;getString:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getStringByName:">&ndash;&nbsp;getStringByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDouble:">&ndash;&nbsp;getDouble:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDoubleByName:">&ndash;&nbsp;getDoubleByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDate:">&ndash;&nbsp;getDate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDateByName:">&ndash;&nbsp;getDateByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getTime:">&ndash;&nbsp;getTime:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getTimeByName:">&ndash;&nbsp;getTimeByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getTimestamp:">&ndash;&nbsp;getTimestamp:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getTimestampByName:">&ndash;&nbsp;getTimestampByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getObject:">&ndash;&nbsp;getObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getObjectByName:">&ndash;&nbsp;getObjectByName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLong:value:">&ndash;&nbsp;setLong:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setUnsignedLong:value:">&ndash;&nbsp;setUnsignedLong:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setString:value:">&ndash;&nbsp;setString:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setDouble:value:">&ndash;&nbsp;setDouble:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setDate:value:">&ndash;&nbsp;setDate:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setObject:value:">&ndash;&nbsp;setObject:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setTime:value:">&ndash;&nbsp;setTime:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setTimestamp:value:">&ndash;&nbsp;setTimestamp:value:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/concurrency" title="concurrency"></a>
+	<h3 class="subsubtitle method-title">concurrency</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) unsigned long concurrency</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connection" title="connection"></a>
+	<h3 class="subsubtitle method-title">connection</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (readonly) OdbcConnection *connection</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hstmt" title="hstmt"></a>
+	<h3 class="subsubtitle method-title">hstmt</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (readonly) SQLHANDLE hstmt</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareDescriptor" title="prepareDescriptor"></a>
+	<h3 class="subsubtitle method-title">prepareDescriptor</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) OdbcPrepareDescriptor *prepareDescriptor</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resultDescriptor" title="resultDescriptor"></a>
+	<h3 class="subsubtitle method-title">resultDescriptor</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) OdbcResultDescriptor *resultDescriptor</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/wasNull" title="wasNull"></a>
+	<h3 class="subsubtitle method-title">wasNull</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (readonly) BOOL wasNull</code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/statementWithConnection:" title="statementWithConnection:"></a>
+	<h3 class="subsubtitle method-title">statementWithConnection:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (OdbcStatement *)statementWithConnection:(id)<em>newConnection</em></code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/closeCursor" title="closeCursor"></a>
+	<h3 class="subsubtitle method-title">closeCursor</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)closeCursor</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/execDirect:" title="execDirect:"></a>
+	<h3 class="subsubtitle method-title">execDirect:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)execDirect:(NSString *)<em>sql</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/execute" title="execute"></a>
+	<h3 class="subsubtitle method-title">execute</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)execute</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetch" title="fetch"></a>
+	<h3 class="subsubtitle method-title">fetch</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)fetch</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDate:" title="getDate:"></a>
+	<h3 class="subsubtitle method-title">getDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)getDate:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDateByName:" title="getDateByName:"></a>
+	<h3 class="subsubtitle method-title">getDateByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)getDateByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDouble:" title="getDouble:"></a>
+	<h3 class="subsubtitle method-title">getDouble:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (double)getDouble:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDoubleByName:" title="getDoubleByName:"></a>
+	<h3 class="subsubtitle method-title">getDoubleByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (double)getDoubleByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getLong:" title="getLong:"></a>
+	<h3 class="subsubtitle method-title">getLong:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (long)getLong:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getLongByName:" title="getLongByName:"></a>
+	<h3 class="subsubtitle method-title">getLongByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (long)getLongByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getObject:" title="getObject:"></a>
+	<h3 class="subsubtitle method-title">getObject:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (id)getObject:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getObjectByName:" title="getObjectByName:"></a>
+	<h3 class="subsubtitle method-title">getObjectByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (id)getObjectByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getString:" title="getString:"></a>
+	<h3 class="subsubtitle method-title">getString:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)getString:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getStringByName:" title="getStringByName:"></a>
+	<h3 class="subsubtitle method-title">getStringByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)getStringByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getTime:" title="getTime:"></a>
+	<h3 class="subsubtitle method-title">getTime:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)getTime:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getTimeByName:" title="getTimeByName:"></a>
+	<h3 class="subsubtitle method-title">getTimeByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)getTimeByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getTimestamp:" title="getTimestamp:"></a>
+	<h3 class="subsubtitle method-title">getTimestamp:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)getTimestamp:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getTimestampByName:" title="getTimestampByName:"></a>
+	<h3 class="subsubtitle method-title">getTimestampByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)getTimestampByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getUnsignedLong:" title="getUnsignedLong:"></a>
+	<h3 class="subsubtitle method-title">getUnsignedLong:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (unsigned long)getUnsignedLong:(int)<em>columnNumber</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getUnsignedLongByName:" title="getUnsignedLongByName:"></a>
+	<h3 class="subsubtitle method-title">getUnsignedLongByName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (unsigned long)getUnsignedLongByName:(NSString *)<em>columnName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithConnection:" title="initWithConnection:"></a>
+	<h3 class="subsubtitle method-title">initWithConnection:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (OdbcStatement *)initWithConnection:(id)<em>newConnection</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepare:" title="prepare:"></a>
+	<h3 class="subsubtitle method-title">prepare:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)prepare:(NSString *)<em>sql</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setDate:value:" title="setDate:value:"></a>
+	<h3 class="subsubtitle method-title">setDate:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setDate:(int)<em>parameterNumber</em> value:(NSDate *)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setDouble:value:" title="setDouble:value:"></a>
+	<h3 class="subsubtitle method-title">setDouble:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setDouble:(int)<em>parameterNumber</em> value:(double)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLong:value:" title="setLong:value:"></a>
+	<h3 class="subsubtitle method-title">setLong:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setLong:(int)<em>parameterNumber</em> value:(long)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setObject:value:" title="setObject:value:"></a>
+	<h3 class="subsubtitle method-title">setObject:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setObject:(int)<em>parameterNumber</em> value:(id)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setString:value:" title="setString:value:"></a>
+	<h3 class="subsubtitle method-title">setString:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setString:(int)<em>parameterNumber</em> value:(NSString *)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setTime:value:" title="setTime:value:"></a>
+	<h3 class="subsubtitle method-title">setTime:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setTime:(int)<em>parameterNumber</em> value:(NSDate *)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setTimestamp:value:" title="setTimestamp:value:"></a>
+	<h3 class="subsubtitle method-title">setTimestamp:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setTimestamp:(int)<em>parameterNumber</em> value:(NSDate *)<em>value</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setUnsignedLong:value:" title="setUnsignedLong:value:"></a>
+	<h3 class="subsubtitle method-title">setUnsignedLong:value:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)setUnsignedLong:(int)<em>parameterNumber</em> value:(unsigned long)<em>value</em></code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Datakonsulten AB. All rights reserved. (Last updated: 2013-10-25)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

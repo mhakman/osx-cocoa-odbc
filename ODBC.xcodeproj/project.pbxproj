@@ -12,8 +12,7 @@
 			buildConfigurationList = 6A744FC717F8E1D6000793B2 /* Build configuration list for PBXAggregateTarget "OdbcDocumentation" */;
 			buildPhases = (
 				6A744FC817F8E215000793B2 /* ShellScript */,
-				6A5EE62018035FA7005E5942 /* ShellScript */,
-				6A5EE621180362D0005E5942 /* ShellScript */,
+				6A3947ED18196D170049B34C /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -43,6 +42,7 @@
 		6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */; };
 		6A27E2CA17D90EC20070E6B7 /* Odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E29A17D8FC490070E6B7 /* Odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A2D3F4017FAF4B200154AF4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */; };
+		6A3947EF18196F600049B34C /* index.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 6A3947EE18196F5F0049B34C /* index.markdown */; };
 		6A5EE5EB18032FE8005E5942 /* OdbcStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E518032FE8005E5942 /* OdbcStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A5EE5EC18032FE8005E5942 /* OdbcStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE5E618032FE8005E5942 /* OdbcStore.m */; };
 		6A5EE5ED18032FE8005E5942 /* OdbcStoreDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E718032FE8005E5942 /* OdbcStoreDatabase.h */; };
@@ -119,6 +119,7 @@
 		6A27E2B017D8FCAF0070E6B7 /* OdbcStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStatement.h; sourceTree = "<group>"; };
 		6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStatement.m; sourceTree = "<group>"; };
 		6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		6A3947EE18196F5F0049B34C /* index.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.markdown; sourceTree = "<group>"; };
 		6A5EE5E518032FE8005E5942 /* OdbcStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStore.h; sourceTree = "<group>"; };
 		6A5EE5E618032FE8005E5942 /* OdbcStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStore.m; sourceTree = "<group>"; };
 		6A5EE5E718032FE8005E5942 /* OdbcStoreDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStoreDatabase.h; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		6A27E28017D8FC490070E6B7 = {
 			isa = PBXGroup;
 			children = (
+				6A3947EE18196F5F0049B34C /* index.markdown */,
 				6A744FC917F8E3E9000793B2 /* readme.markdown */,
 				6A27E29317D8FC490070E6B7 /* Odbc */,
 				6A744FEA17F9EC8F000793B2 /* OdbcTests */,
@@ -486,6 +488,7 @@
 			files = (
 				6A27E29817D8FC490070E6B7 /* InfoPlist.strings in Resources */,
 				6AF8178C18106475004F9042 /* OdbcPredicate.grammar in Resources */,
+				6A3947EF18196F600049B34C /* index.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +513,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6A5EE62018035FA7005E5942 /* ShellScript */ = {
+		6A3947ED18196D170049B34C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -521,20 +524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${BUILD_DIR}/OdbcDocumentation/html/index.html\" \"${PROJECT_DIR}/readme.html\" ";
-		};
-		6A5EE621180362D0005E5942 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp ${BUILD_DIR}/OdbcDocumentation/html/css/* ${PROJECT_DIR}/css/";
+			shellScript = "cp -R \"${BUILD_DIR}/OdbcDocumentation/html\" \"${PROJECT_DIR}/\"";
 		};
 		6A744FAD17F79478000793B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -573,7 +563,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/index.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6A744FE417F9EC8F000793B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

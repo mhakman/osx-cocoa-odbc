@@ -139,10 +139,12 @@
 
 - (void) testTablesCatalogSchemaTableTableTypes {
     
-    NSString * catalogName = [self->connection currentCatalog];
+    NSString * catalogName = self->connection.currentCatalog;
+    
+    NSString * schemaName = self->connection.currentSchema;
     
     OdbcStatement * stmt = [self->connection tablesCatalog : catalogName
-                                                    schema : @"%"
+                                                    schema : schemaName
                                                      table : @"testtab"
                                                 tableTypes : @""];
     
