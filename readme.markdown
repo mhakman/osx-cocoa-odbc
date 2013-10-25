@@ -3,7 +3,8 @@
 Odbc framework is Cocoa framework providing access to ODBC databases. It works on
 top of iODBC framework which is a low level C-oriented framework of ODBC routines
 that follow ODBC specification. The framework includes also an experimental Cocoa
-Core Data Persistent Store for Odbc. It hass been tested with IBM DB2, Mimer, and MySQL.
+Core Data Persistent Store for Odbc. It hass been tested with IBM DB2, Mimer, MySQL
+and PostgreSQL.
 
 ODBC framework consists of a number of classes. Currently only OdbcConnection,
 OdbcStatement, and OdbcException are used in non-Core Data applications. 
@@ -379,3 +380,55 @@ When you run your application for the first time, the table will be empty. You
 can add an author using + button.
 You can remove an author using - button. You can modify an author by double-clicking on it.
 Your chages will automatically be saved to the database when you quit the application.
+
+# Notes #
+
+### The iODBC Administrator ###
+
+The 'Test' button in iODBC Administrator does not allways works. Sometimes you 
+get errors and yet everything is alright. Use the TestConnectApp provided in
+this software.
+
+The iODBC Administrator writes sometimes wrong path names to odbc.ini and odbcinst.ini in 
+/Library/ODBC directory. Use TextEdit to read the files and correct any mistakes.
+
+### IBM DB2 ###
+
+The installation of DB2 on OS X is not what you expect on a Mac. It is more Unix
+oriented, no GUI, you work in a terminal window. It works if you follow instructions on
+https://www.ibm.com/developerworks/community/forums/html/topic?id=77777777-0000-0000-0000-000014927797
+
+After installation you create a database using DB2 command.
+
+### Mimer ###
+
+After installation you create a database using Mimer's BSQL command.
+
+### MySQL ###
+
+After installation you create a database using SQLWorkbench.
+
+### ProgreSQL ###
+
+The official ODBC driver for PostgreSQL can be downloaded and installed by the
+Application Stack Builder tool provided in the main PostgreSQL installation. This
+driver needs a file named 'libltdl.7.dylib' in /usr/local/lib directory. If you, 
+like me, doesn't have it then yo need to install it by the following procedure.
+
+Install command named 'brew' from http://brew.sh. Look at the end of the page for
+command needed to install it. Run the command in a terminal window. Then still in
+terminal window perform commands:
+
+    brew install libtool --universal
+    brew link libtool
+    
+Now, the required file should be in place.
+
+Also, ProgreSQL needs a special option in odbc.ini file in /Library/ODBC directory. The
+following option should be added to odbc.ini for each database using ProgreSQL:
+
+        UseServerSidePrepare = 1
+        
+You can use iOdbc Administrator to enter this option or you can use TextEdit to
+manually edit the odbc.ini file.
+
