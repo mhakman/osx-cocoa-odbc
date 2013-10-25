@@ -1200,7 +1200,7 @@
     OdbcStatement * tables = [self->odbcConnection tablesCatalog : self->catalog
                                                           schema : self->schema
                                                            table : tableName
-                                                      tableTypes : @""];
+                                                      tableTypes : @"TABLE"];
     
     int count = 0;
     

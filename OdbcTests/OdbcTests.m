@@ -22,22 +22,29 @@ NSString * Password;
 
 + (void) initialize {
     
-    DataSourceName = @"testdb";
+    DataSourceName = @"db2testdb";
     
-    Username = @"root";
+    Username = @"mhakman";
     
-    Password = @"";
+    Password = @"staryty1";
 }
 
 - (void) setUp {
     
-    [super setUp];
+    @try {
     
-    [self connect];
+        [super setUp];
     
-    [self createTestTable];
+        [self connect];
     
-    [self insertTestRows];
+        [self createTestTable];
+    
+        [self insertTestRows];
+        
+    } @catch (NSException * exception) {
+        
+        STFail (exception.description);
+    }
 }
 
 - (void) connect {
@@ -130,11 +137,21 @@ NSString * Password;
 
 - (void) tearDown {
     
-    [self dropTestTable];
+    @try {
     
-    [self->connection disconnect];
+        if (self->connection.connected) {
+        
+            [self dropTestTable];
     
-    [super tearDown];
+            [self->connection disconnect];
+    
+            [super tearDown];
+        }
+    
+    } @catch (NSException * exception) {
+        
+        STFail (exception.description);
+    }
 }
 
 @end

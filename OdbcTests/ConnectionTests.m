@@ -142,23 +142,41 @@
     NSString * catalogName = self->connection.currentCatalog;
     
     NSString * schemaName = self->connection.currentSchema;
-    
+            
     OdbcStatement * stmt = [self->connection tablesCatalog : catalogName
                                                     schema : schemaName
                                                      table : @"testtab"
-                                                tableTypes : @""];
+                                                tableTypes : @"table"];
     
     bool found = [stmt fetch];
     
     STAssertTrue (found,@"");
     
-    NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
+    NSString * catalog = nil;
+    
+    @try {
+    
+        catalog = [stmt getStringByName : @"TABLE_CAT"];
+        
+    } @catch (NSException * exception) {
+        
+        catalog = [stmt getStringByName : @"TABLE_QUALIFIER"];
+    }
     
     if (!catalog) catalog = @"";
     
     STAssertEqualObjects (catalogName,catalog,@"");
     
-    NSString * schema = [stmt getStringByName : @"TABLE_SCHEM"];
+    NSString * schema = nil;
+    
+    @try {
+        
+        schema = [stmt getStringByName : @"TABLE_SCHEM"];
+        
+    } @catch (NSException * exception) {
+        
+        schema = [stmt getStringByName : @"TABLE_OWNER"];
+    }
     
     if (! schema) schema = @"";
     
@@ -166,7 +184,7 @@
         
         NSString * username = self->connection.username;
         
-        STAssertEqualObjects (schema,[username uppercaseString],@"");
+        STAssertEqualObjects ([schema uppercaseString],[username uppercaseString],@"");
     }
         
     NSString * table = [stmt getStringByName : @"TABLE_NAME"];
@@ -272,13 +290,13 @@
     }
 }
 
-- (void) testScemas {
+- (void) testSchemas {
     
     NSArray * schemas = self->connection.schemas;
     
     long count = [schemas count];
     
-    STAssertTrue (count > 0,@"");
+    STAssertTrue (count >= 0,@"");
 }
 
 - (void) testTableTypes {
@@ -293,11 +311,8 @@
 - (void) testCurrentCatalog {
     
     NSString * catalog = self->connection.currentCatalog;
-    
-    if (catalog.length > 0) {
-        
-        STAssertEqualObjects (catalog,DataSourceName,@"");
-    }
+
+    NSLog (@"%s current catalog %@",__PRETTY_FUNCTION__,catalog);
 }
 
 - (void) testCurrentUser {

@@ -836,7 +836,7 @@
         
     STAssertTrue (concurency > 0,@"");
 }
-
+/*
 - (void) testSetConcurency {
     
     NSString * dbmsName = self->connection.dbmsName;
@@ -855,7 +855,7 @@
         }
     }
 }
-
+*/
 - (void) setAndTestConcurency : (unsigned long) concurency {
     
     self->statement.concurrency = concurency;

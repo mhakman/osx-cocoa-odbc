@@ -149,7 +149,7 @@
         
     NSString * dbms = self.dbmsName;
     
-    if ([dbms hasPrefix : @"DB2"]) {
+    if ([dbms hasPrefix : @"DB2"] || [dbms hasPrefix : @"Mimer"]) {
         
         catalog = [catalog uppercaseString];
         
@@ -158,6 +158,16 @@
         table = [table uppercaseString];
         
         tableTypes = [tableTypes uppercaseString];
+        
+    } else if ([dbms hasPrefix : @"PostgreSQL"]) {
+        
+        catalog = [catalog lowercaseString];
+        
+        schema = [schema lowercaseString];
+        
+        table = [table lowercaseString];
+        
+        tableTypes = [tableTypes lowercaseString];
     }
 
     OdbcStatement * stmt = [self newStatement];
@@ -219,11 +229,18 @@
     
     while ([stmt fetch]) {
         
-        NSString * schema = [stmt getStringByName : @"TABLE_SCHEM"];
+        NSString * schema = nil;
         
-        if (! schema) schema = @"";
+        @try {
+            
+            schema = [stmt getStringByName : @"TABLE_SCHEM"];
+            
+        } @catch (NSException * exception) {
+            
+            schema = [stmt getStringByName : @"TABLE_OWNER"];
+        }
         
-        [schemas addObject : schema];
+        if (schema) [schemas addObject : schema];
     }
     
     [stmt closeCursor];
@@ -250,10 +267,19 @@
         CHECK_ERROR ("SQLTables",rc,SQL_HANDLE_STMT,stmt.hstmt);
         
         while ([stmt fetch]) {
+                    
+            NSString * catalog = nil;
+            
+            @try {
+                
+                catalog = [stmt getStringByName : @"TABLE_CAT"];
+                
+            } @catch (NSException * exception) {
+                
+                catalog = [stmt getStringByName : @"TABLE_QUALIFIER"];
+            }
         
-            NSString * catalog = [stmt getStringByName : @"TABLE_CAT"];
-        
-            [catalogs addObject : catalog];
+            if (catalog) [catalogs addObject : catalog];
         }
         
         [stmt closeCursor];

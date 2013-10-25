@@ -70,7 +70,7 @@ static NSString * OdbcScheme = @"odbc";
     
     if (items.count != 0 && items.count != 2 && items.count != 4) valid = NO;
     
-    for (int i = 0; i < items.count; i += 2) {
+    for (int i = 0; i < items.count - 1; i += 2) {
         
         NSString * name = [[[items objectAtIndex : i] lowercaseString] stringByTrimmingCharactersInSet : spaces];
         
