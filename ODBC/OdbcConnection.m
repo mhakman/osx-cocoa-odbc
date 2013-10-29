@@ -149,7 +149,7 @@
         
     NSString * dbms = self.dbmsName;
     
-    if ([dbms hasPrefix : @"DB2"] || [dbms hasPrefix : @"Mimer"]) {
+    if ([dbms hasPrefix : @"DB2"] || [dbms hasPrefix : @"Mimer"] || [dbms hasPrefix : @"Oracle"]) {
         
         catalog = [catalog uppercaseString];
         
@@ -443,7 +443,16 @@
     
     self.autocommit = NO;
     
-    self.transactionIsolation = SQL_TXN_REPEATABLE_READ;
+    NSString * dbms = self.dbmsName;
+    
+    if ([[dbms lowercaseString] hasPrefix : @"oracle"]) {
+        
+        self.transactionIsolation = SQL_TXN_READ_COMMITTED;
+    
+    } else {
+    
+        self.transactionIsolation = SQL_TXN_REPEATABLE_READ;
+    }
     
     self.dataSource = server;
     

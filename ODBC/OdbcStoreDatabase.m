@@ -542,7 +542,12 @@
     
     [stmt prepare : sql];
     
-    [self->stmtDict setValue : stmt forKey : sql];
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    if (! [dbms hasPrefix : @"Oracle"]) {
+    
+        [self->stmtDict setValue : stmt forKey : sql];
+    }
     
     return stmt;
 }
@@ -859,66 +864,86 @@
 
 - (void) updateCoreDataEntity : (unsigned long) lastId forName : (NSString *) name {
     
-    [self.updateCoreDataEntityForNameStmt setLong : 1 value : lastId];
+    OdbcStatement * stmt = self.updateCoreDataEntityForNameStmt;
     
-    [self.updateCoreDataEntityForNameStmt setString : 2 value : name];
+    [stmt setLong : 1 value : lastId];
     
-    [self.updateCoreDataEntityForNameStmt execute];
+    [stmt setString : 2 value : name];
+    
+    [stmt execute];
 }
 
 - (OdbcStatement *) updateCoreDataEntityForNameStmt {
     
     if (self->updateCoreDataEntityForNameStmt) return self->updateCoreDataEntityForNameStmt;
     
-    self->updateCoreDataEntityForNameStmt = [self->odbcConnection newStatement];
+    OdbcStatement * stmt = [self->odbcConnection newStatement];
     
     NSString * sql = @"update CoreDataEntity set lastId = ? where entityName = ?";
     
-    [self->updateCoreDataEntityForNameStmt prepare : sql];
+    [stmt prepare : sql];
     
-    return self->updateCoreDataEntityForNameStmt;
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    if (! [dbms hasPrefix : @"Oracle"]) {
+
+        self->updateCoreDataEntityForNameStmt = stmt;
+    }
+    
+    return stmt;
 }
 
 - (void) insertCoreDataEntity : (unsigned long) lastId forName : (NSString *) name {
     
-    [self.insertCoreDataEntityForNameStmt setString : 1 value : name];
+    OdbcStatement * stmt = self.insertCoreDataEntityForNameStmt;
     
-    [self.insertCoreDataEntityForNameStmt setLong : 2 value : lastId];
+    [stmt setString : 1 value : name];
     
-    [self.insertCoreDataEntityForNameStmt execute];
+    [stmt setLong : 2 value : lastId];
+    
+    [stmt execute];
 }
 
 - (OdbcStatement *) insertCoreDataEntityForNameStmt {
     
     if (self->insertCoreDataEntityForNameStmt) return self->insertCoreDataEntityForNameStmt;
     
-    self->insertCoreDataEntityForNameStmt = [self->odbcConnection newStatement];
+    OdbcStatement * stmt = [self->odbcConnection newStatement];
     
     NSString * sql = @"insert into CoreDataEntity (entityName,lastId) values (?,?)";
     
-    [self->insertCoreDataEntityForNameStmt prepare : sql];
+    [stmt prepare : sql];
     
-    return self->insertCoreDataEntityForNameStmt;
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    if (! [dbms hasPrefix : @"Oracle"]) {
+
+        self->insertCoreDataEntityForNameStmt = stmt;
+    }
+    
+    return stmt;
 }
 
 - (bool) fetchCoreDataEntityForName : name lastId : (unsigned long *) lastId {
     
-    [self.fetchCoreDataEntityForNameStmt setString : 1 value : name];
+    OdbcStatement * stmt = self.fetchCoreDataEntityForNameStmt;
     
-    [self.fetchCoreDataEntityForNameStmt execute];
+    [stmt setString : 1 value : name];
+    
+    [stmt execute];
     
     * lastId = 0;
     
-    bool found = [self.fetchCoreDataEntityForNameStmt fetch];
+    bool found = [stmt fetch];
     
     if (found) {
         
-        * lastId = [self.fetchCoreDataEntityForNameStmt getLongByName : @"lastId"];
+        * lastId = [stmt getLongByName : @"lastId"];
         
-        if (self.fetchCoreDataEntityForNameStmt.wasNull) * lastId = 0;
+        if (stmt.wasNull) * lastId = 0;
     }
     
-    [self.fetchCoreDataEntityForNameStmt closeCursor];
+    [stmt closeCursor];
     
     return found;
 }
@@ -927,13 +952,20 @@
     
     if (self->fetchCoreDataEntityForNameStmt) return self->fetchCoreDataEntityForNameStmt;
     
-    self->fetchCoreDataEntityForNameStmt = [self->odbcConnection newStatement];
+    OdbcStatement * stmt = [self->odbcConnection newStatement];
     
     NSString * sql = @"select * from CoreDataEntity where entityName = ?";
     
-    [self->fetchCoreDataEntityForNameStmt prepare : sql];
+    [stmt prepare : sql];
     
-    return self->fetchCoreDataEntityForNameStmt;
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    if (! [dbms hasPrefix : @"Oracle"]) {
+
+        self->fetchCoreDataEntityForNameStmt = stmt;
+    }
+    
+    return stmt;
 }
 
 + (OdbcStoreDatabase *) databaseWithOdbcStore : (OdbcStore *) newOdbcStore {
@@ -1029,6 +1061,8 @@
     
     if ([self tableExists : mainRelationship.name]) return;
     
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
     NSEntityDescription * srcEntity = mainRelationship.entity;
     
     NSEntityDescription * dstEntity = mainRelationship.destinationEntity;
@@ -1037,10 +1071,18 @@
     
     NSMutableString * sql = [NSMutableString stringWithFormat : @"create table %@ (",tableName];
     
-    [sql appendFormat : @"%@ bigint not null,",srcEntity.name];
-    [sql appendFormat : @"%@ bigint not null,",dstEntity.name];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [sql appendFormat : @"%@ number(20) not null,",srcEntity.name];
+        [sql appendFormat : @"%@ number(20) not null,",dstEntity.name];
+
+    } else {
+    
+        [sql appendFormat : @"%@ bigint not null,",srcEntity.name];
+        [sql appendFormat : @"%@ bigint not null,",dstEntity.name];
+    }
+    
     [sql appendFormat : @"primary key (%@,%@),",srcEntity.name,dstEntity.name];
-    //[sql appendFormat : @"unique key %@Unique (%@,%@),",tableName,srcEntity.name,dstEntity.name];
     
     if (! mainRelationship.isToMany) {
         
@@ -1052,8 +1094,16 @@
         [sql appendFormat : @"unique key (%@),",dstEntity.name];
     }
     
-    [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update no action,",
-                        tableName,dstEntity.name,dstEntity.name];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade,",
+                            tableName,dstEntity.name,dstEntity.name];
+        
+    } else {
+    
+        [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update no action,",
+                            tableName,dstEntity.name,dstEntity.name];
+    }
     
     NSString * inverseTableName = [NSString stringWithFormat : @"%@%@",dstEntity.name,srcEntity.name];
     
@@ -1062,8 +1112,16 @@
         inverseTableName = mainRelationship.inverseRelationship.name;
     }
     
-    [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update no action)" ,
-                        inverseTableName,srcEntity.name,srcEntity.name];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade)" ,
+                            inverseTableName,srcEntity.name,srcEntity.name];
+        
+    } else {
+    
+        [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade on update no action)" ,
+                            inverseTableName,srcEntity.name,srcEntity.name];
+    }
     
     [self->odbcConnection execDirect : sql];
 }
@@ -1082,6 +1140,8 @@
 
 - (void) createEntityTableIfRequired : (NSEntityDescription *) entity {
     
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
     NSString * tableName = entity.name;
     
     if ([self tableExists : tableName]) {
@@ -1091,9 +1151,16 @@
         return;
     }
     
-    NSMutableString * sql =
+    NSMutableString * sql = [NSMutableString new];
     
-    [NSMutableString stringWithFormat : @"create table %@ (id bigint not null primary key",tableName];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [sql appendFormat : @"create table %@ (id number(20) not null primary key",tableName];
+    
+    } else {
+    
+        [sql appendFormat : @"create table %@ (id bigint not null primary key",tableName];
+    }
     
     NSArray * attributes = entity.attributesByName.allValues;
         
@@ -1150,29 +1217,62 @@
   
     NSString * sqlType;
     
-    switch (attribute.attributeType) {
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
         
-        case NSInteger16AttributeType: sqlType = @"smallint"; break;
-            
-        case NSInteger32AttributeType: sqlType = @"integer";      break;
-            
-        case NSInteger64AttributeType: sqlType = @"bigint";       break;
-            
-        case NSDoubleAttributeType:    sqlType = @"float";       break;
-            
-        case NSFloatAttributeType:     sqlType = @"real";        break;
-            
-        case NSStringAttributeType:    sqlType = @"varchar(256)"; break;
-            
-        case NSBooleanAttributeType:   sqlType = @"tinyint"     ; break;
-            
-        case NSDateAttributeType:      sqlType = @"timestamp"   ; break;
+        switch (attribute.attributeType) {
+                
+            case NSInteger16AttributeType: sqlType = @"number(5)";      break;
+                
+            case NSInteger32AttributeType: sqlType = @"number(10)";     break;
+                
+            case NSInteger64AttributeType: sqlType = @"number(20)";     break;
+                
+            case NSDoubleAttributeType:    sqlType = @"float(53)";      break;
+                
+            case NSFloatAttributeType:     sqlType = @"float(24)";      break;
+                
+            case NSStringAttributeType:    sqlType = @"varchar(256)";   break;
+                
+            case NSBooleanAttributeType:   sqlType = @"number(3)";      break;
+                
+            case NSDateAttributeType:      sqlType = @"timestamp";      break;
+                
+            default: {
+                
+                NSString * msg = [NSString stringWithFormat : @"Unsupported attribute type '%ld'",attribute.attributeType];
+                
+                RAISE_ODBC_EXCEPTION ("sqlColumnTypeForAttribute",msg.UTF8String);
+            }
+        }
 
-        default: {
-            
-            NSString * msg = [NSString stringWithFormat : @"Unsupported attribute type '%ld'",attribute.attributeType];
-            
-            RAISE_ODBC_EXCEPTION("sqlColumnTypeForAttribute",msg.UTF8String);
+    } else {
+    
+        switch (attribute.attributeType) {
+                
+            case NSInteger16AttributeType: sqlType = @"smallint"; break;
+                
+            case NSInteger32AttributeType: sqlType = @"integer";        break;
+                
+            case NSInteger64AttributeType: sqlType = @"bigint";         break;
+                
+            case NSDoubleAttributeType:    sqlType = @"float";          break;
+                
+            case NSFloatAttributeType:     sqlType = @"real";           break;
+                
+            case NSStringAttributeType:    sqlType = @"varchar(256)";   break;
+                
+            case NSBooleanAttributeType:   sqlType = @"tinyint";        break;
+                
+            case NSDateAttributeType:      sqlType = @"timestamp";      break;
+                
+            default: {
+                
+                NSString * msg = [NSString stringWithFormat : @"Unsupported attribute type '%ld'",attribute.attributeType];
+                
+                RAISE_ODBC_EXCEPTION("sqlColumnTypeForAttribute",msg.UTF8String);
+            }
         }
     }
     
@@ -1183,10 +1283,24 @@
     
     if ([self tableExists : @"CoreDataEntity"]) return;
     
-    NSString * sql = @"create table CoreDataEntity ("
-                      " entityName varchar(128) primary key not null,"
-                      " lastId bigint not null"
-                      ")";
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    NSString * sql;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        sql = @"create table CoreDataEntity ("
+               " entityName varchar(128) primary key not null,"
+               " lastId number(20) not null"
+               ")";
+        
+    } else {
+    
+        sql = @"create table CoreDataEntity ("
+               " entityName varchar(128) primary key not null,"
+               " lastId bigint not null"
+               ")";
+    }
     
     [self->odbcConnection execDirect : sql];
     

@@ -3,8 +3,8 @@
 Odbc framework is Cocoa framework providing access to ODBC databases. It works on
 top of iODBC framework which is a low level C-oriented framework of ODBC routines
 that follow ODBC specification. The framework includes also an experimental Cocoa
-Core Data Persistent Store for Odbc. It hass been tested with IBM DB2, Mimer, MySQL
-and PostgreSQL.
+Core Data Persistent Store for Odbc. It hass been tested with IBM DB2, Mimer, MySQL,
+Oracle and PostgreSQL.
 
 ODBC framework consists of a number of classes. Currently only OdbcConnection,
 OdbcStatement, and OdbcException are used in non-Core Data applications. 
@@ -16,7 +16,8 @@ In order to use Odbc framework you **don't** need to know ODBC specification. Yo
 
 The documntation consists of:
 
-* This overview page
+* This readme document
+* Odbc framework overview page
 * Class hierarchy page
 * Invidual pages for each class
 
@@ -26,6 +27,7 @@ This repository contains XCode project with 4 targets:
 * OdbcDocumentation - generates the documentation
 * OdbcExample - builds Cocoa Core Data application using Odbc
 * OdbcTests - performs unit tests of the framework
+* TestConnect - tests connection to an ODBC data source
 
 #Example console application#
 
@@ -400,13 +402,24 @@ https://www.ibm.com/developerworks/community/forums/html/topic?id=77777777-0000-
 
 After installation you create a database using DB2 command.
 
+ODBC driver for DB2 and OS X is available from OpenLink.
+
 ### Mimer ###
 
 After installation you create a database using Mimer's BSQL command.
 
+ODBC driver is included in Mimer for OS X.
+
 ### MySQL ###
 
 After installation you create a database using SQLWorkbench.
+
+ODBC driver is available from MySQL.
+
+### Oracle ###
+
+Currently, Oracle is not avaiable on OS X. However, there is an Oracle ODBC driver for
+OS X available from OpenLink. You can use it and run with Oracle running on a server.
 
 ### ProgreSQL ###
 
@@ -432,3 +445,4 @@ following option should be added to odbc.ini for each database using ProgreSQL:
 You can use iOdbc Administrator to enter this option or you can use TextEdit to
 manually edit the odbc.ini file.
 
+ODBC driver for PostgeSQL and OS X is available from PostgreSQL.

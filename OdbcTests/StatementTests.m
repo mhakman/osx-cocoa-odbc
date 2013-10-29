@@ -43,16 +43,34 @@
 
 - (NSDate *) timeHour : (int) hour minute : (int) minute second : (int) second {
     
-    NSDateComponents * dateComps = [NSDateComponents new];
+    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
+    
+    NSDateComponents * dateComps;
+    
+    NSString * dbms = self->connection.dbmsName;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        NSDate * curDate = [NSDate new];
+        
+        unsigned flags = NSYearCalendarUnit | NSMonthCalendarUnit  | NSDayCalendarUnit |
+                         NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+        
+        dateComps = [gregorian components : flags fromDate : curDate];
+        
+        dateComps.day = 1;
+        
+    } else {
+        
+        dateComps = [NSDateComponents new];
+    }
     
     dateComps.hour = hour;
     
     dateComps.minute = minute;
     
     dateComps.second = second;
-    
-    NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier : NSGregorianCalendar];
-    
+        
     //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT : 0];
     
     NSDate * date = [gregorian dateFromComponents: dateComps];
@@ -155,7 +173,20 @@
 
 - (void) testPrepare {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
+    NSString * dbms = self->connection.dbmsName;
+    
+    NSString * sql;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and \"DATE\" = ? and \"TIME\" = ? and ts = ?";
+    
+    } else {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?";
+    }
+    
+    [self->statement prepare : sql];
     
     [self->statement setLong : 1 value : 1];
     
@@ -169,7 +200,14 @@
     
     NSDate * time = [self timeHour : 1 minute : 1 second : 1];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+        
+    } else {
+        
+        [self->statement setTime : 5 value : time];
+    }
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
@@ -201,7 +239,14 @@
     
     time = [self timeHour : 2 minute : 2 second : 2];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+        
+    } else {
+        
+        [self->statement setTime : 5 value : time];
+    }
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
@@ -226,7 +271,20 @@
 
 - (void) testExecute {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
+    NSString * dbms = self->connection.dbmsName;
+    
+    NSString * sql;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and \"DATE\" = ? and \"TIME\" = ? and ts = ?";
+        
+    } else {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?";
+    }
+    
+    [self->statement prepare : sql];
     
     [self->statement setLong : 1 value : 1];
     
@@ -240,7 +298,14 @@
     
     NSDate * time = [self timeHour : 1 minute : 1 second : 1];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+    
+    } else {
+    
+        [self->statement setTime : 5 value : time];
+    }
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
@@ -272,7 +337,14 @@
     
     time = [self timeHour : 2 minute : 2 second : 2];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+    
+    } else {
+    
+        [self->statement setTime : 5 value : time];
+    }
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
@@ -296,6 +368,8 @@
 }
 
 - (void) testGetData {
+    
+    NSString * dbms = self->connection.dbmsName;
     
     [self->statement execDirect : @"select * from testtab order by id"];
     
@@ -325,7 +399,16 @@
         
         STAssertEqualObjects (date1,date2,@"");
 
-        NSDate * time1 = [self->statement getTime : 5];
+        NSDate * time1;
+        
+        if ([dbms hasPrefix : @"Oracle"]) {
+            
+            time1 = [self->statement getTimestamp : 5];
+            
+        } else {
+            
+            time1 = [self->statement getTime : 5];
+        }
         
         NSDate * time2 = [self timeHour : 3 minute : 3 second : 3];
         
@@ -346,6 +429,8 @@
 }
 
 - (void) testGetDataByName {
+    
+    NSString * dbms = self->connection.dbmsName;
     
     [self->statement execDirect : @"select * from testtab order by id"];
     
@@ -375,7 +460,16 @@
 
         STAssertEqualObjects (date1,date2,@"");
         
-        NSDate * time1 = [self->statement getTimeByName : @"time"];
+        NSDate * time1;
+        
+        if ([dbms hasPrefix : @"Oracle"]) {
+            
+            time1 = [self->statement getTimestamp : 5];
+            
+        } else {
+            
+            time1 = [self->statement getTime : 5];
+        }
         
         NSDate * time2 = [self timeHour : 3 minute : 3 second : 3];
         
@@ -447,7 +541,20 @@
 */
 - (void) testGetObjectByName {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
+    NSString * dbms = self->connection.dbmsName;
+    
+    NSString * sql;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and \"DATE\" = ? and \"TIME\" = ? and ts = ?";
+        
+    } else {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?";
+    }
+    
+    [self->statement prepare : sql];
     
     [self->statement setLong : 1 value : 1];
     
@@ -461,7 +568,14 @@
     
     NSDate * time = [self timeHour : 1 minute : 1 second : 1];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+        
+    } else {
+        
+        [self->statement setTime : 5 value : time];
+    }
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
@@ -525,7 +639,14 @@
     
     time = [self timeHour : 2 minute : 2 second : 2];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+        
+    } else {
+        
+        [self->statement setTime : 5 value : time];
+    }
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
@@ -552,7 +673,20 @@
 
 - (void) testGetObject {
     
-    [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?"];
+    NSString * dbms = self->connection.dbmsName;
+    
+    NSString * sql;
+    
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and \"DATE\" = ? and \"TIME\" = ? and ts = ?";
+    
+    } else {
+        
+        sql = @"select * from testtab where id = ? and name = ? and price = ? and date = ? and time = ? and ts = ?";
+    }
+    
+    [self->statement prepare : sql];
     
     [self->statement setLong : 1 value : 1];
     
@@ -566,7 +700,14 @@
     
     NSDate * time = [self timeHour : 1 minute : 1 second : 1];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+    
+    } else {
+    
+        [self->statement setTime : 5 value : time];
+    }
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
@@ -630,7 +771,14 @@
     
     time = [self timeHour : 2 minute : 2 second : 2];
     
-    [self->statement setTime : 5 value : time];
+    if ([dbms hasPrefix : @"Oracle"]) {
+        
+        [self->statement setTimestamp : 5 value : time];
+        
+    } else {
+        
+        [self->statement setTime : 5 value : time];
+    }
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     

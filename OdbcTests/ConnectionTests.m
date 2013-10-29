@@ -66,9 +66,22 @@
 
 - (void) testCommit {
     
-    NSString * sql =
+    NSString * sql;
     
-    @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',time '10:10:10',timestamp '2010-10-10 10:10:10')";
+    NSString * dbms = self->connection.dbmsName;
+    
+    if ([[dbms lowercaseString] hasPrefix:@"oracle"]) {
+        
+        sql =
+        
+        @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',to_date ('10:10:10','HH24:MI:SS'),timestamp '2010-10-10 10:10:10')";
+        
+    } else {
+    
+        sql =
+        
+        @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',time '10:10:10',timestamp '2010-10-10 10:10:10')";
+    }
     
     OdbcStatement * stmt = [self->connection newStatement];
     
@@ -103,9 +116,22 @@
 
 - (void) testRollback {
     
-    NSString * sql =
+    NSString * sql;
     
-    @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',time '10:10:10',timestamp '2010-10-10 10:10:10')";
+    NSString * dbms = self->connection.dbmsName;
+    
+    if ([[dbms lowercaseString] hasPrefix:@"oracle"]) {
+        
+        sql =
+        
+        @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',to_date ('10:10:10','HH24:MI:SS'),timestamp '2010-10-10 10:10:10')";
+        
+    } else {
+        
+        sql =
+        
+        @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',time '10:10:10',timestamp '2010-10-10 10:10:10')";
+    }
     
     OdbcStatement * stmt = [self->connection newStatement];
     
@@ -234,17 +260,28 @@
     
     STAssertEquals (curTxnIsolation,SQL_TXN_SERIALIZABLE,@"");
     
-    self->connection.transactionIsolation = SQL_TXN_READ_UNCOMMITTED;
+    NSString * dbms = self->connection.dbmsName;
     
+    self->connection.transactionIsolation = SQL_TXN_READ_COMMITTED;
+        
     long newTxnIsolation = self->connection.transactionIsolation;
+        
+    STAssertEquals(newTxnIsolation,SQL_TXN_READ_COMMITTED,@"");
+
+    if (! [[dbms lowercaseString] hasPrefix:@"oracle"]) {
+
+        self->connection.transactionIsolation = SQL_TXN_READ_UNCOMMITTED;
     
-    STAssertEquals (newTxnIsolation,SQL_TXN_READ_UNCOMMITTED,@"");
+        newTxnIsolation = self->connection.transactionIsolation;
     
-    self->connection.transactionIsolation = SQL_TXN_REPEATABLE_READ;
+        STAssertEquals (newTxnIsolation,SQL_TXN_READ_UNCOMMITTED,@"");
     
-    curTxnIsolation = self->connection.transactionIsolation;
+        self->connection.transactionIsolation = SQL_TXN_REPEATABLE_READ;
     
-    STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"");
+        curTxnIsolation = self->connection.transactionIsolation;
+    
+        STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"");
+    }
 }
 
 - (void) testAutocommit {

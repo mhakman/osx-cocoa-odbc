@@ -71,7 +71,7 @@ NSString * DraggedBooksType   = @"library.books";
     
     if ([self.persistentStoreClass isEqualToString : @"OdbcStore"]) {
     
-        return [NSURL URLWithString : @"odbc:///db2testdb?username=mhakman&password=staryty1"];
+        return [NSURL URLWithString : @"odbc:///oracledb?username=mhakman&password=mike66"];
         
     } else {
         

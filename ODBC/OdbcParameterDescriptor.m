@@ -77,7 +77,7 @@
     
     self->nullable = (null == SQL_NULLABLE ? YES : NO);
     
-    NSAssert (self->parameterSize > 0,@"parameter size < 1");
+    //NSAssert (self->parameterSize > 0,@"parameter size < 1");
     
     self->parameterValue.voidPtr = 0;
 
