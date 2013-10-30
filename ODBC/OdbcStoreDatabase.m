@@ -1174,12 +1174,47 @@
         
         if (ad.isOptional) notNull = @"";
         
-        [sql appendFormat : @",%@ %@ %@",columnName,columnType,notNull];
+        if (ad.attributeType == NSStringAttributeType) {
+            
+            unsigned long columnWidth = [self sqlColumnWidthForAttribute : ad];
+            
+            [sql appendFormat : @",%@ %@(%lu) %@",columnName,columnType,columnWidth,notNull];
+            
+        } else {
+        
+            [sql appendFormat : @",%@ %@ %@",columnName,columnType,notNull];
+        }
     }
     
     [sql appendString : @")"];
     
     [self->odbcConnection execDirect : sql];
+}
+    
+- (unsigned long) sqlColumnWidthForAttribute : (NSAttributeDescription *) ad {
+    
+    unsigned long len = 256;
+    
+    NSArray * predicates = ad.validationPredicates;
+    
+    for (id pred in predicates) {
+        
+        NSString * expr = [pred description];
+        
+        NSArray * items = [expr componentsSeparatedByString : @" "];
+        
+        if (items.count != 3) continue;
+        
+        if (! [items[0] isEqualToString : @"length"]) continue;
+        
+        if (! [items[1] isEqualToString : @"<="]) continue;
+        
+        len = [items[2] integerValue];
+        
+        break;
+    }
+    
+    return len;
 }
 
 - (void) checkTableId : (NSString *) tableName {
@@ -1233,7 +1268,7 @@
                 
             case NSFloatAttributeType:     sqlType = @"float(24)";      break;
                 
-            case NSStringAttributeType:    sqlType = @"varchar(256)";   break;
+            case NSStringAttributeType:    sqlType = @"varchar";        break;
                 
             case NSBooleanAttributeType:   sqlType = @"number(3)";      break;
                 
@@ -1261,7 +1296,7 @@
                 
             case NSFloatAttributeType:     sqlType = @"real";           break;
                 
-            case NSStringAttributeType:    sqlType = @"varchar(256)";   break;
+            case NSStringAttributeType:    sqlType = @"varchar";        break;
                 
             case NSBooleanAttributeType:   sqlType = @"tinyint";        break;
                 

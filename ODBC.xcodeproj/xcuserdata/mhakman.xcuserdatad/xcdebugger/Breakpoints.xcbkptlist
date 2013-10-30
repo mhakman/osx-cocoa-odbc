@@ -30,7 +30,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Odbc/OdbcStoreDatabase.m"
@@ -40,6 +40,71 @@
          startingLineNumber = "275"
          endingLineNumber = "275"
          landmarkName = "-selectSqlForRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Odbc/OdbcStoreDatabase.m"
+         timestampString = "404861006.068481"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1179"
+         endingLineNumber = "1179"
+         landmarkName = "-createEntityTableIfRequired:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Odbc/OdbcStoreDatabase.m"
+         timestampString = "404861021.653044"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1181"
+         endingLineNumber = "1181"
+         landmarkName = "-createEntityTableIfRequired:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Odbc/OdbcStoreDatabase.m"
+         timestampString = "404861110.566294"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1196"
+         endingLineNumber = "1196"
+         landmarkName = "-sqlColumnWidthForAttribute:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Odbc/OdbcStoreDatabase.m"
+         timestampString = "404861115.526535"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1217"
+         endingLineNumber = "1217"
+         landmarkName = "-sqlColumnWidthForAttribute:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Odbc/OdbcStoreDatabase.m"
+         timestampString = "404861444.924602"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1191"
+         endingLineNumber = "1191"
+         landmarkName = "-createEntityTableIfRequired:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

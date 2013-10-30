@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Author" representedClassName="Author" syncable="YES">
-        <attribute name="firstName" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" minValueString="1" maxValueString="128" syncable="YES"/>
         <attribute name="lastName" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="authorBooks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="bookAuthors" inverseEntity="Book" syncable="YES"/>
     </entity>
@@ -11,7 +11,7 @@
         <relationship name="bookAuthors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="authorBooks" inverseEntity="Author" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Author" positionX="160" positionY="189" width="128" height="88"/>
+        <element name="Author" positionX="160" positionY="189" width="128" height="90"/>
         <element name="Book" positionX="-101" positionY="189" width="128" height="88"/>
     </elements>
 </model>
