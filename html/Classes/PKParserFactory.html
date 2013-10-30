@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>OdbcException Class Reference</title>
+		<title>PKParserFactory Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">OdbcException Class Reference</h1>
+				<h1 class="hideInXcode">PKParserFactory Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -35,24 +35,29 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/assemblerSettingBehavior">&nbsp;&nbsp;&nbsp;&nbsp;assemblerSettingBehavior</option>
+	
+	<option value="//api/name/collectTokenKinds">&nbsp;&nbsp;&nbsp;&nbsp;collectTokenKinds</option>
+	
+	
 	
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/raiseInvalidHandle:function:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseInvalidHandle:function:</option>
-	
-	<option value="//api/name/raiseOdbcException:function:message:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseOdbcException:function:message:</option>
-	
-	<option value="//api/name/raiseOdbcException:function:message:sqlState:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseOdbcException:function:message:sqlState:</option>
-	
-	<option value="//api/name/raiseOdbcHandle:function:handleType:handle:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseOdbcHandle:function:handleType:handle:</option>
+	<option value="//api/name/factory">&nbsp;&nbsp;&nbsp;&nbsp;+ factory</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/name">&nbsp;&nbsp;&nbsp;&nbsp;- name</option>
+	<option value="//api/name/ASTFromGrammar:error:">&nbsp;&nbsp;&nbsp;&nbsp;- ASTFromGrammar:error:</option>
+	
+	<option value="//api/name/parserFromGrammar:assembler:error:">&nbsp;&nbsp;&nbsp;&nbsp;- parserFromGrammar:assembler:error:</option>
+	
+	<option value="//api/name/parserFromGrammar:assembler:preassembler:error:">&nbsp;&nbsp;&nbsp;&nbsp;- parserFromGrammar:assembler:preassembler:error:</option>
 	
 	
 	
@@ -74,17 +79,19 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/assemblerSettingBehavior">assemblerSettingBehavior</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/collectTokenKinds">collectTokenKinds</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseInvalidHandle:function:">raiseInvalidHandle:function:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseOdbcException:function:message:">raiseOdbcException:function:message:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseOdbcException:function:message:sqlState:">raiseOdbcException:function:message:sqlState:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseOdbcHandle:function:handleType:handle:">raiseOdbcHandle:function:handleType:handle:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/factory">factory</a></span></li>
 	
 </ul></li>
 
@@ -92,7 +99,11 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/name">name</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ASTFromGrammar:error:">ASTFromGrammar:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parserFromGrammar:assembler:error:">parserFromGrammar:assembler:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parserFromGrammar:assembler:preassembler:error:">parserFromGrammar:assembler:preassembler:error:</a></span></li>
 	
 </ul></li>
 
@@ -101,7 +112,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="OdbcException Class Reference" name="top"></a>
+				<a title="PKParserFactory Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -110,7 +121,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">OdbcException Class Reference</h1>
+						<h1 class="title title-header">PKParserFactory Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -118,10 +129,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSException</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">OdbcException.h</td>
+	<td class="specification-value">PKParserFactory.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -141,33 +152,39 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/name">&ndash;&nbsp;name</a></code>
+		<code><a href="#//api/name/factory">+&nbsp;factory</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseInvalidHandle:function:">+&nbsp;raiseInvalidHandle:function:</a></code>
+		<code><a href="#//api/name/parserFromGrammar:assembler:error:">&ndash;&nbsp;parserFromGrammar:assembler:error:</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseOdbcHandle:function:handleType:handle:">+&nbsp;raiseOdbcHandle:function:handleType:handle:</a></code>
+		<code><a href="#//api/name/parserFromGrammar:assembler:preassembler:error:">&ndash;&nbsp;parserFromGrammar:assembler:preassembler:error:</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseOdbcException:function:message:">+&nbsp;raiseOdbcException:function:message:</a></code>
+		<code><a href="#//api/name/ASTFromGrammar:error:">&ndash;&nbsp;ASTFromGrammar:error:</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseOdbcException:function:message:sqlState:">+&nbsp;raiseOdbcException:function:message:sqlState:</a></code>
+		<code><a href="#//api/name/assemblerSettingBehavior">&nbsp;&nbsp;assemblerSettingBehavior</a></code>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/collectTokenKinds">&nbsp;&nbsp;collectTokenKinds</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -178,6 +195,34 @@
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/assemblerSettingBehavior" title="assemblerSettingBehavior"></a>
+	<h3 class="subsubtitle method-title">assemblerSettingBehavior</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PKParserFactoryAssemblerSettingBehavior assemblerSettingBehavior</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/collectTokenKinds" title="collectTokenKinds"></a>
+	<h3 class="subsubtitle method-title">collectTokenKinds</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL collectTokenKinds</code></div>
+
+    
+</div>
+						
+					</div>
+					
 					
 					
 					<div class="section section-methods">
@@ -185,45 +230,12 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/raiseInvalidHandle:function:" title="raiseInvalidHandle:function:"></a>
-	<h3 class="subsubtitle method-title">raiseInvalidHandle:function:</h3>
+	<a name="//api/name/factory" title="factory"></a>
+	<h3 class="subsubtitle method-title">factory</h3>
 	
 	
 
-	<div class="method-subsection method-declaration"><code>+ (void)raiseInvalidHandle:(const char *)<em>method</em> function:(const char *)<em>function</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/raiseOdbcException:function:message:" title="raiseOdbcException:function:message:"></a>
-	<h3 class="subsubtitle method-title">raiseOdbcException:function:message:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>+ (void)raiseOdbcException:(const char *)<em>method</em> function:(const char *)<em>function</em> message:(const char *)<em>message</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/raiseOdbcException:function:message:sqlState:" title="raiseOdbcException:function:message:sqlState:"></a>
-	<h3 class="subsubtitle method-title">raiseOdbcException:function:message:sqlState:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>+ (void)raiseOdbcException:(const char *)<em>method</em> function:(const char *)<em>function</em> message:(const char *)<em>message</em> sqlState:(const char *)<em>sqlState</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/raiseOdbcHandle:function:handleType:handle:" title="raiseOdbcHandle:function:handleType:handle:"></a>
-	<h3 class="subsubtitle method-title">raiseOdbcHandle:function:handleType:handle:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>+ (void)raiseOdbcHandle:(const char *)<em>method</em> function:(const char *)<em>function</em> handleType:(SQLSMALLINT)<em>handleType</em> handle:(SQLHANDLE)<em>handle</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (PKParserFactory *)factory</code></div>
 
     
 </div>
@@ -237,12 +249,34 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/name" title="name"></a>
-	<h3 class="subsubtitle method-title">name</h3>
+	<a name="//api/name/ASTFromGrammar:error:" title="ASTFromGrammar:error:"></a>
+	<h3 class="subsubtitle method-title">ASTFromGrammar:error:</h3>
 	
 	
 
-	<div class="method-subsection method-declaration"><code>- (NSString *)name</code></div>
+	<div class="method-subsection method-declaration"><code>- (PKAST *)ASTFromGrammar:(NSString *)<em>g</em> error:(NSError **)<em>outError</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parserFromGrammar:assembler:error:" title="parserFromGrammar:assembler:error:"></a>
+	<h3 class="subsubtitle method-title">parserFromGrammar:assembler:error:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (PKParser *)parserFromGrammar:(NSString *)<em>g</em> assembler:(id)<em>a</em> error:(NSError **)<em>outError</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parserFromGrammar:assembler:preassembler:error:" title="parserFromGrammar:assembler:preassembler:error:"></a>
+	<h3 class="subsubtitle method-title">parserFromGrammar:assembler:preassembler:error:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (PKParser *)parserFromGrammar:(NSString *)<em>g</em> assembler:(id)<em>a</em> preassembler:(id)<em>pa</em> error:(NSError **)<em>outError</em></code></div>
 
     
 </div>

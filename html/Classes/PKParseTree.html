@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>OdbcException Class Reference</title>
+		<title>PKParseTree Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">OdbcException Class Reference</h1>
+				<h1 class="hideInXcode">PKParseTree Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -35,24 +35,35 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/children">&nbsp;&nbsp;&nbsp;&nbsp;children</option>
+	
+	<option value="//api/name/matched">&nbsp;&nbsp;&nbsp;&nbsp;matched</option>
+	
+	<option value="//api/name/parent">&nbsp;&nbsp;&nbsp;&nbsp;parent</option>
+	
+	<option value="//api/name/userInfo">&nbsp;&nbsp;&nbsp;&nbsp;userInfo</option>
+	
+	
 	
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/raiseInvalidHandle:function:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseInvalidHandle:function:</option>
-	
-	<option value="//api/name/raiseOdbcException:function:message:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseOdbcException:function:message:</option>
-	
-	<option value="//api/name/raiseOdbcException:function:message:sqlState:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseOdbcException:function:message:sqlState:</option>
-	
-	<option value="//api/name/raiseOdbcHandle:function:handleType:handle:">&nbsp;&nbsp;&nbsp;&nbsp;+ raiseOdbcHandle:function:handleType:handle:</option>
+	<option value="//api/name/parseTree">&nbsp;&nbsp;&nbsp;&nbsp;+ parseTree</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/name">&nbsp;&nbsp;&nbsp;&nbsp;- name</option>
+	<option value="//api/name/addChild:">&nbsp;&nbsp;&nbsp;&nbsp;- addChild:</option>
+	
+	<option value="//api/name/addChildRule:">&nbsp;&nbsp;&nbsp;&nbsp;- addChildRule:</option>
+	
+	<option value="//api/name/addChildToken:">&nbsp;&nbsp;&nbsp;&nbsp;- addChildToken:</option>
+	
+	<option value="//api/name/treeDescription">&nbsp;&nbsp;&nbsp;&nbsp;- treeDescription</option>
 	
 	
 	
@@ -74,17 +85,23 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/children">children</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/matched">matched</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parent">parent</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userInfo">userInfo</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseInvalidHandle:function:">raiseInvalidHandle:function:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseOdbcException:function:message:">raiseOdbcException:function:message:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseOdbcException:function:message:sqlState:">raiseOdbcException:function:message:sqlState:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/raiseOdbcHandle:function:handleType:handle:">raiseOdbcHandle:function:handleType:handle:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseTree">parseTree</a></span></li>
 	
 </ul></li>
 
@@ -92,7 +109,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/name">name</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addChild:">addChild:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addChildRule:">addChildRule:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addChildToken:">addChildToken:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/treeDescription">treeDescription</a></span></li>
 	
 </ul></li>
 
@@ -101,7 +124,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="OdbcException Class Reference" name="top"></a>
+				<a title="PKParseTree Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -110,7 +133,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">OdbcException Class Reference</h1>
+						<h1 class="title title-header">PKParseTree Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -118,10 +141,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSException</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCopying</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">OdbcException.h</td>
+	<td class="specification-value">PKParseTree.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -141,33 +167,57 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/name">&ndash;&nbsp;name</a></code>
+		<code><a href="#//api/name/parseTree">+&nbsp;parseTree</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseInvalidHandle:function:">+&nbsp;raiseInvalidHandle:function:</a></code>
+		<code><a href="#//api/name/addChildRule:">&ndash;&nbsp;addChildRule:</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseOdbcHandle:function:handleType:handle:">+&nbsp;raiseOdbcHandle:function:handleType:handle:</a></code>
+		<code><a href="#//api/name/addChildToken:">&ndash;&nbsp;addChildToken:</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseOdbcException:function:message:">+&nbsp;raiseOdbcException:function:message:</a></code>
+		<code><a href="#//api/name/addChild:">&ndash;&nbsp;addChild:</a></code>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/raiseOdbcException:function:message:sqlState:">+&nbsp;raiseOdbcException:function:message:sqlState:</a></code>
+		<code><a href="#//api/name/treeDescription">&ndash;&nbsp;treeDescription</a></code>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parent">&nbsp;&nbsp;parent</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/children">&nbsp;&nbsp;children</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userInfo">&nbsp;&nbsp;userInfo</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/matched">&nbsp;&nbsp;matched</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -178,6 +228,56 @@
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/children" title="children"></a>
+	<h3 class="subsubtitle method-title">children</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) NSMutableArray *children</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/matched" title="matched"></a>
+	<h3 class="subsubtitle method-title">matched</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, getter=isMatched) BOOL matched</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parent" title="parent"></a>
+	<h3 class="subsubtitle method-title">parent</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) PKParseTree *parent</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userInfo" title="userInfo"></a>
+	<h3 class="subsubtitle method-title">userInfo</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id userInfo</code></div>
+
+    
+</div>
+						
+					</div>
+					
 					
 					
 					<div class="section section-methods">
@@ -185,45 +285,12 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/raiseInvalidHandle:function:" title="raiseInvalidHandle:function:"></a>
-	<h3 class="subsubtitle method-title">raiseInvalidHandle:function:</h3>
+	<a name="//api/name/parseTree" title="parseTree"></a>
+	<h3 class="subsubtitle method-title">parseTree</h3>
 	
 	
 
-	<div class="method-subsection method-declaration"><code>+ (void)raiseInvalidHandle:(const char *)<em>method</em> function:(const char *)<em>function</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/raiseOdbcException:function:message:" title="raiseOdbcException:function:message:"></a>
-	<h3 class="subsubtitle method-title">raiseOdbcException:function:message:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>+ (void)raiseOdbcException:(const char *)<em>method</em> function:(const char *)<em>function</em> message:(const char *)<em>message</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/raiseOdbcException:function:message:sqlState:" title="raiseOdbcException:function:message:sqlState:"></a>
-	<h3 class="subsubtitle method-title">raiseOdbcException:function:message:sqlState:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>+ (void)raiseOdbcException:(const char *)<em>method</em> function:(const char *)<em>function</em> message:(const char *)<em>message</em> sqlState:(const char *)<em>sqlState</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/raiseOdbcHandle:function:handleType:handle:" title="raiseOdbcHandle:function:handleType:handle:"></a>
-	<h3 class="subsubtitle method-title">raiseOdbcHandle:function:handleType:handle:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>+ (void)raiseOdbcHandle:(const char *)<em>method</em> function:(const char *)<em>function</em> handleType:(SQLSMALLINT)<em>handleType</em> handle:(SQLHANDLE)<em>handle</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (PKParseTree *)parseTree</code></div>
 
     
 </div>
@@ -237,12 +304,45 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/name" title="name"></a>
-	<h3 class="subsubtitle method-title">name</h3>
+	<a name="//api/name/addChild:" title="addChild:"></a>
+	<h3 class="subsubtitle method-title">addChild:</h3>
 	
 	
 
-	<div class="method-subsection method-declaration"><code>- (NSString *)name</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)addChild:(PKParseTree *)<em>tr</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addChildRule:" title="addChildRule:"></a>
+	<h3 class="subsubtitle method-title">addChildRule:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (PKRuleNode *)addChildRule:(NSString *)<em>name</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addChildToken:" title="addChildToken:"></a>
+	<h3 class="subsubtitle method-title">addChildToken:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (PKTokenNode *)addChildToken:(PKToken *)<em>tok</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/treeDescription" title="treeDescription"></a>
+	<h3 class="subsubtitle method-title">treeDescription</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)treeDescription</code></div>
 
     
 </div>

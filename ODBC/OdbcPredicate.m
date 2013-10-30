@@ -12,7 +12,16 @@ static NSString * GrammarFileType = @"grammar";
 #import "OdbcPredicate.h"
 
 #import <Odbc/Odbc.h>
-#import <ParseKit/ParseKit.h>
+
+#import "ParseKit/PKRuleNode.h"
+#import "ParseKit/PKParseTreeAssembler.h"
+#import "ParseKit/PKParserFactory.h"
+#import "ParseKit/PKParser.h"
+#import "ParseKit/PKToken.h"
+#import "ParseKit/PKTokenNode.h"
+#import "ParseKit/NSArray+ParseKitAdditions.h"
+#import "ParseKit/NSMutableSet+ParseKitAdditions.h"
+#import "ParseKit/NSString+ParseKitAdditions.h"
 
 @interface OdbcPredicate () {
     

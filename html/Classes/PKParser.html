@@ -1,0 +1,1188 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PKParser Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 961)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Odbc </a></h1>
+				<a id="developerHome" href="../index.html">Datakonsulten AB</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PKParser Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/assembler">&nbsp;&nbsp;&nbsp;&nbsp;assembler</option>
+	
+	<option value="//api/name/assemblerBlock">&nbsp;&nbsp;&nbsp;&nbsp;assemblerBlock</option>
+	
+	<option value="//api/name/assemblerSelector">&nbsp;&nbsp;&nbsp;&nbsp;assemblerSelector</option>
+	
+	<option value="//api/name/name">&nbsp;&nbsp;&nbsp;&nbsp;name</option>
+	
+	<option value="//api/name/preassembler">&nbsp;&nbsp;&nbsp;&nbsp;preassembler</option>
+	
+	<option value="//api/name/preassemblerBlock">&nbsp;&nbsp;&nbsp;&nbsp;preassemblerBlock</option>
+	
+	<option value="//api/name/preassemblerSelector">&nbsp;&nbsp;&nbsp;&nbsp;preassemblerSelector</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/parser">&nbsp;&nbsp;&nbsp;&nbsp;+ parser</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/allMatchesFor:">&nbsp;&nbsp;&nbsp;&nbsp;- allMatchesFor:</option>
+	
+	<option value="//api/name/bestMatchFor:">&nbsp;&nbsp;&nbsp;&nbsp;- bestMatchFor:</option>
+	
+	<option value="//api/name/completeMatchFor:">&nbsp;&nbsp;&nbsp;&nbsp;- completeMatchFor:</option>
+	
+	<option value="//api/name/parse:error:">&nbsp;&nbsp;&nbsp;&nbsp;- parse:error:</option>
+	
+	<option value="//api/name/parserNamed:">&nbsp;&nbsp;&nbsp;&nbsp;- parserNamed:</option>
+	
+	<option value="//api/name/setAssembler:selector:">&nbsp;&nbsp;&nbsp;&nbsp;- setAssembler:selector:</option>
+	
+	<option value="//api/name/setPreassembler:selector:">&nbsp;&nbsp;&nbsp;&nbsp;- setPreassembler:selector:</option>
+	
+	<option value="//api/name/tokenizer">&nbsp;&nbsp;&nbsp;&nbsp;- tokenizer</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PKParserFactoryAdditions Methods">PKParserFactoryAdditions Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/assembler">assembler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/assemblerBlock">assemblerBlock</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/assemblerSelector">assemblerSelector</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/name">name</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/preassembler">preassembler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/preassemblerBlock">preassemblerBlock</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/preassemblerSelector">preassemblerSelector</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parser">parser</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allMatchesFor:">allMatchesFor:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bestMatchFor:">bestMatchFor:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/completeMatchFor:">completeMatchFor:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parse:error:">parse:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parserNamed:">parserNamed:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setAssembler:selector:">setAssembler:selector:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setPreassembler:selector:">setPreassembler:selector:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tokenizer">tokenizer</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PKParser Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PKParser Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PKParser.h</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<pre><code>@class      PKParser 
+</code></pre><p>Each <tt>PKParser</tt> object is either a <tt>PKTerminal</tt> or a composition of other parsers. The <tt>PKTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>PKWord</tt> recognizes any word, and a <tt>PKLiteral</tt> matches a specific string.</p>
+
+
+<pre><code>            &lt;p&gt;In addition to &lt;tt&gt;PKTerminal&lt;/tt&gt;, other subclasses of &lt;tt&gt;PKParser&lt;/tt&gt; provide composite parsers, describing sequences, alternations, and repetitions of other parsers. For example, the following &lt;tt&gt;PKParser&lt;/tt&gt; objects culminate in a good parser that recognizes a description of good coffee.&lt;/p&gt;
+</code></pre>
+
+<p>@code
+    PKAlternation <em>adjective = [PKAlternation alternation];
+    [adjective add:[PKLiteral literalWithString:@&ldquo;steaming&rdquo;]];
+    [adjective add:[PKLiteral literalWithString:@&ldquo;hot&rdquo;]];
+    PKSequence </em>good = [PKSequence sequence];
+    [good add:[PKRepetition repetitionWithSubparser:adjective]];
+    [good add:[PKLiteral literalWithString:@&ldquo;coffee&rdquo;]];
+    NSString <em>s = @&ldquo;hot hot steaming hot coffee&rdquo;;
+    PKAssembly </em>a = [PKTokenAssembly assemblyWithString:s];
+    NSLog([good bestMatchFor:a]);
+@endcode
+                <p>This prints out:</p>
+@code
+    [hot, hot, steaming, hot, coffee]
+    hot/hot/steaming/hot/coffee^
+@endcode
+                <p>The <a href="#//api/name/parser">parser</a> does not match directly against a string, it matches against a <tt>PKAssembly</tt>. The resulting assembly shows its stack, with four words on it, along with its sequence of tokens, and the index at the end of these. In practice, parsers will do some work on an assembly, based on the text they recognize.</p></p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parser">+&nbsp;parser</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setAssembler:selector:">&ndash;&nbsp;setAssembler:selector:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setPreassembler:selector:">&ndash;&nbsp;setPreassembler:selector:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bestMatchFor:">&ndash;&nbsp;bestMatchFor:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/completeMatchFor:">&ndash;&nbsp;completeMatchFor:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/allMatchesFor:">&ndash;&nbsp;allMatchesFor:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parserNamed:">&ndash;&nbsp;parserNamed:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/assemblerBlock">&nbsp;&nbsp;assemblerBlock</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/preassemblerBlock">&nbsp;&nbsp;preassemblerBlock</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/assembler">&nbsp;&nbsp;assembler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/assemblerSelector">&nbsp;&nbsp;assemblerSelector</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/preassembler">&nbsp;&nbsp;preassembler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/preassemblerSelector">&nbsp;&nbsp;preassemblerSelector</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/name">&nbsp;&nbsp;name</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="PKParserFactoryAdditions Methods" name="task_PKParserFactoryAdditions Methods"></a>
+						<h3 class="subsubtitle task-title">PKParserFactoryAdditions Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parse:error:">&ndash;&nbsp;parse:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tokenizer">&ndash;&nbsp;tokenizer</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/assembler" title="assembler"></a>
+	<h3 class="subsubtitle method-title">assembler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The assembler this <a href="#//api/name/parser">parser</a> will use to work on a matched assembly.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id assembler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><tt>assembler</tt> should respond to the selector held by this parser&rsquo;s <tt>selector</tt> property.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/assemblerBlock" title="assemblerBlock"></a>
+	<h3 class="subsubtitle method-title">assemblerBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set a block which should be executed after this <a href="#//api/name/parser">parser</a> is matched</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) PKAssemblerBlock assemblerBlock</code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>of code to be executed after a <a href="#//api/name/parser">parser</a> is matched.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is an alternative to calling <tt>-setAssembler:selector:</tt>.</p>
+
+
+<pre><code>            &lt;p&gt;Passing a block to this method will cause this parser to execute the given block after it is matched (rather than sending &lt;tt&gt;assembler&lt;/tt&gt; the &lt;tt&gt;assemblerSelector&lt;/tt&gt; message.&lt;/p&gt;
+            &lt;p&gt;Using a block as the assembler will sometimes be more convient than setting an assembler object.&lt;/p&gt;
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/assemblerSelector" title="assemblerSelector"></a>
+	<h3 class="subsubtitle method-title">assemblerSelector</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The method of <tt>assembler</tt> this <a href="#//api/name/parser">parser</a> will call to work on a matched assembly.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) SEL assemblerSelector</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The method represented by <tt>assemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>assemblerSelector</tt> should be similar to: <tt>- (void)parser:(PKParser <em>)p didMatchFoo:(PKAssembly </em>)a</tt>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/name" title="name"></a>
+	<h3 class="subsubtitle method-title">name</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The name of this <a href="#//api/name/parser">parser</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *name</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this property to help in identifying a <a href="#//api/name/parser">parser</a> or for debugging purposes.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/preassembler" title="preassembler"></a>
+	<h3 class="subsubtitle method-title">preassembler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/assembler">assembler</a> this <a href="#//api/name/parser">parser</a> will use to work on an assembly before matching against it.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id preassembler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><tt>preassembler</tt> should respond to the selector held by this parser&rsquo;s <tt>preassemblerSelector</tt> property.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/preassemblerBlock" title="preassemblerBlock"></a>
+	<h3 class="subsubtitle method-title">preassemblerBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set a block which should be executed before this <a href="#//api/name/parser">parser</a> is matched</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) PKAssemblerBlock preassemblerBlock</code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>of code to be executed before a <a href="#//api/name/parser">parser</a> is matched.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is an alternative to calling <tt>-setPreassembler:selector:</tt>.</p>
+
+
+<pre><code>            &lt;p&gt;Passing a block to this method will cause this parser to execute the given block before it is matched (rather than sending &lt;tt&gt;preassembler&lt;/tt&gt; the &lt;tt&gt;preassemblerSelector&lt;/tt&gt; message.&lt;/p&gt;
+            &lt;p&gt;Using a block as the preassembler will sometimes be more convient than setting an preassembler object.&lt;/p&gt;
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/preassemblerSelector" title="preassemblerSelector"></a>
+	<h3 class="subsubtitle method-title">preassemblerSelector</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The method of <tt>preassembler</tt> this <a href="#//api/name/parser">parser</a> will call to work on an assembly.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) SEL preassemblerSelector</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)parser:(PKParser <em>)p didMatchAssembly:(PKAssembly </em>)a</tt>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/parser" title="parser"></a>
+	<h3 class="subsubtitle method-title">parser</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience factory method for initializing an autoreleased parser.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (PKParser *)parser</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>an initialized autoreleased parser.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/allMatchesFor:" title="allMatchesFor:"></a>
+	<h3 class="subsubtitle method-title">allMatchesFor:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Given a set of assemblies, this method matches this <a href="#//api/name/parser">parser</a> against all of them, and returns a new set of the assemblies that result from the matches.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSSet *)allMatchesFor:(NSSet *)<em>inAssemblies</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>inAssemblies</em></dt>
+			<dd><p>set of assemblies to match against</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a set of assemblies that result from matching against a beginning set of assemblies</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Given a set of assemblies, this method matches this [parser](#//api/name/parser) against all of them, and returns a new set of the assemblies that result from the matches.</p>
+
+
+<pre><code>            &lt;p&gt;For example, consider matching the regular expression &lt;tt&gt;a*&lt;/tt&gt; against the string &lt;tt&gt;aaab&lt;/tt&gt;. The initial set of states is &lt;tt&gt;{^aaab}&lt;/tt&gt;, where the &lt;tt&gt;^&lt;/tt&gt; indicates how far along the assembly is. When &lt;tt&gt;a*&lt;/tt&gt; matches against this initial state, it creates a new set &lt;tt&gt;{^aaab, a^aab, aa^ab, aaa^b}&lt;/tt&gt;.&lt;/p&gt;
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bestMatchFor:" title="bestMatchFor:"></a>
+	<h3 class="subsubtitle method-title">bestMatchFor:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the most-matched assembly in a collection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (PKAssembly *)bestMatchFor:(PKAssembly *)<em>inAssembly</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>inAssembly</em></dt>
+			<dd><p>the assembly for which to find the best match</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>an assembly with the greatest possible number of elements consumed by this <a href="#//api/name/parser">parser</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/completeMatchFor:" title="completeMatchFor:"></a>
+	<h3 class="subsubtitle method-title">completeMatchFor:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns either <tt>nil</tt>, or a completely matched version of the supplied assembly.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (PKAssembly *)completeMatchFor:(PKAssembly *)<em>inAssembly</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>inAssembly</em></dt>
+			<dd><p>the assembly for which to find the complete match</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>either <tt>nil</tt>, or a completely matched version of the supplied assembly</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parse:error:" title="parse:error:"></a>
+	<h3 class="subsubtitle method-title">parse:error:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (id)parse:(NSString *)<em>s</em> error:(NSError **)<em>outError</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parserNamed:" title="parserNamed:"></a>
+	<h3 class="subsubtitle method-title">parserNamed:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Find a <a href="#//api/name/parser">parser</a> with the given <a href="#//api/name/name">name</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (PKParser *)parserNamed:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>of the <a href="#//api/name/parser">parser</a> to be found</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the <a href="#//api/name/parser">parser</a> with the given <a href="#//api/name/name">name</a> or <tt>nil</tt> if not found</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Performs a depth-first recursive search (starting with this <a href="#//api/name/parser">parser</a>) for a <a href="#//api/name/parser">parser</a> or sub<a href="#//api/name/parser">parser</a> with the given <a href="#//api/name/name">name</a>. If this parser&rsquo;s <a href="#//api/name/name">name</a> is <a href="#//api/name/name">name</a>, it will be returned.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setAssembler:selector:" title="setAssembler:selector:"></a>
+	<h3 class="subsubtitle method-title">setAssembler:selector:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets the object and method that will work on an assembly whenever this <a href="#//api/name/parser">parser</a> successfully matches against the assembly.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setAssembler:(id)<em>a</em> selector:(SEL)<em>sel</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>a</em></dt>
+			<dd><p>the <a href="#//api/name/assembler">assembler</a> this <a href="#//api/name/parser">parser</a> will use to work on an assembly</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sel</em></dt>
+			<dd><p>a selector that <a href="#//api/name/assembler">assembler</a> <tt>a</tt> responds to which will work on an assembly</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The method represented by <tt>sel</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)parser:(PKParser <em>)p didMatchAssembly:(PKAssembly </em>)a</tt>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setPreassembler:selector:" title="setPreassembler:selector:"></a>
+	<h3 class="subsubtitle method-title">setPreassembler:selector:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets the object that will work on every assembly before matching against it.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setPreassembler:(id)<em>a</em> selector:(SEL)<em>sel</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>a</em></dt>
+			<dd><p>the <a href="#//api/name/assembler">assembler</a> this <a href="#//api/name/parser">parser</a> will use to work on an assembly before matching against it.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sel</em></dt>
+			<dd><p>a selector that <a href="#//api/name/assembler">assembler</a> <tt>a</tt> responds to which will work on an assembly</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Setting a <a href="#//api/name/preassembler">preassembler</a> is entirely optional, but sometimes useful for repetition parsers to do work on an assembly before matching against it.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tokenizer" title="tokenizer"></a>
+	<h3 class="subsubtitle method-title">tokenizer</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (PKTokenizer *)tokenizer</code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Datakonsulten AB. All rights reserved. (Last updated: 2013-10-30)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

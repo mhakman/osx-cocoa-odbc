@@ -206,21 +206,21 @@ It should run without problems. Quit the application.
 
 ### <a id="Adding required frameworks"></a>Adding required frameworks
 
-Copy Odbc.framework and ParseKit.framework from Odbc project directory to either
+Copy Odbc.framework from Odbc project directory to either
 /System/Library/Frameworks or to your project directory. Copying to 
-/System/library/Frameworks makes things a lttle easier and you will have the frameworks
+/System/library/Frameworks makes things a lttle easier and you will have the framework
 in right place for other projects.
 
-Select 'Frameworks' in your project Project Navigator. Add files Odbc.framework 
-and ParseKit.framework. Uncheck 'Copy items to destination...' checkbox. You find
+Select 'Frameworks' in your project Project Navigator. Add file Odbc.framework . 
+Uncheck 'Copy items to destination...' checkbox. You find
 the files in either your project directory or in '/System/Library/frameworks/ 
 depending where you copied them.
 
 Select 'Frameworks' in your project Project Navigator. Add file 'CoreData.framework'
 from /System/Library/Frameworks. Uncheck 'Copy items to destination...'.
 
-If you copied Odbc.framework and ParseKit.framework to your project directorry then
-you need to modify your project settings. If you copied the frameworks to 
+If you copied Odbc.framework to your project directorry then
+you need to modify your project settings. If you copied the framework to 
 /System/Library/Frameworks/ then you don't need to do the following. Select your
 project in Project Navigator. You should see the Project Editor now. Select your
 project in Project Editor. Select 'Build Settings' tab. Find 'Run Search Path' in

@@ -47,6 +47,21 @@
 		6A38A13B181AD6CF00876BDE /* iODBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F1A1417F0EA980019B7CC /* iODBC.framework */; };
 		6A38A13C181ADABA00876BDE /* OdbcException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2A917D8FCAF0070E6B7 /* OdbcException.m */; };
 		6A3947EF18196F600049B34C /* index.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 6A3947EE18196F5F0049B34C /* index.markdown */; };
+		6A5901CA182150350090ED57 /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5901C9182150350090ED57 /* libParseKit.a */; };
+		6A5901D2182152F80090ED57 /* PKParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CB182152F80090ED57 /* PKParser.h */; };
+		6A5901D3182152F80090ED57 /* PKParserFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CC182152F80090ED57 /* PKParserFactory.h */; };
+		6A5901D4182152F80090ED57 /* PKParseTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CD182152F80090ED57 /* PKParseTree.h */; };
+		6A5901D5182152F80090ED57 /* PKParseTreeAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CE182152F80090ED57 /* PKParseTreeAssembler.h */; };
+		6A5901D6182152F80090ED57 /* PKRuleNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CF182152F80090ED57 /* PKRuleNode.h */; };
+		6A5901D7182152F80090ED57 /* PKToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901D0182152F80090ED57 /* PKToken.h */; };
+		6A5901D8182152F80090ED57 /* PKTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901D1182152F80090ED57 /* PKTypes.h */; };
+		6A5901DA182153820090ED57 /* PKTokenNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901D9182153820090ED57 /* PKTokenNode.h */; };
+		6A5901DE182158C40090ED57 /* NSArray+ParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901DB182158C40090ED57 /* NSArray+ParseKitAdditions.h */; };
+		6A5901DF182158C40090ED57 /* NSMutableSet+ParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901DC182158C40090ED57 /* NSMutableSet+ParseKitAdditions.h */; };
+		6A5901E0182158C40090ED57 /* NSString+ParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901DD182158C40090ED57 /* NSString+ParseKitAdditions.h */; };
+		6A5901E818215A770090ED57 /* NSArray+ParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5901E518215A770090ED57 /* NSArray+ParseKitAdditions.m */; };
+		6A5901E918215A770090ED57 /* NSMutableSet+ParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5901E618215A770090ED57 /* NSMutableSet+ParseKitAdditions.m */; };
+		6A5901EA18215A770090ED57 /* NSString+ParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5901E718215A770090ED57 /* NSString+ParseKitAdditions.m */; };
 		6A5EE5EB18032FE8005E5942 /* OdbcStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E518032FE8005E5942 /* OdbcStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A5EE5EC18032FE8005E5942 /* OdbcStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE5E618032FE8005E5942 /* OdbcStore.m */; };
 		6A5EE5ED18032FE8005E5942 /* OdbcStoreDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE5E718032FE8005E5942 /* OdbcStoreDatabase.h */; };
@@ -79,7 +94,6 @@
 		6A74500617FAEE6F000793B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A74500417FAEE6F000793B2 /* InfoPlist.strings */; };
 		6AA4548E17FAFFAD00BB2EC9 /* StatementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
-		6AF8178718105E83004F9042 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF8178618105E83004F9042 /* ParseKit.framework */; };
 		6AF8178C18106475004F9042 /* OdbcPredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8178918106475004F9042 /* OdbcPredicate.grammar */; };
 		6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF8178A18106475004F9042 /* OdbcPredicate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8178B18106475004F9042 /* OdbcPredicate.m */; };
@@ -138,6 +152,21 @@
 		6A38A131181AD36100876BDE /* TestConnect */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestConnect; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A38A134181AD36100876BDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6A3947EE18196F5F0049B34C /* index.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.markdown; sourceTree = "<group>"; };
+		6A5901C9182150350090ED57 /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = ParseKit/libParseKit.a; sourceTree = "<group>"; };
+		6A5901CB182152F80090ED57 /* PKParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParser.h; path = ParseKit/PKParser.h; sourceTree = "<group>"; };
+		6A5901CC182152F80090ED57 /* PKParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParserFactory.h; path = ParseKit/PKParserFactory.h; sourceTree = "<group>"; };
+		6A5901CD182152F80090ED57 /* PKParseTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParseTree.h; path = ParseKit/PKParseTree.h; sourceTree = "<group>"; };
+		6A5901CE182152F80090ED57 /* PKParseTreeAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParseTreeAssembler.h; path = ParseKit/PKParseTreeAssembler.h; sourceTree = "<group>"; };
+		6A5901CF182152F80090ED57 /* PKRuleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKRuleNode.h; path = ParseKit/PKRuleNode.h; sourceTree = "<group>"; };
+		6A5901D0182152F80090ED57 /* PKToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKToken.h; path = ParseKit/PKToken.h; sourceTree = "<group>"; };
+		6A5901D1182152F80090ED57 /* PKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTypes.h; path = ParseKit/PKTypes.h; sourceTree = "<group>"; };
+		6A5901D9182153820090ED57 /* PKTokenNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTokenNode.h; path = ParseKit/PKTokenNode.h; sourceTree = "<group>"; };
+		6A5901DB182158C40090ED57 /* NSArray+ParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+ParseKitAdditions.h"; path = "ParseKit/NSArray+ParseKitAdditions.h"; sourceTree = "<group>"; };
+		6A5901DC182158C40090ED57 /* NSMutableSet+ParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableSet+ParseKitAdditions.h"; path = "ParseKit/NSMutableSet+ParseKitAdditions.h"; sourceTree = "<group>"; };
+		6A5901DD182158C40090ED57 /* NSString+ParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ParseKitAdditions.h"; path = "ParseKit/NSString+ParseKitAdditions.h"; sourceTree = "<group>"; };
+		6A5901E518215A770090ED57 /* NSArray+ParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+ParseKitAdditions.m"; path = "ParseKit/NSArray+ParseKitAdditions.m"; sourceTree = "<group>"; };
+		6A5901E618215A770090ED57 /* NSMutableSet+ParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableSet+ParseKitAdditions.m"; path = "ParseKit/NSMutableSet+ParseKitAdditions.m"; sourceTree = "<group>"; };
+		6A5901E718215A770090ED57 /* NSString+ParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ParseKitAdditions.m"; path = "ParseKit/NSString+ParseKitAdditions.m"; sourceTree = "<group>"; };
 		6A5EE5E518032FE8005E5942 /* OdbcStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStore.h; sourceTree = "<group>"; };
 		6A5EE5E618032FE8005E5942 /* OdbcStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcStore.m; sourceTree = "<group>"; };
 		6A5EE5E718032FE8005E5942 /* OdbcStoreDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcStoreDatabase.h; sourceTree = "<group>"; };
@@ -186,7 +215,6 @@
 		6AA4548C17FAFFAD00BB2EC9 /* StatementTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementTests.h; sourceTree = "<group>"; };
 		6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementTests.m; sourceTree = "<group>"; };
 		6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPrepareDescriptor.m; sourceTree = "<group>"; };
-		6AF8178618105E83004F9042 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseKit.framework; sourceTree = "<group>"; };
 		6AF8178918106475004F9042 /* OdbcPredicate.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OdbcPredicate.grammar; sourceTree = "<group>"; };
 		6AF8178A18106475004F9042 /* OdbcPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcPredicate.h; sourceTree = "<group>"; };
 		6AF8178B18106475004F9042 /* OdbcPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPredicate.m; sourceTree = "<group>"; };
@@ -201,7 +229,7 @@
 			files = (
 				6A27E28E17D8FC490070E6B7 /* Cocoa.framework in Frameworks */,
 				6A1F1A1517F0EA980019B7CC /* iODBC.framework in Frameworks */,
-				6AF8178718105E83004F9042 /* ParseKit.framework in Frameworks */,
+				6A5901CA182150350090ED57 /* libParseKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +292,6 @@
 		6A27E28C17D8FC490070E6B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6AF8178618105E83004F9042 /* ParseKit.framework */,
 				6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */,
 				6A1F1A1417F0EA980019B7CC /* iODBC.framework */,
 				6A27E28D17D8FC490070E6B7 /* Cocoa.framework */,
@@ -287,6 +314,7 @@
 		6A27E29317D8FC490070E6B7 /* Odbc */ = {
 			isa = PBXGroup;
 			children = (
+				6A5901C818214FF70090ED57 /* ParseKit */,
 				6A27E29A17D8FC490070E6B7 /* Odbc.h */,
 				6AF8178918106475004F9042 /* OdbcPredicate.grammar */,
 				6AF8178A18106475004F9042 /* OdbcPredicate.h */,
@@ -338,6 +366,28 @@
 				6A38A134181AD36100876BDE /* main.m */,
 			);
 			path = TestConnect;
+			sourceTree = "<group>";
+		};
+		6A5901C818214FF70090ED57 /* ParseKit */ = {
+			isa = PBXGroup;
+			children = (
+				6A5901E518215A770090ED57 /* NSArray+ParseKitAdditions.m */,
+				6A5901E618215A770090ED57 /* NSMutableSet+ParseKitAdditions.m */,
+				6A5901E718215A770090ED57 /* NSString+ParseKitAdditions.m */,
+				6A5901DB182158C40090ED57 /* NSArray+ParseKitAdditions.h */,
+				6A5901DC182158C40090ED57 /* NSMutableSet+ParseKitAdditions.h */,
+				6A5901DD182158C40090ED57 /* NSString+ParseKitAdditions.h */,
+				6A5901D9182153820090ED57 /* PKTokenNode.h */,
+				6A5901CB182152F80090ED57 /* PKParser.h */,
+				6A5901CC182152F80090ED57 /* PKParserFactory.h */,
+				6A5901CD182152F80090ED57 /* PKParseTree.h */,
+				6A5901CE182152F80090ED57 /* PKParseTreeAssembler.h */,
+				6A5901CF182152F80090ED57 /* PKRuleNode.h */,
+				6A5901D0182152F80090ED57 /* PKToken.h */,
+				6A5901D1182152F80090ED57 /* PKTypes.h */,
+				6A5901C9182150350090ED57 /* libParseKit.a */,
+			);
+			name = ParseKit;
 			sourceTree = "<group>";
 		};
 		6A5EE5F71803308C005E5942 /* OdbcExample */ = {
@@ -426,6 +476,17 @@
 				6A5EE638180706F0005E5942 /* OdbcAppDelegate.h in Headers */,
 				6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */,
 				6AF817D618149E66004F9042 /* OdbcObject.h in Headers */,
+				6A5901D2182152F80090ED57 /* PKParser.h in Headers */,
+				6A5901D3182152F80090ED57 /* PKParserFactory.h in Headers */,
+				6A5901D4182152F80090ED57 /* PKParseTree.h in Headers */,
+				6A5901D5182152F80090ED57 /* PKParseTreeAssembler.h in Headers */,
+				6A5901D6182152F80090ED57 /* PKRuleNode.h in Headers */,
+				6A5901D7182152F80090ED57 /* PKToken.h in Headers */,
+				6A5901D8182152F80090ED57 /* PKTypes.h in Headers */,
+				6A5901DA182153820090ED57 /* PKTokenNode.h in Headers */,
+				6A5901DE182158C40090ED57 /* NSArray+ParseKitAdditions.h in Headers */,
+				6A5901DF182158C40090ED57 /* NSMutableSet+ParseKitAdditions.h in Headers */,
+				6A5901E0182158C40090ED57 /* NSString+ParseKitAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/index.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/index.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n--ignore ParseKit \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6A744FE417F9EC8F000793B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -681,6 +742,9 @@
 				6A5EE639180706F0005E5942 /* OdbcAppDelegate.m in Sources */,
 				6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */,
 				6AF817D718149E66004F9042 /* OdbcObject.m in Sources */,
+				6A5901E818215A770090ED57 /* NSArray+ParseKitAdditions.m in Sources */,
+				6A5901E918215A770090ED57 /* NSMutableSet+ParseKitAdditions.m in Sources */,
+				6A5901EA18215A770090ED57 /* NSString+ParseKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +919,10 @@
 					"FRAMEWORK_VERSION=$(FRAMEWORK_VERSION)",
 				);
 				INFOPLIST_FILE = "Odbc/Odbc-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Odbc/ParseKit\"",
+				);
 				PRODUCT_NAME = Odbc;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -874,6 +942,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Odbc/Odbc-Prefix.pch";
 				INFOPLIST_FILE = "Odbc/Odbc-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Odbc/ParseKit\"",
+				);
 				PRODUCT_NAME = Odbc;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1011,6 +1083,7 @@
 				6A38A139181AD36100876BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6A5EE60C1803308D005E5942 /* Build configuration list for PBXNativeTarget "OdbcExample" */ = {
 			isa = XCConfigurationList;
