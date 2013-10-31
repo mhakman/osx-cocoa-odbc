@@ -1083,17 +1083,28 @@
     }
     
     [sql appendFormat : @"primary key (%@,%@),",srcEntity.name,dstEntity.name];
-    
+/*
     if (! mainRelationship.isToMany) {
         
         [sql appendFormat : @"unique key (%@),",srcEntity.name];
-    }
-    
-    if (mainRelationship.inverseRelationship && ! mainRelationship.inverseRelationship.isToMany) {
         
-        [sql appendFormat : @"unique key (%@),",dstEntity.name];
+    } else {
+        
+        [sql appendFormat : @"index (%@),",srcEntity.name];
     }
     
+    if (mainRelationship.inverseRelationship) {
+        
+        if (! mainRelationship.inverseRelationship.isToMany) {
+        
+            [sql appendFormat : @"unique key (%@),",dstEntity.name];
+            
+        } else {
+            
+           [sql appendFormat : @"index (%@),",dstEntity.name]; 
+        }
+    }
+*/    
     if ([dbms hasPrefix : @"Oracle"]) {
         
         [sql appendFormat : @"constraint %@ foreign key (%@) references %@ (id) on delete cascade,",
