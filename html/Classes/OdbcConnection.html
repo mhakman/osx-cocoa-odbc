@@ -26,6 +26,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -104,10 +106,22 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Creating connection and connecting to a database">Creating connection and connecting to a database</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Commit and rollback">Commit and rollback</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Creating OdbcStatement">Creating OdbcStatement</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Executing SQL">Executing SQL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Retrieving information about connection and database">Retrieving information about connection and database</a></span></li>
 	
 </ul></li>
 
@@ -211,6 +225,17 @@
                     
                     
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class represents a connection to an ODBC data source.</p>
+
+<p>The class is used to connect to a database, to create <a href="../Classes/OdbcStatement.html">OdbcStatement</a> and to
+retrieve information about the database.</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -218,21 +243,95 @@
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						
-						
+						<a title="Creating connection and connecting to a database" name="task_Creating connection and connecting to a database"></a>
+						<h3 class="subsubtitle task-title">Creating connection and connecting to a database</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/hdbc">&nbsp;&nbsp;hdbc</a></code>
+		<code><a href="#//api/name/connectionWithDataSource:username:password:">+&nbsp;connectionWithDataSource:username:password:</a></code>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/env">&nbsp;&nbsp;env</a></code>
+		<code><a href="#//api/name/initWithDataSource:username:password:">&ndash;&nbsp;initWithDataSource:username:password:</a></code>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connect:username:password:">&ndash;&nbsp;connect:username:password:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disconnect">&ndash;&nbsp;disconnect</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Commit and rollback" name="task_Commit and rollback"></a>
+						<h3 class="subsubtitle task-title">Commit and rollback</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/commit">&ndash;&nbsp;commit</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rollback">&ndash;&nbsp;rollback</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Creating OdbcStatement" name="task_Creating OdbcStatement"></a>
+						<h3 class="subsubtitle task-title">Creating OdbcStatement</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/newStatement">&ndash;&nbsp;newStatement</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Executing SQL" name="task_Executing SQL"></a>
+						<h3 class="subsubtitle task-title">Executing SQL</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/execDirect:">&ndash;&nbsp;execDirect:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Retrieving information about connection and database" name="task_Retrieving information about connection and database"></a>
+						<h3 class="subsubtitle task-title">Retrieving information about connection and database</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tablesCatalog:schema:table:tableTypes:">&ndash;&nbsp;tablesCatalog:schema:table:tableTypes:</a></code>
+	</span>
+	
 	
 </li><li>
 	<span class="tooltip">
@@ -314,57 +413,15 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/connectionWithDataSource:username:password:">+&nbsp;connectionWithDataSource:username:password:</a></code>
+		<code><a href="#//api/name/env">&nbsp;&nbsp;env</a></code>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithDataSource:username:password:">&ndash;&nbsp;initWithDataSource:username:password:</a></code>
+		<code><a href="#//api/name/hdbc">&nbsp;&nbsp;hdbc</a></code>
 	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/connect:username:password:">&ndash;&nbsp;connect:username:password:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/disconnect">&ndash;&nbsp;disconnect</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/commit">&ndash;&nbsp;commit</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/rollback">&ndash;&nbsp;rollback</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/newStatement">&ndash;&nbsp;newStatement</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/tablesCatalog:schema:table:tableTypes:">&ndash;&nbsp;tablesCatalog:schema:table:tableTypes:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/execDirect:">&ndash;&nbsp;execDirect:</a></code>
-	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -384,10 +441,35 @@
 	<h3 class="subsubtitle method-title">autocommit</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets or gets auto<a href="#//api/name/commit">commit</a> property of connection.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) bool autocommit</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -395,10 +477,35 @@
 	<h3 class="subsubtitle method-title">catalogs</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Names of catalogs in database.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSArray *catalogs</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -406,10 +513,35 @@
 	<h3 class="subsubtitle method-title">connected</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>True if connection is connected to a database, false otherwise.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly) bool connected</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -417,10 +549,35 @@
 	<h3 class="subsubtitle method-title">currentCatalog</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Name of current database catalog.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSString *currentCatalog</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -428,10 +585,35 @@
 	<h3 class="subsubtitle method-title">currentSchema</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Name of current schema in database.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSString *currentSchema</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -439,10 +621,35 @@
 	<h3 class="subsubtitle method-title">currentUser</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Name of current database user. May be different from <a href="#//api/name/username">username</a> of the connection.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSString *currentUser</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -450,10 +657,35 @@
 	<h3 class="subsubtitle method-title">dataSource</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>ODBC data source name.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly) NSString *dataSource</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -461,10 +693,35 @@
 	<h3 class="subsubtitle method-title">dbmsName</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Database vendor name.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSString *dbmsName</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -472,10 +729,35 @@
 	<h3 class="subsubtitle method-title">env</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>OdbcEnvironment object. For internal use only.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly) OdbcEnvironment *env</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -483,10 +765,35 @@
 	<h3 class="subsubtitle method-title">hdbc</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Original low level API handle for a connection. For internal use only.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly) SQLHANDLE hdbc</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -494,10 +801,35 @@
 	<h3 class="subsubtitle method-title">schemaTerm</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Term used for <a href="#//api/name/schemas">schemas</a> in the database.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSString *schemaTerm</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -505,10 +837,35 @@
 	<h3 class="subsubtitle method-title">schemas</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Names of schemas in database.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSArray *schemas</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -516,10 +873,35 @@
 	<h3 class="subsubtitle method-title">tableTypes</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Names of table types supported by the database.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSArray *tableTypes</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -527,10 +909,35 @@
 	<h3 class="subsubtitle method-title">transactionIsolation</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets or gets transaction isolation level</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) unsigned long transactionIsolation</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -538,10 +945,35 @@
 	<h3 class="subsubtitle method-title">username</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Database user name.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly) NSString *username</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -557,10 +989,60 @@
 	<h3 class="subsubtitle method-title">connectionWithDataSource:username:password:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a connection and connects to a database.</p>
+	</div>		
+	
+    
 
-	<div class="method-subsection method-declaration"><code>+ (OdbcConnection *)connectionWithDataSource:(NSString *)<em>newDataSource</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (OdbcConnection *)connectionWithDataSource:(NSString *)<em>dataSource</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dataSource</em></dt>
+			<dd><p>ODBC data source name</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>username</em></dt>
+			<dd><p>database <a href="#//api/name/username">username</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>users password</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="#//api/name/connected">connected</a> OdbcConnection</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -576,10 +1058,35 @@
 	<h3 class="subsubtitle method-title">commit</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Commits current transaction.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)commit</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -587,10 +1094,55 @@
 	<h3 class="subsubtitle method-title">connect:username:password:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Connects to an ODBC data source.</p>
+	</div>		
+	
+    
 
-	<div class="method-subsection method-declaration"><code>- (void)connect:(NSString *)<em>server</em> username:(NSString *)<em>user</em> password:(NSString *)<em>password</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)connect:(NSString *)<em>server</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>server</em></dt>
+			<dd><p>ODBC data source name</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>username</em></dt>
+			<dd><p>database user name</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>users password</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -598,10 +1150,35 @@
 	<h3 class="subsubtitle method-title">disconnect</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Disconnects from database.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)disconnect</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -609,10 +1186,50 @@
 	<h3 class="subsubtitle method-title">execDirect:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Executes SQL and returns an <a href="../Classes/OdbcStatement.html">OdbcStatement</a>.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (OdbcStatement *)execDirect:(NSString *)<em>sql</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sql</em></dt>
+			<dd><p>sql text</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/OdbcStatement.html">OdbcStatement</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -620,10 +1237,60 @@
 	<h3 class="subsubtitle method-title">initWithDataSource:username:password:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes connection and connects to a database.</p>
+	</div>		
+	
+    
 
-	<div class="method-subsection method-declaration"><code>- (OdbcConnection *)initWithDataSource:(NSString *)<em>newDataSource</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (OdbcConnection *)initWithDataSource:(NSString *)<em>dataSource</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dataSource</em></dt>
+			<dd><p>ODBC data source name</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>username</em></dt>
+			<dd><p>database <a href="#//api/name/username">username</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>users password</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a <a href="#//api/name/connected">connected</a> connection</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -631,10 +1298,40 @@
 	<h3 class="subsubtitle method-title">newStatement</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates new <a href="../Classes/OdbcStatement.html">OdbcStatement</a>.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (OdbcStatement *)newStatement</code></div>
 
     
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/OdbcStatement.html">OdbcStatement</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -642,10 +1339,35 @@
 	<h3 class="subsubtitle method-title">rollback</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Rollbacks current transaction.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)rollback</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -653,10 +1375,65 @@
 	<h3 class="subsubtitle method-title">tablesCatalog:schema:table:tableTypes:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieves information about <a href="#//api/name/catalogs">catalogs</a>, <a href="#//api/name/schemas">schemas</a>, tables, and table types.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (OdbcStatement *)tablesCatalog:(NSString *)<em>catalog</em> schema:(NSString *)<em>schema</em> table:(NSString *)<em>table</em> tableTypes:(NSString *)<em>tableTypes</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>catalog</em></dt>
+			<dd><p>catalog to use</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>schema</em></dt>
+			<dd><p>schema pattern to use</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>table</em></dt>
+			<dd><p>table pattern to use</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableTypes</em></dt>
+			<dd><p>table types to use</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/OdbcStatement.html">OdbcStatement</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcConnection.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
