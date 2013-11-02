@@ -76,6 +76,12 @@
         
         @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',to_date ('10:10:10','HH24:MI:SS'),timestamp '2010-10-10 10:10:10')";
         
+    } else if ([dbms hasPrefix : @"SQLite"]) {
+        
+        sql =
+        
+        @"insert into testtab values (10,'Testing commit',10,'2010-10-10','10:10:10','2010-10-10 10:10:10')";
+
     } else {
     
         sql =
@@ -126,6 +132,12 @@
         
         @"insert into testtab values (10,'Testing commit',10,date '2010-10-10',to_date ('10:10:10','HH24:MI:SS'),timestamp '2010-10-10 10:10:10')";
         
+    } else if ([dbms hasPrefix : @"SQLite"]) {
+        
+        sql =
+        
+        @"insert into testtab values (10,'Testing commit',10,'2010-10-10','10:10:10','2010-10-10 10:10:10')";
+
     } else {
         
         sql =
@@ -260,15 +272,29 @@
     
     STAssertEquals (curTxnIsolation,SQL_TXN_SERIALIZABLE,@"");
     
+    long newTxnIsolation;
+    
     NSString * dbms = self->connection.dbmsName;
     
-    self->connection.transactionIsolation = SQL_TXN_READ_COMMITTED;
+    if ([dbms hasPrefix : @"SQLite"]) {
         
-    long newTxnIsolation = self->connection.transactionIsolation;
+        ;
         
-    STAssertEquals(newTxnIsolation,SQL_TXN_READ_COMMITTED,@"");
-
-    if (! [[dbms lowercaseString] hasPrefix:@"oracle"]) {
+    } else if ([dbms hasPrefix : @"Oracle"]) {
+        
+        self->connection.transactionIsolation = SQL_TXN_REPEATABLE_READ;
+        
+        curTxnIsolation = self->connection.transactionIsolation;
+        
+        STAssertEquals (curTxnIsolation,SQL_TXN_REPEATABLE_READ,@"");
+    
+    } else {
+    
+        self->connection.transactionIsolation = SQL_TXN_READ_COMMITTED;
+        
+        newTxnIsolation = self->connection.transactionIsolation;
+        
+        STAssertEquals(newTxnIsolation,SQL_TXN_READ_COMMITTED,@"");
 
         self->connection.transactionIsolation = SQL_TXN_READ_UNCOMMITTED;
     
@@ -354,9 +380,18 @@
 
 - (void) testCurrentUser {
     
+    NSString * dbms = self->connection.dbmsName;
+    
     NSString * user = self->connection.currentUser;
     
-    STAssertEqualObjects ([user uppercaseString],[Username uppercaseString],@"");
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        STAssertEqualObjects (user,@"",@"");
+    
+    } else {
+    
+        STAssertEqualObjects ([user uppercaseString],[Username uppercaseString],@"");
+    }
 }
 
 - (void) testSchemaTerm {

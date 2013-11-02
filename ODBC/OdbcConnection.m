@@ -448,7 +448,11 @@
     if ([[dbms lowercaseString] hasPrefix : @"oracle"]) {
         
         self.transactionIsolation = SQL_TXN_READ_COMMITTED;
-    
+        
+    } else if ([dbms hasPrefix : @"SQLite"]) {
+        
+        ;
+        
     } else {
     
         self.transactionIsolation = SQL_TXN_REPEATABLE_READ;

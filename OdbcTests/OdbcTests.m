@@ -22,7 +22,7 @@ NSString * Password;
 
 + (void) initialize {
     
-    DataSourceName = @"postest";
+    DataSourceName = @"sqltest";
     
     Username = @"testuser";
     
@@ -53,7 +53,12 @@ NSString * Password;
     
     [self->connection connect : DataSourceName username : Username password : Password];
     
-    self->connection.transactionIsolation = SQL_TXN_SERIALIZABLE;
+    NSString * dbms = self->connection.dbmsName;
+    
+    if (! [dbms hasPrefix : @"SQLite"]) {
+    
+        self->connection.transactionIsolation = SQL_TXN_SERIALIZABLE;
+    }
     
     self->statement = [self->connection newStatement];
 }
@@ -79,6 +84,15 @@ NSString * Password;
           @"insert into testtab values (2,'Name 2',2.2,date '2002-02-02',to_date ('02:02:02','HH24:MI:SS'),timestamp '2002-02-02 02:02:02')",
           @"insert into testtab values (3,'Name 3',3.3,date '2003-03-03',to_date ('03:03:03','HH24:MI:SS'),timestamp '2003-03-03 03:03:03')",
           @"insert into testtab values (4,'N4'    ,4.4,date '2004-04-04',to_date ('04:04:04','HH24:MI:SS'),timestamp '2004-04-04 04:04:04')"];
+        
+    } else if ([dbms hasPrefix : @"SQLite"]) {
+        
+        sqls =
+        
+        @[@"insert into testtab values (1,'Name 1',1.1,'2001-01-01','01:01:01','2001-01-01 01:01:01')",
+          @"insert into testtab values (2,'Name 2',2.2,'2002-02-02','02:02:02','2002-02-02 02:02:02')",
+          @"insert into testtab values (3,'Name 3',3.3,'2003-03-03','03:03:03','2003-03-03 03:03:03')",
+          @"insert into testtab values (4,'N4'    ,4.4,'2004-04-04','04:04:04','2004-04-04 04:04:04')"];
 
     } else {
 

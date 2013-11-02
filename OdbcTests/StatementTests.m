@@ -211,7 +211,14 @@
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2001-01-01 01:01:01"];
+        
+    } else {
+    
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -250,7 +257,14 @@
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2002-02-02 02:02:02"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -309,7 +323,14 @@
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2001-01-01 01:01:01"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -348,7 +369,14 @@
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2002-02-02 02:02:02"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -579,7 +607,14 @@
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2001-01-01 01:01:01"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
 
     [self->statement execute];
     
@@ -605,7 +640,7 @@
     
     NSNumber * price2 = @(1.1);
     
-    STAssertEqualObjects(price1,price2,@"");
+    STAssertEquals(price1.doubleValue,price2.doubleValue,@"");
     
     NSDate * date1 = [self->statement getObjectByName : @"date"];
     
@@ -650,7 +685,14 @@
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2002-02-02 02:02:02"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -711,7 +753,14 @@
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2001-01-01 01:01:01"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -737,7 +786,7 @@
     
     NSNumber * price2 = @(1.1);
     
-    STAssertEqualObjects(price1,price2,@"");
+    STAssertEquals(price1.doubleValue,price2.doubleValue,@"");
     
     NSDate * date1 = [self->statement getObject : 4];
     
@@ -782,7 +831,14 @@
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
-    [self->statement setTimestamp : 6 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 6 value : @"2002-02-02 02:02:02"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 6 value : ts];
+    }
     
     [self->statement execute];
     
@@ -805,6 +861,8 @@
 
 - (void) testSetData {
     
+    NSString * dbms = self->connection.dbmsName;
+    
     [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and ts = ?"];
     
     [self->statement setLong : 1 value : 1];
@@ -815,7 +873,14 @@
     
     NSDate * ts = [self timestampYear : 2001 month : 1 day : 1 hour : 1 minute : 1 second : 1];
     
-    [self->statement setTimestamp : 4 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 4 value : @"2001-01-01 01:01:01"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 4 value : ts];
+    }
     
     [self->statement execute];
     
@@ -839,7 +904,14 @@
     
     ts = [self timestampYear : 2004 month : 4 day : 4 hour : 4 minute : 4 second : 4];
     
-    [self->statement setTimestamp : 4 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 4 value : @"2004-04-04 04:04:04"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 4 value : ts];
+    }
     
     [self->statement execute];
     
@@ -863,7 +935,14 @@
     
     ts = [self timestampYear : 2002 month : 2 day : 2 hour : 2 minute : 2 second : 2];
     
-    [self->statement setTimestamp : 4 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setString : 4 value : @"2002-02-02 02:02:02"];
+        
+    } else {
+        
+        [self->statement setTimestamp : 4 value : ts];
+    }
     
     [self->statement execute];
     
@@ -878,6 +957,8 @@
 
 - (void) testSetObject {
     
+    NSString * dbms = self->connection.dbmsName;
+    
     [self->statement prepare : @"select * from testtab where id = ? and name = ? and price = ? and ts = ?"];
     
     [self->statement setObject : 1 value : @1];
@@ -887,8 +968,15 @@
     [self->statement setObject : 3 value : @1.1];
     
     NSDate * ts = [self timestampYear:2001 month:1 day:1 hour:1 minute:1 second:1];
+    
+    if ([dbms hasPrefix : @"SQLite"]) {
         
-    [self->statement setObject : 4 value : ts];
+        [self->statement setObject : 4 value : @"2001-01-01 01:01:01"];
+    
+    } else {
+
+        [self->statement setObject : 4 value : ts];
+    }
     
     [self->statement execute];
     
@@ -912,7 +1000,14 @@
     
     ts = [self timestampYear:2002 month:2 day:2 hour:2 minute:2 second:2];
     
-    [self->statement setObject : 4 value : ts];
+    if ([dbms hasPrefix : @"SQLite"]) {
+        
+        [self->statement setObject : 4 value : @"2002-02-02 02:02:02"];
+        
+    } else {
+        
+        [self->statement setObject : 4 value : ts];
+    }
     
     [self->statement execute];
     

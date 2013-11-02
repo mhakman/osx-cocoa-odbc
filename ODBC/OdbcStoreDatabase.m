@@ -894,7 +894,12 @@
     
     [self->odbcConnection connect : dataSource username : username password : password];
     
-    self->odbcConnection.transactionIsolation = SQL_TXN_SERIALIZABLE;
+    NSString * dbms = self->odbcConnection.dbmsName;
+    
+    if (! [dbms hasPrefix : @"SQLite"]) {
+    
+        self->odbcConnection.transactionIsolation = SQL_TXN_SERIALIZABLE;
+    }
     
     self->catalog = self->odbcConnection.currentCatalog;
     
