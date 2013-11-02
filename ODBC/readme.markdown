@@ -82,11 +82,13 @@ network server. If you don't have you need to download and install it. See Notes
 at the end of this document for notes about various database managers that Odbc framework
 has been tested with.
 
-Our developer team uses primarily Mimer SQL and MySQL. Mimer SQL is first class, 
-fully fleged, commercial grade relational database management system that is free
-of charge for development purposes.
-
-Then again, any of the tested database managers will work ok.
+Our developer team uses primarily Mimer SQL and MySQL. Mimer SQL is first-class, 
+fully-fledged, commercial grade relational database management system that is free
+of charge for development purposes. More direct reason for selecting Mimer SQL
+is its concurrency control. Mimer SQL uses optimistic concurrency control, which
+means that there is no risk for 2 or more applications to lock out each other.
+Database managers that use locking concurrency control may result in one application 
+waiting for another.
 
 Next comes iODBC framework (Odbc framework builds upon iODBC framework). If you
 don't have it go to iOdbc site, download and install it. Among other things it will

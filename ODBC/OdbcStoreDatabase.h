@@ -47,11 +47,4 @@
 
 - (void) updateRelationshipsForObject : (NSManagedObject *) object;
 
-- (void) deleteFetchedObject : (NSManagedObject *) object;
-
-- (void) insertFetchedObject : (NSManagedObject *) object;
-
-- (void) updateFetchedObject : (NSManagedObject *) object;
-
-
 @end

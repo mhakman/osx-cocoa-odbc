@@ -1,6 +1,6 @@
 //
 //  OdbcStore.m
-//  RunCommand
+//  Odbc
 //
 //  Created by Mikael Hakman on 2013-10-02.
 //  Copyright (c) 2013 Mikael Hakman. All rights reserved.
@@ -84,8 +84,6 @@
             
                 result = [self->database fetchObjects : request context : context];
             
-                [self->database commit];
-            
                 break;
             }
             
@@ -146,6 +144,8 @@
             
             [self->database updateRelationshipsForObject : object];
         }
+        
+        [self->database commit];
                                             
     } @catch (NSException * exception) {
         
@@ -200,7 +200,6 @@
         [self->database connectDataSource : self->odbcUrl.dataSource
                                  username : self->odbcUrl.username
                                  password : self->odbcUrl.password];
-        [self->database commit];
         
     } @catch (NSException * exception) {
                 
@@ -237,8 +236,6 @@
         
         result = [self->database fetchRelationship : relationship objectId : objectID context : context];
         
-        [self->database commit];
-        
     } @catch (NSException * exception) {
         
         [self->database rollback];
@@ -258,8 +255,6 @@
     @try {
         
         NSDictionary * values = [self->database fetchObjectId : objectID context : context];
-        
-        [self->database commit];
         
         NSIncrementalStoreNode * node =
         
@@ -293,8 +288,6 @@
             
             [ids addObject : objId];
         }
-        
-        [self->database commit];
         
     } @catch (NSException * exception) {
         

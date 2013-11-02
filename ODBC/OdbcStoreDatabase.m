@@ -1,6 +1,6 @@
 //
-//  Database.m
-//  RunCommand
+//  OdbcDatabase.m
+//  Odbc
 //
 //  Created by Mikael Hakman on 2013-10-03.
 //  Copyright (c) 2013 Mikael Hakman. All rights reserved.
@@ -28,7 +28,6 @@
     
     NSString * schema;
     
-    NSMutableDictionary * fetchedObjects;
 }
 
 @property (nonatomic) OdbcStatement * fetchCoreDataEntityForNameStmt;
@@ -219,36 +218,11 @@
         NSManagedObject * mo = [context objectWithID : objId];
                 
         [result addObject: mo];
-        
-        [self storeFetchedObjectId : objId context : context];
     }
     
     [stmt closeCursor];
     
     return result;
-}
-
-- (void) storeFetchedObjectId : (NSManagedObjectID *) objId context : (NSManagedObjectContext *) context {
-    
-    NSDictionary * relationships = nil;
-    
-    NSDictionary * attributes = [self fetchObject : objId context : context relationships : &relationships];
-    
-    OdbcObject * obj = [OdbcObject objectWithId : objId
-                                     attributes : attributes
-                                  relationships : relationships
-                                          store : self->odbcStore];
-    
-    [self addToFetchedObjects : objId object : obj];    
-}
-
-- (void) addToFetchedObjects : (NSManagedObjectID *) objId object : (OdbcObject *) obj {
-    
-    NSString * key = objId.URIRepresentation.absoluteString;
-    
-    NSString * val = obj.string;
-    
-    [self->fetchedObjects setObject : val forKey : key];
 }
 
 - (OdbcStatement *) selectStmtForRequest : (NSFetchRequest *) request {
@@ -416,15 +390,6 @@
     OdbcStatement * stmt = [self deleteStmtForObject : object];
     
     [stmt execute];
-    
-    [self commit];
-    
-    [self deleteFetchedObject : object];
-}
-
-- (void) deleteFetchedObject : (NSManagedObject *) obj {
-    
-    [self->fetchedObjects removeObjectForKey : obj.objectID.URIRepresentation.absoluteString];
 }
 
 - (void) deleteRelationshipsForObject : (NSManagedObject *) object {
@@ -443,8 +408,6 @@
         
         rd = enumerator.nextObject;
     }
-    
-    [self commit];
 }
 
 - (void) deleteRelationship : (NSRelationshipDescription *) relationship forObject : (NSManagedObject *) object {
@@ -557,21 +520,6 @@
     OdbcStatement * stmt = [self insertStmtForObject : object];
     
     [stmt execute];
-    
-    [self commit];
-    
-    [self insertFetchedObject : object];
-}
-
-- (void) insertFetchedObject : (NSManagedObject *) obj {
-        
-    OdbcObject * oo = [OdbcObject objectWithObject : obj store : self->odbcStore];
-    
-    NSString * key = obj.objectID.URIRepresentation.absoluteString;
-    
-    NSString * val = oo.string;
-    
-    [self->fetchedObjects setObject : val forKey : key];
 }
 
 - (void) insertRelationshipsForObject : (NSManagedObject *) object {
@@ -592,10 +540,6 @@
         
         rd = enumerator.nextObject;
     }
-    
-    [self commit];
-    
-    [self updateFetchedObject : object];
 }
 
 - (void) insertRelationship : (NSRelationshipDescription *) relationship forObject : (NSManagedObject *) object {
@@ -609,8 +553,6 @@
         [self setInsertRelationshipParameters : object dstObject : dstObject stmt : stmt];
         
         [stmt execute];
-        
-        [self updateFetchedObject : dstObject];
     }
 }
 
@@ -714,63 +656,14 @@
 
 - (void) updateObject : (NSManagedObject *) object context : (NSManagedObjectContext *) context {
     
-    [self checkUpdateIsPossible : object context : context];
-    
     OdbcStatement * stmt = [self updateStmtForObject : object];
     
     [stmt execute];
-    
-    [self commit];
-    
-    [self updateFetchedObject : object];
-}
-
-- (void) updateFetchedObject : (NSManagedObject *) obj {
-    
-    OdbcObject * oo = [OdbcObject objectWithObject : obj store : self->odbcStore];
-    
-    NSString * key = obj.objectID.URIRepresentation.absoluteString;
-    
-    NSString * val = oo.string;
-    
-    [self->fetchedObjects setObject : val forKey : key];
-}
-
-- (void) checkUpdateIsPossible : (NSManagedObject *) obj context : (NSManagedObjectContext *) context {
-    
-    OdbcObject * rereadObject = [self rereadObject : obj context : context];
-    
-    NSString * newString = rereadObject.string;
-    
-    NSManagedObjectID * objId = obj.objectID;
-    
-    NSString * oldString = [self->fetchedObjects valueForKey : objId.URIRepresentation.absoluteString];
-    
-    if (! [oldString isEqualToString:newString]) {
-                
-        RAISE_ODBC_EXCEPTION_WITH_SQLSTATE ("Transaction rolled back","Database was changed by another application","40001");
-    }
-}
-
-- (OdbcObject *) rereadObject : (NSManagedObject *) obj context : (NSManagedObjectContext *) context {
-    
-    NSDictionary * relationships;
-    
-    NSDictionary * attributes = [self fetchObject:obj.objectID context : context relationships : &relationships];
-    
-    return [OdbcObject objectWithId : obj.objectID
-                         attributes : attributes
-                      relationships : relationships
-                              store : self->odbcStore];
 }
 
 - (void) updateRelationshipsForObject : (NSManagedObject *) object {
     
     [self insertRelationshipsForObject : object];
-    
-    [self commit];
-    
-    [self updateFetchedObject : object];
 }
 
 - (OdbcStatement *) updateStmtForObject : (NSManagedObject *) object {
@@ -989,8 +882,6 @@
     
     self->relationshipTablesDict = [NSMutableDictionary new];
     
-    self->fetchedObjects = [NSMutableDictionary new];
-    
     return self;
 }
 
@@ -1008,6 +899,8 @@
     self->catalog = self->odbcConnection.currentCatalog;
     
     self->schema = self->odbcConnection.currentSchema;
+    
+    [self commit];
     
     [self createTablesIfRequired];
     
@@ -1029,8 +922,6 @@
     [self createEntityTablesIfRequired];
     
     [self createRelationshipsTablesIfRequired];
-    
-    [self->odbcConnection commit];
 }
 
 - (void) createRelationshipsTablesIfRequired {
@@ -1349,8 +1240,6 @@
     }
     
     [self->odbcConnection execDirect : sql];
-    
-    [self commit];
 }
 
 - (bool) tableExists : (NSString *) tableName {

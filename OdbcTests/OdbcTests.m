@@ -22,11 +22,11 @@ NSString * Password;
 
 + (void) initialize {
     
-    DataSourceName = @"testdb";
+    DataSourceName = @"postest";
     
-    Username = @"root";
+    Username = @"testuser";
     
-    Password = @"";
+    Password = @"test";
 }
 
 - (void) setUp {

@@ -99,8 +99,6 @@
 		6AF8178C18106475004F9042 /* OdbcPredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8178918106475004F9042 /* OdbcPredicate.grammar */; };
 		6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF8178A18106475004F9042 /* OdbcPredicate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8178B18106475004F9042 /* OdbcPredicate.m */; };
-		6AF817D618149E66004F9042 /* OdbcObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF817D418149E66004F9042 /* OdbcObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6AF817D718149E66004F9042 /* OdbcObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF817D518149E66004F9042 /* OdbcObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -153,7 +151,7 @@
 		6A2D3F3F17FAF4B200154AF4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		6A38A131181AD36100876BDE /* TestConnect */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestConnect; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A38A134181AD36100876BDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6A3947EE18196F5F0049B34C /* index.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.markdown; sourceTree = "<group>"; };
+		6A3947EE18196F5F0049B34C /* index.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.markdown; path = Odbc/index.markdown; sourceTree = "<group>"; };
 		6A5901C9182150350090ED57 /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = ParseKit/libParseKit.a; sourceTree = "<group>"; };
 		6A5901CB182152F80090ED57 /* PKParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParser.h; path = ParseKit/PKParser.h; sourceTree = "<group>"; };
 		6A5901CC182152F80090ED57 /* PKParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParserFactory.h; path = ParseKit/PKParserFactory.h; sourceTree = "<group>"; };
@@ -205,7 +203,7 @@
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FB517F867E1000793B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		6A744FC917F8E3E9000793B2 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
+		6A744FC917F8E3E9000793B2 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.markdown; path = Odbc/readme.markdown; sourceTree = "<group>"; };
 		6A744FE617F9EC8F000793B2 /* OdbcTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdbcTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A744FF817FAED36000793B2 /* ConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionTests.h; sourceTree = "<group>"; };
 		6A744FF917FAED36000793B2 /* ConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionTests.m; sourceTree = "<group>"; };
@@ -220,8 +218,6 @@
 		6AF8178918106475004F9042 /* OdbcPredicate.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OdbcPredicate.grammar; sourceTree = "<group>"; };
 		6AF8178A18106475004F9042 /* OdbcPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcPredicate.h; sourceTree = "<group>"; };
 		6AF8178B18106475004F9042 /* OdbcPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcPredicate.m; sourceTree = "<group>"; };
-		6AF817D418149E66004F9042 /* OdbcObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcObject.h; sourceTree = "<group>"; };
-		6AF817D518149E66004F9042 /* OdbcObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,8 +327,6 @@
 				6A27E2A717D8FCAF0070E6B7 /* OdbcEnvironment.m */,
 				6A27E2A817D8FCAF0070E6B7 /* OdbcException.h */,
 				6A27E2A917D8FCAF0070E6B7 /* OdbcException.m */,
-				6AF817D418149E66004F9042 /* OdbcObject.h */,
-				6AF817D518149E66004F9042 /* OdbcObject.m */,
 				6A27E2AA17D8FCAF0070E6B7 /* OdbcParameterDescriptor.h */,
 				6A27E2AB17D8FCAF0070E6B7 /* OdbcParameterDescriptor.m */,
 				6A27E2AC17D8FCAF0070E6B7 /* OdbcPrepareDescriptor.h */,
@@ -477,7 +471,6 @@
 				6A5EE5EF18032FE8005E5942 /* OdbcUrl.h in Headers */,
 				6A5EE638180706F0005E5942 /* OdbcAppDelegate.h in Headers */,
 				6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */,
-				6AF817D618149E66004F9042 /* OdbcObject.h in Headers */,
 				6A5901D2182152F80090ED57 /* PKParser.h in Headers */,
 				6A5901D3182152F80090ED57 /* PKParserFactory.h in Headers */,
 				6A5901D4182152F80090ED57 /* PKParseTree.h in Headers */,
@@ -669,7 +662,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcUsersGuide\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n--ignore ParseKit \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcUsersGuide\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--index-desc \"${PROJECT_DIR}/Odbc/readme.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n--ignore ParseKit \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6A5901ED1821DB250090ED57 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -721,7 +714,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--index-desc \"${PROJECT_DIR}/index.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n--ignore ParseKit \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Datakonsulten AB\" \\\n--company-id \"com.dkab\" \\\n--output \"${BUILD_DIR}/OdbcDocumentation\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--include \"${PROJECT_DIR}/docs/Images\" \\\n--index-desc \"${PROJECT_DIR}/Odbc/index.markdown\" \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--ignore OdbcPredicate.h \\\n--ignore OdbcColumnDescriptor.h \\\n--ignore OdbcEnvironment.h \\\n--ignore OdbcObject.h \\\n--ignore OdbcParameterDescriptor.h \\\n--ignore OdbcPrepareDescriptor.h \\\n--ignore OdbcResultDescriptor.h \\\n--ignore OdbcStoreDatabase.h \\\n--ignore OdbcUrl.h \\\n--ignore ParseKit \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6A744FE417F9EC8F000793B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -769,7 +762,6 @@
 				6A5EE5F018032FE8005E5942 /* OdbcUrl.m in Sources */,
 				6A5EE639180706F0005E5942 /* OdbcAppDelegate.m in Sources */,
 				6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */,
-				6AF817D718149E66004F9042 /* OdbcObject.m in Sources */,
 				6A5901E818215A770090ED57 /* NSArray+ParseKitAdditions.m in Sources */,
 				6A5901E918215A770090ED57 /* NSMutableSet+ParseKitAdditions.m in Sources */,
 				6A5901EA18215A770090ED57 /* NSString+ParseKitAdditions.m in Sources */,

@@ -101,9 +101,16 @@ NSString * PersistentStoreClass = @"OdbcStore";
     return self->productName;
 }
 //
-// Reloads data
+// Reloads data and merges changes
 //
 - (IBAction) reloadAction : (id) sender {
+    
+    [self reloadMerge : YES];
+}
+//
+// Reloads data with or without merge
+//
+- (void) reloadMerge : (bool) merge {
     
     NSError * error = nil;
     
@@ -131,7 +138,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     for (NSManagedObject * object in objectsSet) {
         
-        [self.managedObjectContext refreshObject : object mergeChanges : YES];
+        [self.managedObjectContext refreshObject : object mergeChanges : merge];
     }
 }
 //
@@ -345,9 +352,16 @@ NSString * PersistentStoreClass = @"OdbcStore";
     return [[self managedObjectContext] undoManager];
 }
 //
-// Performs the save action for the application.
+// Saves data in database and reloads all data again.
 //
 - (IBAction) saveAction : (id) sender {
+    
+    [self saveReload : YES];
+}
+//
+// Save data in database with or without reload
+//
+- (void) saveReload : (bool) reload {
     
     NSError * error = nil;
     
@@ -385,7 +399,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
                 
                 [[NSApplication sharedApplication] presentError : err];
                 
-                [self reloadAction : self];
+                [self reloadMerge : NO];
 
                 return;
             }
@@ -397,6 +411,11 @@ NSString * PersistentStoreClass = @"OdbcStore";
         
         return;
     }
+    
+    if (reload) {
+        
+        [self reloadMerge : NO];
+    }
 }
 //
 // Called when application is about to terminate
@@ -407,7 +426,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
     //
     // Save changes in the application's managed object context before the application terminates.
     //
-    [self saveAction : self];
+    [self saveReload : NO];
     
     return NSTerminateNow;
 }
