@@ -73,6 +73,9 @@ to the console. When the loop terminates we close the statement.
 
 #Prerequisites#
 
+OS X version 10.7 or latter is requred. A compatible XCode vesion is also required. 
+The XCode shall support ARC (automatic reference counting).
+
 First and foremost you need XCode installed on your Mac. If you don't have it go
 to AppStore download and install it. It's free of charge. Test your installation
 by writting and running a small application.
