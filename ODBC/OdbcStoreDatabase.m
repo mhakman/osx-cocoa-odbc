@@ -105,6 +105,10 @@
     
     NSString * dstTabName = relationship.destinationEntity.name;
     
+    NSMutableString * sql =
+    
+    [NSMutableString stringWithFormat : @"select %@ from %@ where %@ = ?",dstTabName,relTabName,srcTabName];
+/*
     NSMutableString * sql = [NSMutableString stringWithFormat : @"select %@.id",dstTabName];
     
     for (id key in relationship.destinationEntity.attributeKeys) {
@@ -119,7 +123,7 @@
     [sql appendFormat : @" where %@.%@ = ?",relTabName,srcTabName];
     
     [sql appendFormat : @" and %@.%@ = %@.id",relTabName,dstTabName,dstTabName];
-    
+*/
     return sql;
 }
 
@@ -275,16 +279,7 @@
 }
 
 - (NSDictionary *) fetchObjectId : (NSManagedObjectID *) objectId context : (NSManagedObjectContext *) context {
-    
-    NSDictionary * attributes = [self fetchObject : objectId context : context relationships : nil];
-    
-    return attributes;
-}
-
-- (NSDictionary *) fetchObject : (NSManagedObjectID *) objectId
-                       context : (NSManagedObjectContext *) context
-                 relationships : (NSDictionary **) relationships {
-    
+        
     NSMutableDictionary * result = [NSMutableDictionary new];
     
     NSManagedObject * mo = [context objectWithID : objectId];
@@ -307,8 +302,6 @@
             
             [result setObject : value forKey : ad.name];
         }
-        
-        if (relationships) (* relationships) = [self fetchAllRelationshipsForObjectId : objectId context : context];
         
     } else {
         
@@ -344,6 +337,8 @@
     for (id key in ed.attributeKeys) {
         
         NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
+        
+        if (ad.isTransient) continue;
         
         [sql appendString : @","];
         
@@ -613,6 +608,8 @@
         
         NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
         
+        if (ad.isTransient) continue;
+        
         [sql appendString : @","];
         
         [sql appendString : ad.name];
@@ -621,6 +618,10 @@
     [sql appendString : @") values (?"];
     
     for (NSString * key in ed.attributeKeys) {
+        
+        NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
+        
+        if (ad.isTransient) continue;
         
         [sql appendString : @",?"];
     }
@@ -645,6 +646,8 @@
     for (NSString * key in ed.attributeKeys) {
         
         NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
+        
+        if (ad.isTransient) continue;
         
         id value = [object valueForKey : ad.name];
         
@@ -687,6 +690,8 @@
         
         NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
         
+        if (ad.isTransient) continue;
+        
         id value = [object valueForKey : ad.name];
         
         [stmt setObject : iparam value : value];
@@ -712,6 +717,8 @@
     for (NSString * key in ed.attributeKeys) {
         
         NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
+        
+        if (ad.isTransient) continue;
         
         if (! first) [sql appendString : @","];
         
@@ -1072,6 +1079,8 @@
     NSArray * attributes = entity.attributesByName.allValues;
         
     for (NSAttributeDescription * ad in attributes) {
+        
+        if (ad.isTransient) continue;
                 
         NSString * columnName = ad.name;
         
