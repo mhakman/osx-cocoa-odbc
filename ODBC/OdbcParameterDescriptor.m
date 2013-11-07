@@ -99,6 +99,15 @@
     return * self.parameterValue.longPtr;
 }
 
+- (void) setNullValue {
+    
+    SQLSMALLINT type = SQL_C_CHAR;
+    
+    SQLULEN size = 0;
+    
+    [self bindIfRequiredType : type size : size];
+}
+
 - (void) setLongValue : (long) value {
     
     SQLSMALLINT type = SQL_C_SBIGINT;
@@ -226,8 +235,12 @@
 }
 
 - (void) setObjectValue : (id) object {
-
-    if ([object isKindOfClass : [NSString class]]) {
+    
+    if (! object) {
+        
+        [self setNullValue];
+    
+    } else if ([object isKindOfClass : [NSString class]]) {
         
         self.stringValue = object;
         
@@ -291,15 +304,24 @@
         
         if (nts) mallocSize ++;
         
-        self->parameterValue.voidPtr = malloc (mallocSize);
+        if (mallocSize > 0) self->parameterValue.voidPtr = malloc (mallocSize);
         
         self->valueType = type;
         
         self->valueSize = size;
         
-        self->strLenOrInd = mallocSize;
+        if (mallocSize <= 0) {
+            
+            self->strLenOrInd = SQL_NULL_DATA;
+            
+        } else if (nts) {
+            
+            self->strLenOrInd = SQL_NTS;
         
-        if (nts) self->strLenOrInd = SQL_NTS;
+        } else {
+        
+            self->strLenOrInd = mallocSize;
+        }
         
         rc = SQLBindParam (self.statement.hstmt,
                            self.parameterNumber,

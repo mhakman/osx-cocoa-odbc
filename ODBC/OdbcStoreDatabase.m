@@ -298,9 +298,11 @@
             
             NSAttributeDescription * ad = [ed.attributesByName objectForKey : key];
             
-            id value = [stmt getObjectByName : ad.name];
+            if (ad.isTransient) continue;
             
-            [result setObject : value forKey : ad.name];
+            id value = [stmt getObjectByName : ad.name];
+                        
+            if (value) [result setObject : value forKey : ad.name];
         }
         
     } else {
@@ -1088,7 +1090,7 @@
         
         NSString * notNull = @"not null";
         
-        if (ad.isOptional) notNull = @"";
+        if (ad.isOptional) notNull = @"null";
         
         if (ad.attributeType == NSStringAttributeType) {
             

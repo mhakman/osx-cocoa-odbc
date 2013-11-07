@@ -280,11 +280,16 @@
         
         for (NSManagedObject * object in array) {
             
-            NSEntityDescription * description = object.entity;
+            NSManagedObjectID * objId = object.objectID;
             
-            unsigned long longId = [self->database objectIdForName : description.name];
+            if (objId.isTemporaryID) {
             
-            NSManagedObjectID * objId = [self newObjectIDForEntity : description referenceObject : @(longId)];
+                NSEntityDescription * description = object.entity;
+            
+                unsigned long longId = [self->database objectIdForName : description.name];
+            
+                objId = [self newObjectIDForEntity : description referenceObject : @(longId)];
+            }
             
             [ids addObject : objId];
         }

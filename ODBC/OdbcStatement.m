@@ -318,6 +318,8 @@
             
             result = [self getString : columnNumber];
             
+            if (self.wasNull) return nil;
+            
             break;
         }
             
@@ -327,6 +329,8 @@
         case SQL_BIGINT: {
             
             long l = [self getLong : columnNumber];
+            
+            if (self.wasNull) return nil;
             
             result = [NSNumber numberWithLong : l];
             
@@ -341,6 +345,8 @@
             
             double d = [self getDouble : columnNumber];
             
+            if (self.wasNull) return nil;
+
             result = [NSNumber numberWithDouble : d];
             
             break;
@@ -350,6 +356,8 @@
             
             result = [self getDate : columnNumber];
             
+            if (self.wasNull) return nil;
+            
             break;
         }
             
@@ -357,12 +365,16 @@
             
             result = [self getTime : columnNumber];
             
+            if (self.wasNull) return nil;
+            
             break;
         }
             
         case SQL_TYPE_TIMESTAMP: {
             
             result = [self getTimestamp : columnNumber];
+            
+            if (self.wasNull) return nil;
             
             break;
         }
