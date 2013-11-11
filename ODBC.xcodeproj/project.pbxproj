@@ -88,6 +88,8 @@
 		6A5EE6351806067E005E5942 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE6341806067E005E5942 /* Book.m */; };
 		6A5EE638180706F0005E5942 /* OdbcAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A5EE639180706F0005E5942 /* OdbcAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EE637180706F0005E5942 /* OdbcAppDelegate.m */; };
+		6A66EB291831392000CDD93E /* OdbcArrayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A66EB271831392000CDD93E /* OdbcArrayController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A66EB2A1831392000CDD93E /* OdbcArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A66EB281831392000CDD93E /* OdbcArrayController.m */; };
 		6A744FAC17F78CD6000793B2 /* Odbc-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */; };
 		6A744FE917F9EC8F000793B2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
 		6A744FF717F9ECC2000793B2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
@@ -200,6 +202,8 @@
 		6A5EE6341806067E005E5942 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcAppDelegate.h; sourceTree = "<group>"; };
 		6A5EE637180706F0005E5942 /* OdbcAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcAppDelegate.m; sourceTree = "<group>"; };
+		6A66EB271831392000CDD93E /* OdbcArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcArrayController.h; sourceTree = "<group>"; };
+		6A66EB281831392000CDD93E /* OdbcArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcArrayController.m; sourceTree = "<group>"; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FB517F867E1000793B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -319,6 +323,8 @@
 				6AF8178B18106475004F9042 /* OdbcPredicate.m */,
 				6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */,
 				6A5EE637180706F0005E5942 /* OdbcAppDelegate.m */,
+				6A66EB271831392000CDD93E /* OdbcArrayController.h */,
+				6A66EB281831392000CDD93E /* OdbcArrayController.m */,
 				6A27E2A217D8FCAF0070E6B7 /* OdbcColumnDescriptor.h */,
 				6A27E2A317D8FCAF0070E6B7 /* OdbcColumnDescriptor.m */,
 				6A27E2A417D8FCAF0070E6B7 /* OdbcConnection.h */,
@@ -482,6 +488,7 @@
 				6A5901DE182158C40090ED57 /* NSArray+ParseKitAdditions.h in Headers */,
 				6A5901DF182158C40090ED57 /* NSMutableSet+ParseKitAdditions.h in Headers */,
 				6A5901E0182158C40090ED57 /* NSString+ParseKitAdditions.h in Headers */,
+				6A66EB291831392000CDD93E /* OdbcArrayController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +772,7 @@
 				6A5901E818215A770090ED57 /* NSArray+ParseKitAdditions.m in Sources */,
 				6A5901E918215A770090ED57 /* NSMutableSet+ParseKitAdditions.m in Sources */,
 				6A5901EA18215A770090ED57 /* NSString+ParseKitAdditions.m in Sources */,
+				6A66EB2A1831392000CDD93E /* OdbcArrayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

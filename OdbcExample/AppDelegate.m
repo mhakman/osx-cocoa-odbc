@@ -88,17 +88,6 @@ NSString * DraggedBooksType   = @"library.books";
     [self.commitChangesButton setEnabled : NO];
 }
 //
-// Return a controller given entity name
-//
-- (NSObjectController *) controllerForEntity : (NSString *) entityName {
-    
-    if ([entityName isEqualToString : @"Author"]) return self.authorsController;
-    
-    if ([entityName isEqualToString : @"Book"]) return self.booksController;
-    
-    return nil;
-}
-//
 // Performs the save action for the application.
 //
 - (IBAction) saveAction : (id) sender {

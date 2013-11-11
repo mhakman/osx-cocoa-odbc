@@ -69,6 +69,20 @@ This property returns ODBC URL. It should be overwriten by subclasses.
 @property (readonly,nonatomic) NSURL * persistentStoreUrl;
 //------------------------------------------------------------------------------
 /**
+This method shall return fetch predicate given entity.
+ 
+This method shall be implemented by an application when application is using
+predicates to fetch data. The default implementation returna nil which means
+that no predicate is used.
+ 
+@param entity the entity to return a predicate for.
+ 
+@return NSPredicate or nil.
+ */
+//------------------------------------------------------------------------------
+- (NSPredicate *) predicateForEntity : (NSEntityDescription *) entity;
+//------------------------------------------------------------------------------
+/**
  @name Properties to bind to
 */
 //------------------------------------------------------------------------------
@@ -166,7 +180,7 @@ This action saves all changes to the database.
 - (IBAction) saveAction : (id) sender;
 //------------------------------------------------------------------------------
 /**
-This action reloads data from the database and reapplies any pending changes.
+This action reloads data from the database.
  
 @param sender the sender of the message - can be nil
 */
@@ -201,15 +215,6 @@ See Apple documentaton of NSApplicationDelegate protocol for the description.
 /**
 @name Other methods
 */
-//------------------------------------------------------------------------------
-/**
-This method returns controller given entity name.
- 
-@param entityName name ot the entity
-@return NSObjectController or its subclass
-*/
-//------------------------------------------------------------------------------
-- (NSObjectController *) controllerForEntity : (NSString *) entityName;
 //------------------------------------------------------------------------------
 /**
 This method returns undo manager for given window.

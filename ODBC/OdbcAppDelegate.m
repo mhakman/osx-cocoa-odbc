@@ -105,14 +105,84 @@ NSString * PersistentStoreClass = @"OdbcStore";
 //
 - (IBAction) reloadAction : (id) sender {
     
-    [self reloadMerge : YES];
+    [self reloadMerge : NO];
 }
 //
 // Reloads data with or without merge
 //
 - (void) reloadMerge : (bool) merge {
+            
+    NSMutableDictionary * oldDict = [self currentObjectsDict];
+    
+    [self commit];
+    
+    [self fetchObjectsIntoContext : self.managedObjectContext];
+    
+    NSManagedObjectContext * newContext = [self createNewContext];
+    
+    NSSet * newSet = [self fetchObjectsIntoContext : newContext];
+    
+    NSMutableSet * delSet = [NSMutableSet new];
+    
+    NSMutableSet * insSet = [NSMutableSet new];
+    
+    NSMutableSet * updSet = [NSMutableSet new];
+    
+    for (NSManagedObject * newObj in newSet) {
+        
+        NSManagedObject * oldObj = [oldDict objectForKey : newObj.objectID];
+        
+        if (oldObj) {
+            
+            [self.managedObjectContext refreshObject : oldObj mergeChanges : merge];
+            
+            [updSet addObject : oldObj];
+            
+            [oldDict removeObjectForKey : oldObj.objectID];
+            
+        } else {
+                        
+            [insSet addObject : newObj];
+        }
+    }
+    
+    for (NSManagedObject * oldObj in oldDict.allValues) {
+        
+        [self.managedObjectContext deleteObject : oldObj];
+        
+        [delSet addObject : oldObj];
+    }
+
+    [self.managedObjectContext processPendingChanges];
+    
+    NSDictionary * userInfo = @{NSDeletedObjectsKey     : delSet,
+                                NSInsertedObjectsKey    : insSet,
+                                NSUpdatedObjectsKey     : updSet,
+                                @"managedObjectContext" : self.managedObjectContext};
+    
+    NSNotification * notif = [NSNotification notificationWithName : NSManagedObjectContextObjectsDidChangeNotification
+                                                           object : self.managedObjectContext
+                                                         userInfo : userInfo];
+    
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    
+    [nc postNotification : notif];
+}
+//
+// Return predicate for given entity
+//
+- (NSPredicate *) predicateForEntity : (NSEntityDescription *) entity {
+    
+    return nil;
+}
+//
+// Fetch and return objects into context
+//
+- (NSSet *) fetchObjectsIntoContext : (NSManagedObjectContext *) moc {
     
     NSError * error = nil;
+ 
+    NSMutableSet * set = [NSMutableSet new];
     
     NSArray * entities = self.managedObjectModel.entities;
     
@@ -120,35 +190,73 @@ NSString * PersistentStoreClass = @"OdbcStore";
         
         NSFetchRequest * fr = [NSFetchRequest fetchRequestWithEntityName : ed.name];
         
-        NSArray * objects = [self.managedObjectContext executeFetchRequest : fr error : &error];
+        NSPredicate * pred = [self predicateForEntity : ed];
         
-        if (! objects) {
+        if (pred) fr.predicate = pred;
+        
+        NSArray * objs = [moc executeFetchRequest : fr error : &error];
+        
+        if (objs == nil) {
             
             [[NSApplication sharedApplication] presentError : error];
             
-            [[NSApplication sharedApplication] terminate : self];
+            return nil;
         }
         
-        NSObjectController * controller = [self controllerForEntity : ed.name];
-        
-        [controller setContent : objects];
+        [set addObjectsFromArray : objs];
     }
     
-    NSSet * objectsSet = self.managedObjectContext.registeredObjects;
-    
-    for (NSManagedObject * object in objectsSet) {
-        
-        [self.managedObjectContext refreshObject : object mergeChanges : merge];
-    }
+    return set;
 }
 //
-// Should return a controller given entity name
+// Return dictionary of current objects
 //
-- (NSObjectController *) controllerForEntity : (NSString *) entityName {
+- (NSMutableDictionary *) currentObjectsDict {
     
-    RAISE_ODBC_EXCEPTION (__PRETTY_FUNCTION__,"Method controllerForEntity should be implemented by the application");
+    NSMutableDictionary * dict = [NSMutableDictionary new];
     
-    return nil;
+    NSSet * set = self.managedObjectContext.registeredObjects;
+    
+    for (NSManagedObject * obj in set) {
+                
+        [dict setObject : obj forKey : obj.objectID];
+    }
+    
+    return dict;
+}
+//
+// Commits current transaction
+//
+- (void) commit {
+    
+    NSSet * delSet = [NSSet new];
+    
+    NSSet * insSet = [NSSet new];
+    
+    NSSet * updSet = [NSSet new];
+    
+    NSSet * locSet = [NSSet new];
+    
+    NSSaveChangesRequest * req = [[NSSaveChangesRequest alloc] initWithInsertedObjects : insSet
+                                                                        updatedObjects : updSet
+                                                                        deletedObjects : delSet
+                                                                         lockedObjects : locSet];
+    
+    NSPersistentStore * store = self.managedObjectContext.persistentStoreCoordinator.persistentStores[0];
+    
+    if ([store isKindOfClass : [NSIncrementalStore class]]) {
+        
+        NSError * error = nil;
+        
+        [((NSIncrementalStore *)store) executeRequest : req withContext : self.managedObjectContext error : &error];
+        
+        if (error) {
+            
+            [[NSApplication sharedApplication] presentError : error];
+                        
+            return;
+        }
+    }
 }
 //
 //------------------------------------------------------------------------------
@@ -161,19 +269,28 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     if (self->managedObjectContext) return self->managedObjectContext;
     
+    self->managedObjectContext = [self createNewContext];
+        
+    return self->managedObjectContext;
+}
+//
+// Create and return new context
+//
+- (NSManagedObjectContext *) createNewContext {
+ 
     NSPersistentStoreCoordinator * coordinator = [self persistentStoreCoordinator];
     
-    self->managedObjectContext = [NSManagedObjectContext new];
+    NSManagedObjectContext * moc = [NSManagedObjectContext new];
     
-    [self->managedObjectContext setPersistentStoreCoordinator : coordinator];
+    [moc setPersistentStoreCoordinator : coordinator];
     
-    [self->managedObjectContext setStalenessInterval : 0.0];
+    [moc setStalenessInterval : 0.0];
     
     NSMergePolicy * policy = [[NSMergePolicy alloc] initWithMergeType : NSMergeByPropertyObjectTrumpMergePolicyType];
     
-    self->managedObjectContext.mergePolicy = policy;
+    moc.mergePolicy = policy;
     
-    return self->managedObjectContext;
+    return moc;
 }
 //
 // Returns the persistent store coordinator for the application.
@@ -390,8 +507,8 @@ NSString * PersistentStoreClass = @"OdbcStore";
                 
                 NSString * desc = @"The database was modified during your work. "
                                    "Your transaction was rolled back in order to keep database integrity. "
-                                   "Your data will be reloaded and your changes will be reaplied. "
-                                   "Press OK button now and retry your last command.";
+                                   "Your data will be reloaded from database. "
+                                   "Press OK button now to continue.";
                 
                 NSDictionary * userInfo = [NSDictionary dictionaryWithObject:desc forKey:NSLocalizedDescriptionKey];
                 
@@ -407,7 +524,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
         
         [[NSApplication sharedApplication] presentError : error];
         
-        [[NSApplication sharedApplication] terminate : self];
+        //if (! self.terminating) [[NSApplication sharedApplication] terminate : self];
         
         return;
     }

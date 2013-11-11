@@ -543,7 +543,16 @@
     
     OdbcStatement * stmt = [self insertRelationshipStmt : relationship forObject : object];
     
-    NSSet * dstObjects = [object mutableSetValueForKey : relationship.name];
+    NSSet * dstObjects;
+    
+    if (relationship.isToMany) {
+    
+        dstObjects = [object mutableSetValueForKey : relationship.name];
+        
+    } else {
+        
+        dstObjects = [NSSet setWithObject : [object valueForKey : relationship.name]];
+    }
 
     for (NSManagedObject * dstObject in dstObjects) {
         
