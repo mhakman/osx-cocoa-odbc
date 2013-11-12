@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <Odbc/Odbc.h>
+
 @class AppDelegate;
 
 @class BooksController;
 
-@interface BookAuthorsController : NSArrayController
+@interface BookAuthorsController : OdbcArrayController
 
 @property IBOutlet AppDelegate * appDelegate;
 
