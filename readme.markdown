@@ -296,10 +296,10 @@ In this section we will create a data model for your application.
 
 Select your application in the Project Navigator, right or control click on it. 
 Select 'New File...' on the popup menu. Select 'Core Data'/'Data Model' on the
-dialog. Press 'Next' button. On the 'Save As' dialog specify name of the model. 
-__Currently the name must be the same as your application__. Press 'Create' button.
+dialog. Press 'Next' button. On the 'Save As' dialog specify name of the model.
+To keep things easy specify the same name as your application. Press 'Create' button.
 
-Build and run your application. It shouldn't and problems. Quit the application.
+Build and run your application. It shouldn't be any problems. Quit the application.
 
 Now your are set up and can continue to build your application as any other Core
 Data application. However if you don't know Core Data very well then you may follow
