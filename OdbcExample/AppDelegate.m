@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  Library1
+//  OdbcExample
 //
 //  Created by Mikael Hakman on 2013-10-04.
 //  Copyright (c) 2013 Mikael Hakman. All rights reserved.

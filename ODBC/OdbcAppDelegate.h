@@ -69,6 +69,18 @@ This property returns ODBC URL. It should be overwriten by subclasses.
 @property (readonly,nonatomic) NSURL * persistentStoreUrl;
 //------------------------------------------------------------------------------
 /**
+Returns model file name.
+ 
+This property returns model file name without extension. Implement it if your
+model has other name than your application. Default implementation return name
+of your application.
+ 
+@return NSString containing model file name without extension.
+*/
+//------------------------------------------------------------------------------
+@property (readonly,nonatomic) NSString * modelFileName;
+//------------------------------------------------------------------------------
+/**
 This method shall return fetch predicate given entity.
  
 This method shall be implemented by an application when application is using

@@ -35,6 +35,7 @@ NSString * PersistentStoreClass = @"OdbcStore";
 
 @synthesize productName;
 @synthesize applicationFilesDirectory;
+@synthesize modelFileName;
 //
 // Initialize object
 //
@@ -349,9 +350,9 @@ NSString * PersistentStoreClass = @"OdbcStore";
     //
     // Using bundle info instead of a constant as it was in XCode generated code
     //
-    NSString * modelFileName = [self productName];
+    NSString * fileName = self.modelFileName;
 	
-    NSURL * modelURL = [[NSBundle mainBundle] URLForResource : modelFileName withExtension : @"momd"];
+    NSURL * modelURL = [[NSBundle mainBundle] URLForResource : fileName withExtension : @"momd"];
     
     self->managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL : modelURL];
     
@@ -371,6 +372,13 @@ NSString * PersistentStoreClass = @"OdbcStore";
     }
     
     return self->managedObjectModel;
+}
+//
+// Returns model file name
+//
+- (NSString *) modelFileName {
+    
+    return [self productName];
 }
 //
 // Returns the directory the application uses to store the Core Data store file.
@@ -501,31 +509,26 @@ NSString * PersistentStoreClass = @"OdbcStore";
     
     if (! [[self managedObjectContext] save : &error]) {
         
-        if (! self.terminating) {
+        if ([error.domain isEqualToString : @"Transaction rolled back"]) {
             
-            if ([error.domain isEqualToString : @"Transaction rolled back"]) {
-                
-                NSString * desc = @"The database was modified during your work. "
-                                   "Your transaction was rolled back in order to keep database integrity. "
-                                   "Your data will be reloaded from database. "
-                                   "Press OK button now to continue.";
-                
-                NSDictionary * userInfo = [NSDictionary dictionaryWithObject:desc forKey:NSLocalizedDescriptionKey];
-                
-                NSError * err = [NSError errorWithDomain : @"Transaction rolled back" code : 0 userInfo : userInfo];
-                
-                [[NSApplication sharedApplication] presentError : err];
-                
-                [self reloadMerge : NO];
-
-                return;
-            }
+            NSString * desc = @"The database was modified during your work. "
+            "Your transaction was rolled back in order to keep database integrity. "
+            "Your data will be reloaded from database. "
+            "Press OK button now to continue.";
+            
+            NSDictionary * userInfo = [NSDictionary dictionaryWithObject:desc forKey:NSLocalizedDescriptionKey];
+            
+            NSError * err = [NSError errorWithDomain : @"Transaction rolled back" code : 0 userInfo : userInfo];
+            
+            [[NSApplication sharedApplication] presentError : err];
+            
+            if (! self.terminating) [self reloadMerge : NO];
+            
+            return;
         }
         
         [[NSApplication sharedApplication] presentError : error];
-        
-        //if (! self.terminating) [[NSApplication sharedApplication] terminate : self];
-        
+                
         return;
     }
     
