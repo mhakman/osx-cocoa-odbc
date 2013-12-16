@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,7 +16,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6A744FCE17F9E3A5000793B2"
+               BlueprintIdentifier = "6A744FE517F9EC8F000793B2"
                BuildableName = "OdbcTests.octest"
                BlueprintName = "OdbcTests"
                ReferencedContainer = "container:Odbc.xcodeproj">

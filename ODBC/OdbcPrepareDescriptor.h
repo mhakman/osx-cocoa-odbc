@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <sql.h>
+#import <iODBC/sql.h>
 
 @class OdbcStatement;
 @class OdbcParameterDescriptor;

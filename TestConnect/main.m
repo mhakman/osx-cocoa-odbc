@@ -8,7 +8,7 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
-#import <sql.h>
+#import <iODBC/sql.h>
 
 #import "OdbcException.h"
 
@@ -97,8 +97,15 @@ int main (int argc, const char * argv []) {
         
         const char * desc = description.UTF8String;
         
-        fprintf (stderr,"%s\n",desc);
+        fprintf (stderr,"ERROR: %s\n",desc);
         
+        exit (1);
+        
+    } @catch (...) {
+        
+        fprintf (stderr,"Unknown Exception\n");
+        
+        exit (1);
     }
 
     return 0;

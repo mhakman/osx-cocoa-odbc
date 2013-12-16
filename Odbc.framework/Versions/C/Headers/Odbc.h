@@ -20,6 +20,7 @@
 #import "OdbcAppDelegate.h"
 #import "OdbcPredicate.h"
 #import "OdbcArrayController.h"
+#import "OdbcDocument.h"
 
 
 

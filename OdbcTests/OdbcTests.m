@@ -22,7 +22,7 @@ NSString * Password;
 
 + (void) initialize {
     
-    DataSourceName = @"sqltest";
+    DataSourceName = @"mimtest";
     
     Username = @"testuser";
     

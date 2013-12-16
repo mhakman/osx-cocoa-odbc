@@ -10,9 +10,9 @@
 #import "OdbcStatement.h"
 #import "OdbcException.h"
 
-#import <sql.h>
-#import <sqlext.h>
-#import <sqltypes.h>
+#import <iODBC/sql.h>
+#import <iODBC/sqlext.h>
+#import <iODBC/sqltypes.h>
 
 @interface OdbcParameterDescriptor ()
 
