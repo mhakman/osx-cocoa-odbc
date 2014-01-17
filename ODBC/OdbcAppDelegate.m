@@ -7,8 +7,7 @@
 //
 
 #import "OdbcAppDelegate.h"
-
-#import <Odbc/Odbc.h>
+#import "Odbc.h"
 
 NSString * PersistentStoreType  = @"OdbcStore";
 NSString * PersistentStoreClass = @"OdbcStore";
@@ -36,6 +35,8 @@ NSString * PersistentStoreClass = @"OdbcStore";
 @synthesize productName;
 @synthesize applicationFilesDirectory;
 @synthesize modelFileName;
+
+@synthesize loginUrl;
 //
 // Initialize object
 //
@@ -50,10 +51,38 @@ NSString * PersistentStoreClass = @"OdbcStore";
     return self;
 }
 //
-// Nothing to do right now
+// Set up mainWindow correctly after login dialog
 //
 - (void) applicationDidFinishLaunching : (NSNotification *) aNotification {
+
+    NSApplication * app = NSApp;
     
+    [app activateIgnoringOtherApps : YES];
+/*
+    if (self->loginController) {
+        
+        if (! [app.windows[0] isVisible]) {
+        
+            [app.windows[0] miniaturize : self];
+        
+            [app.windows[0] deminiaturize : self];
+        }
+        
+        NSLog (@"hidden %d",[app isHidden]);
+        
+        [app unhide : self];
+        
+        [app.windows[0] makeFirstResponder : nil];
+        
+        [app.windows[0] makeKeyAndOrderFront : self];
+    
+        [app.windows[0] makeMainWindow];
+        
+        NSRunningApplication * ra = [NSRunningApplication currentApplication];
+        
+        [ra activateWithOptions : NSApplicationActivateAllWindows | NSApplicationActivateIgnoringOtherApps];
+    }
+*/
 }
 //
 // Returns persistent store type
@@ -87,6 +116,98 @@ NSString * PersistentStoreClass = @"OdbcStore";
     self->persistentStoreUrl = [self.applicationFilesDirectory URLByAppendingPathComponent : storeFileName];
     
     return self->persistentStoreUrl;
+}
+//
+// Allows user to login and returns persistenStoreUrl
+//
+- (NSURL *) loginUrl {
+    
+    NSString * loginServerPath = [self loginServerPath];
+
+    FILE * loginPipe = popen (loginServerPath.UTF8String,"r");
+    
+    if (! loginPipe) {
+        
+        NSLog (@"Cannot open LoginServer");
+        
+        exit (1);
+    }
+    
+    NSURL * url = [self processLoginServerOutputPipe : loginPipe];
+    
+    pclose (loginPipe);
+    
+    return url;
+}
+//
+// Process LoginServer output and return loginUrl or exit
+//
+- (NSURL *) processLoginServerOutputPipe : (FILE *) loginPipe {
+    
+    char line [256];
+    
+    NSString * dsn;
+    NSString * username;
+    NSString * password;
+    
+    for (int i = 0; i < 4; ++i) {
+        
+        char * ptr = fgets (line,sizeof(line),loginPipe);
+        
+        if (ptr == 0) {
+            
+            NSLog (@"Cannot communicate with LoginServer");
+            
+            exit (1);
+        }
+        
+        if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
+        
+        switch (i) {
+                
+            case 0: {
+                
+                int rc = strcasecmp ("quit:",line);
+                
+                if (rc == 0) {
+                    
+                    exit (1);
+                }
+                
+                rc = strcasecmp ("login:",line);
+                
+                if (rc != 0) {
+                    
+                    NSLog (@"Invalid response from LoginServer");
+                    
+                    exit (1);
+                }
+            }
+                
+            break;
+                
+            case 1: dsn      = [NSString stringWithUTF8String : line]; break;
+            case 2: username = [NSString stringWithUTF8String : line]; break;
+            case 3: password = [NSString stringWithUTF8String : line]; break;
+        }
+    }
+    
+    NSString * urlStr = [NSString stringWithFormat:@"odbc:///%@?username=%@&password=%@",dsn,username,password];
+    
+    NSURL * url = [NSURL URLWithString : urlStr];
+    
+    return url;
+}
+//
+// Return path to LoginServer excutable
+//
+- (NSString *) loginServerPath {
+    
+    NSBundle * bundle = [NSBundle bundleForClass : [OdbcAppDelegate class]];
+    
+    NSString * loginPath = [NSString stringWithFormat : @"%@/LoginServer.app/Contents/MacOS/LoginServer",bundle.bundlePath];
+    
+    return loginPath;
 }
 //
 // Returns product name
@@ -258,6 +379,13 @@ NSString * PersistentStoreClass = @"OdbcStore";
             return;
         }
     }
+}
+//
+// Should save data at exit?
+//
+- (bool) shouldSaveDataOnExit {
+    
+    return YES;
 }
 //
 //------------------------------------------------------------------------------
@@ -540,14 +668,23 @@ NSString * PersistentStoreClass = @"OdbcStore";
 //
 // Called when application is about to terminate
 //
-- (NSApplicationTerminateReply) applicationShouldTerminate : (NSApplication *) sender {
+- (NSApplicationTerminateReply) applicationShouldTerminate : (NSApplication *) theApp {
+    
+    if (terminating) return NSTerminateNow;
     
     self.terminating = YES;
     //
-    // Save changes in the application's managed object context before the application terminates.
+    // Should we save data on exit ?
     //
-    [self saveReload : NO];
-    
+    if ([self shouldSaveDataOnExit]) {
+        //
+        // Save changes in the application's managed object context before the application terminates.
+        //
+        [self saveReload : NO];
+    }
+    //
+    // Terminate application
+    //
     return NSTerminateNow;
 }
 

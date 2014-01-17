@@ -12,7 +12,7 @@ extern NSString * PersistentStoreType;
 extern NSString * PersistentStoreClass;
 //------------------------------------------------------------------------------
 /**
-The OdbcAppDelegate class is inteded to use instead of XCode generated AppDelegate
+The OdbcAppDelegate class is inteded to be used instead of XCode generated AppDelegate
 code when creating a Core Data project.
 
 When creating a new application, uncheck 'Use Core Data' check box. Then let
@@ -29,22 +29,30 @@ your AppDelegate inherit from OdbcAppDelegate like this:
  
  @end
 </code></pre>
-In your now empty AppDelegate.m implement following method:
+ 
+In your now empty AppDelegate.m implement following methods:
 
 <pre><code>
 
- // AppDelegate.m
+ #import "AppDelegate.h"
+ 
+ @implementation AppDelegate
+ 
+ - (void) applicationDidFinishLaunching:(NSNotification *) notification {
+ 
+    [super applicationDidFinishLaunching : aNotification];
+ }
  
  - (NSURL *) persistentStoreUrl {
-
-    return [NSURL URLWithString : @"odbc:&#47;//testdb?username=root&password=secret"];
+ 
+    return self.loginUrl;
  }
  
 </code></pre>
-This method will be called by OdncAppDelegate to get ODBC database URL. The URL
-shown above is only an example. You should replace 'testdb' by your own ODBC
-data source name (DSN). You should replace 'root' with your username and you
-should replace 'secrect' by your own password.
+The method 'persistentStoreUrl' will be called by OdbcAppDelegate to get ODBC database URL. 
+The method loginUrl is implemented by this class. It allows the user to fill in ODBC data
+source name (DSN), username, and password using a dialog box. Then it verifies that
+the information is correct by connecting to and disconnecting from the database.
 */
 //------------------------------------------------------------------------------
 @interface OdbcAppDelegate : NSObject <NSApplicationDelegate>
@@ -125,6 +133,18 @@ using managedObjectContext as Model Key Path. This is shown below:
 @name Other properties
 */
 //------------------------------------------------------------------------------
+/** This allows the user to login and returns Odbc Url
+
+@return NSURL
+
+This method displays a login dialog and lets the user to login. If the login is
+ok then the method returns login information encoded as an NSURL. If the login
+is not ok then the method displays an error box and waits for new login. The
+user may terminate application using "Quit" button.
+*/
+//------------------------------------------------------------------------------
+@property (readonly,nonatomic) NSURL * loginUrl;
+//------------------------------------------------------------------------------
 /**
 This returns persistent store type as NSString.
  
@@ -204,9 +224,11 @@ This action reloads data from the database.
 */
 //------------------------------------------------------------------------------
 /**
-Currently this method does nothing.
+If you implement this method then you should call the superclass 
+applicationDidFinishLaunching in the beginning of your method. Implementation 
+provided here needs to do some cleanup if the method loginUrl was called.
  
-See Apple documentaton of NSApplicationDelegate protocol for the description.
+See also Apple documentaton of NSApplicationDelegate protocol for the description.
  
 @param notification a notification
 */
@@ -214,15 +236,24 @@ See Apple documentaton of NSApplicationDelegate protocol for the description.
 - (void) applicationDidFinishLaunching : (NSNotification *) notification;
 //------------------------------------------------------------------------------
 /**
-This method saves data by calling saveAction and then terminates the application.
+This method saves data by calling saveAction and then it terminates the application.
  
-See Apple documentaton of NSApplicationDelegate protocol for the description.
+See Apple also documentaton of NSApplicationDelegate protocol for the description.
  
 @param sender NSApplication
 @return NSApplicationTerminateReply 
 */
 //------------------------------------------------------------------------------
 - (NSApplicationTerminateReply) applicationShouldTerminate : (NSApplication *) sender;
+//------------------------------------------------------------------------------
+/**
+if you dont want do save data in the database on exit, implement this method and
+return NO
+
+@return bool
+*/
+//------------------------------------------------------------------------------
+- (bool) shouldSaveDataOnExit;
 //------------------------------------------------------------------------------
 /**
 @name Other methods

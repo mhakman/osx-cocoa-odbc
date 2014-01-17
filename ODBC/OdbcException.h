@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import <iODBC/sql.h>
-#import <iODBC/sqlext.h>
-#import <iODBC/sqltypes.h>
-
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #define RAISE_ODBC_HANDLE(function,handleType,handle) {                         \
@@ -37,11 +33,11 @@
 
 #define CHECK_ERROR(function,rc,handleType,handle) {                    \
                                                                         \
-    if (rc == SQL_INVALID_HANDLE) {                                     \
+    if (rc == -2) {                                                     \
                                                                         \
         RAISE_INVALID_HANDLE (function);                                \
                                                                         \
-    } else if (rc != SQL_SUCCESS) {                                     \
+    } else if (rc != 0) {                                               \
                                                                         \
         RAISE_ODBC_HANDLE (function,handleType,handle);                 \
     }                                                                   \
@@ -49,7 +45,7 @@
 
 void raiseInvalidHandle (const char * method, const char * function);
 
-void raiseOdbcHandle (const char * method, const char * function, SQLSMALLINT handleType, SQLHANDLE handle);
+void raiseOdbcHandle (const char * method, const char * function, short handleType, void * handle);
 
 void raiseOdbcException (const char * method, const char * function, const char * message);
 
@@ -64,8 +60,8 @@ void raiseOdbcExceptionWithSqlState (const char * method, const char * function,
 
 + (void) raiseOdbcHandle : (const char *) method
                 function : (const char *) function
-              handleType : (SQLSMALLINT) handleType
-                  handle : (SQLHANDLE) handle;
+              handleType : (short) handleType
+                  handle : (void *) handle;
 
 + (void) raiseOdbcException : (const char *) method
                    function : (const char *) function

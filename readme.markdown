@@ -3,7 +3,7 @@
 Odbc framework is Cocoa framework providing access to ODBC databases. It works on
 top of iODBC framework which is a low level C-oriented framework of ODBC routines
 that follow ODBC specification. The framework includes also an experimental Cocoa
-Core Data Persistent Store for Odbc. It hass been tested with IBM DB2, Mimer SQL, MySQL,
+Core Data Persistent Store for Odbc. It has been tested with IBM DB2, Mimer SQL, MySQL,
 Oracle, PostgreSQL and SQLite.
 
 ODBC framework consists of a number of classes. Currently only OdbcConnection,
@@ -21,17 +21,9 @@ The documentation consists of:
 * Class hierarchy page
 * Invidual pages for each class
 
-This repository contains XCode project with 5 targets:
-
-* Odbc - builds the framework itself
-* OdbcDocumentation - generates the documentation
-* OdbcExample - builds Cocoa Core Data application using Odbc
-* OdbcTests - performs unit tests of the framework
-* TestConnect - tests connection to an ODBC data source
-
 #Example console application#
 
-The following is a simple Cocoa console application that uses Odbc framework.
+The following is a simple Cocoa console (non-GUI) application that uses Odbc framework.
 
     // main.m
     
@@ -74,43 +66,86 @@ to the console. When the loop terminates we close the statement.
 
 #Prerequisites#
 
-OS X version 10.7 or latter is requred. A compatible XCode vesion is also required. 
-The XCode shall support ARC (automatic reference counting).
+OS X version 10.9.1 or latter is requred. XCode vesion 5.0.2 or latter is also required.
+Futhermore, you need iODBC framework version 3.52 or latter. You also need a database
+manager running on your workstation or on a network server. And of course you need the
+software described here (Odbc framework).
 
-First and foremost you need XCode installed on your Mac. If you don't have it go
-to AppStore download and install it. It's free of charge. Test your installation
-by writting and running a small application.
+As of this writting, Mac OS X version 10.9.1 is available from Apple AppStore
+without charge. Before updating you should check/repair your hard drive for errors.
+You can do this by booting your Mac in rescue mode.
 
-Next you need a database manager, either standalone on your Mac, or on accessible
-network server. If you don't have you need to download and install it. See Notes
+Then you need XCode version 5.0.2 or latter installed on your Mac. If you don't have it
+go to Apple AppStore, download and install it. It's free of charge. Test your 
+installation by writting and running a small application.
+
+Next you need iODBC framework version 3.52 or latter. Download it from http://www.iodbc.org
+Download the Mac OS X dmg-file and install it on your Mac. Do not use the source
+distribution because it makes it easy to install files in wrong location.
+
+Furthermore you need a database manager, either standalone on your Mac, or on accessible
+network server. If you don't have it, you need to download and install it. See Notes
 at the end of this document for notes about various database managers that Odbc framework
 has been tested with.
 
 Our developer team uses primarily Mimer SQL and MySQL. Mimer SQL is first-class, 
 fully-fledged, commercial grade relational database management system that is free
-of charge for development purposes. More direct reason for selecting Mimer SQL
+of charge for development purposes. A more direct reason for selecting Mimer SQL
 is its concurrency control. Mimer SQL uses optimistic concurrency control, which
-means that there is no risk for 2 or more applications to lock out each other.
+means that there is no risk for two or more applications to lock out each other.
 Database managers that use locking concurrency control may result in one application 
-waiting for another.
+waiting for another. Mimer SQL can be downloaded from http://developer.mimer.com
+On the same site there is an article "Using Mimer SQL with iODBC on Mac OS X". 
+You can find it under "How to" heading on the left. It describes how to install
+and use Mimer SQL with iODBC on Mac OS X.
 
-Next comes iODBC framework (Odbc framework builds upon iODBC framework). If you
-don't have it go to iOdbc site, download and install it. Among other things it will
-install 'iOdbc Administrator' application. You use it in a 2-step process. First you register
-your ODBC driver - this is done under 'ODBC Driver' tab. Then you register your 
-database under either 'User DSN' or 'System DSN' tab.
+The iODBC framework mensioned above installs an application called "iODBC Administrator".
+Run iODBC Administrator and verify that your database ODBC driver is registered under
+"ODBC Drivers" tab. If not then register your database ODBC driver. Using "System DSN" tab
+register a DSN (Data Source Name) that you want to use. It will often be the
+database or server that you installed/started when you installed your database.
 
-Test overall installation, perhaps by running the application above.
+Now install this software either by using Git clone command or downloading zip-file.
+If you downloaded zip-file then unpack it into a directory. Both ways result in Xcode
+project directory.
 
-#Cocoa Core Data example#
+#Building the software#
 
-The example uses the following Core Data model:
+This repository contains XCode project with 6 targets:
 
+* Odbc - builds the framework itself
+* LoginServer - builds the LoginServer
+* TestConnect - tests connection to an ODBC data source
+* OdbcExample - builds Cocoa Core Data application using Odbc
+* OdbcDocumentation - generates the documentation
+* OdbcTests - performs unit tests of the framework
+
+If you are going to build some targets, build them in the above order. However you
+don't need to build anything if you only will use the framework and documentation.
+Simply copy file 'Odbc.framework' from project directory to /System/Library/Frameworks.
+Use Finder, first to delete any old Odbc.framework versions, and then Copy/Paste the new
+version. Documentation is included in 'html' directory in the project directory.
+
+You can use this project to build and run Odbc framework software.
+If you want to build then build at least "Odbc", "LoginServer", and "OdbcExample".
+Run "Odbc Example". If everything works ok then OdbcExample shows a login window:
+<center>
+<img src="docs/Images/LoginWindow.png" alt="LoginWindow.png">
+</center>
+Enter your DSN, username, and password. If these are correct then the folowing 
+window is shown:
+<center>
+<img src="docs/Images/OdbcExampleApplication.png" alt="OdbcExampleApplication.png">
+</center>
+#Description Cocoa Core Data example#
+
+The example shown above uses the following Core Data model:
+<center>
 <img src="docs/Images/ExampleCoreDataModelGraph.png" alt="ExampleCoreDataModelGraph.png">
-
-The model consists of 2 entities and 2 relationships. Entity Book has attributes
+</center>
+The model consists of two entities and two relationships. Entity Book has attributes
 'price' and 'title'. Entity Author has attributes 'firstName' and 'lastName'.
-The double-headed arrow between the entities represents the 2 relationships. One
+The double-headed arrow between the entities represents the two relationships. One
 relationship from entity Book to entity Author is called 'bookAuthors' (name not
 shown in picture above) and the second relationship from entity Author to entity
 Book is called 'authorBooks' (name not shown). Both are one-to-many relationsips. 
@@ -119,16 +154,16 @@ may have written a number of books.
 
 The nice picture above was generated by XCode Core Data model editor based on the
 following information entered by application developer:
-
+<center>
 <img src="docs/Images/ExampleCoreDataModelAuthor.png" alt="ExampleCoreDataModelAuthor.png">
 
 <img src="docs/Images/ExampleCoreDataModelBook.png" alt="ExampleCoreDataModelBook.png">
-
+</center>
 When the example application is run for the first time against a particular ODBC data
 source it will generate the following schema in the database:
-
+<center>
 <img src="docs/Images/ExampleCoreDataOdbcSchema.png" alt="ExampleCoreDataModelOdbcSchema.png">
-
+</center>
 There are 4 tables in the schema above. Table 'CoreDataEntity' is needed is every 
 ODBC Core Data application. It keeps track of primary keys used in the other tables. 
 For each Core Data entity a table is generated containing column 'id' as primary key. 
@@ -139,15 +174,16 @@ in table 'bookAuthors' with columns 'Book' and 'Author'. This table has also for
 keys constraints to both 'Autor' and 'Book' tables.
 
 The name of ODBC data source, username, and password to use are specified by an URL.
+This URL may be generated by using method 'loginUrl' which displays a login dialog
+and verifies the infomation by connecting to and disconnecting from the database.
+
 You find the following method in 'AppDelegate' class:
 
     - (NSURL *) persistentStoreUrl {
     
-        return [NSURL URLWithString : @"odbc:///testdb?username=sysadm&password=secret"];
+        return self.loginUrl;
     }
- 
-This specifies that ODBC data source 'testdb', username 'sysadm' and password 'secret'
-should be used. __You should replace them by your own values.__
+
 A lot of code in 'AppDelegate' has been generated by XCode when
 you specify 'Core Data' for a new project. This code has been included in class
 OdbcAppDelegate so that you only need to inherit your AppDelegate from that.
@@ -155,9 +191,9 @@ The other classes in the application has been written by me in order to control
 the UI (mostly drag and drop). Most of work has been done in XCode Interface Builder.
 
 Example application displays the following UI to the user:
-
+<center>
 <img src="docs/Images/OdbcExampleApplication.png" alt="OdbcExampleApplication.png">
-
+</center>
 Table 'Librart Books' displays books in the library. You add/remove books by coresponding
 +/- buttons under the table. Table 'Library Authors' displays authors in the library.
 You add/remove authors by corresponding +/- buttons under the table. Table 'Book Authors'
@@ -169,22 +205,22 @@ time against a particular data source the tables will be empty.
 
 #Unit tests#
 
-Unit tests expect data source 'testdb", username 'root' and no password. You can
-change this in method connect in OdbcTests class. Change the line reading:
+When run the unit tests it asks (on the console) for data source name, username, and password.
+If the information is invalid then an error message is shown and no tests are performed.
 
-    [self->connection connect : @"testdb" user : @"sysadem" password : @"secret";
-        
-The tests will create table named 'testtab' in the data source. This table will
-be removed after the tests are done.
+The tests will create tables named 'BOOK', 'AUTHOR', 'BOOKAUTHORS' 'COREDATAENTITY',
+and 'TESTTAB' in the data source. The tables should be removed after the tests. 
+In the database you should create a special user for running the tests.
 
 # Tasks to be performed #
 
-In order to build, test and run the software you can follow the list below:
+In order to build, test and run this software you can follow the list below:
 
-1. Download and install XCode from Apple AppStore. It is free of charge.
-2. Download and install iOdbc framework from http://www.iodbc.org . It is free of charge.
-3. Dowload and install Git from http://git-scm.com/ . It is free of charge.
-4. Clone this repository into an empty directory. This will result in an XCode project directory.
+1. Upgrade Mac OS X to at least version 10.9.1 using AppStore. It is free of charge.
+1. Upgrade or install XCode at least version 5.0.2 using AppStore. It is free of charge.
+2. Download and install iODBC framework at least version 3.52 from http://www.iodbc.org. It is free of charge.
+3. If you want to use Git then dowload and install it from http://git-scm.com. It is free of charge.
+4. Clone (using Git) or unpack (not using Git) this repository into an empty directory. This will result in an XCode project directory. It is free of charge.
 5. Now you should be able to open the project in XCode and build the targets.
 6. Dowload a database manager with ODBC driver and client tools.
 7. Use client tools to create a database.
@@ -226,7 +262,7 @@ Uncheck 'Copy items to destination...' checkbox. You find
 the files in either your project directory or in '/System/Library/frameworks/ 
 depending where you copied them.
 
-Select 'Frameworks' in your project Project Navigator. Add file 'CoreData.framework'
+Select 'Frameworks' in your Project Navigator. Add file 'CoreData.framework'
 from /System/Library/Frameworks. Uncheck 'Copy items to destination...'.
 
 If you copied Odbc.framework to your project directory then
@@ -235,7 +271,7 @@ you need to modify your project settings. If you copied the framework to
 project in Project Navigator. You should see the Project Editor now. Select your
 project in Project Editor. Select 'Build Settings' tab. Find 'Run Search Path' in
 the build settings area. Select 'Run Search Path", click on the settings row and
-enter $(PROJECT_DIR).
+enter $(PROJECT_DIR). Press Enter.
 
 Build and run your application. There shouldn't be any problems. Quit your application.
 
@@ -261,18 +297,26 @@ Your AppDelegate.h should now look like the following:
 
     @end
 
-Modify your AppDelegate.m. Add the following method:
+Modify your AppDelegate.m. Change the 'applicationDidFinishLaunching' method:
+
+    - (void) applicationDidFinishLaunching : (NSNotification *) aNotification {
+    
+        [super applicationDidFinishLaunching : aNotification];
+    }
+
+Add the following method:
 
     - (NSURL *) persistentStoreUrl {
     
-        return [NSURL URLWithString : @"odbc:///testdb?username=sysadm&password=secret"];
+        return self.loginUrl;
     }
     
-In the above the string 'testdb' is name of an ODBC data source to use. You should
-replace it with your own data source name (unless you have data source 'testdb'.
-The string 'username=sysadm' specifies database username. Replace 'root' by your username.
-The string 'password=secret' specifies password to use. Replace it with your
-password. Your AppDelegate.m should now look like the followig:
+The method 'loginUrl' displays login dialog box. It lets the user to specify data
+source name, username, and password. Then it verifies the information by trying to
+connect to and disconnect from the database. If everything goes ok then it returns
+the required url.
+
+Your AppDelegate.m should now look like the followig:
 
     #import "AppDelegate.h"
 
@@ -280,17 +324,21 @@ password. Your AppDelegate.m should now look like the followig:
 
     - (void) applicationDidFinishLaunching:(NSNotification *) notification {
     
-        // Insert code here to initialize your application
+        [super applicationDidFinishLaunching : notification];
     }
 
     - (NSURL *) persistentStoreUrl {
     
-        return [NSURL URLWithString : @"odbc:///testdb?username=sysadm&password=secret"];
+        return self.loginUrl;
     }
 
     @end
 
 Build and run your application. There shouldn't be any problems. Quit the application.
+The login dialog box will not be shown because it is not requred yet.
+
+The above is all the Objective-C code we need to write. Rest of the work will be
+done using XCode Model Editor and Xcode Interface Builder.
  
 ### <a id="Creating new data model"></a> Creating new data model
 
@@ -306,64 +354,72 @@ Build and run your application. It shouldn't be any problems. Quit the applicati
 Now your are set up and can continue to build your application as any other Core
 Data application. However if you don't know Core Data very well then you may follow
 the guide below. We will create an application that does something real. The application
-will display a list of authors from the data base and let the user add, modify, 
+will display a list of authors from the database and let the user add, modify,
 and delete authors.
 
 Select your model file in the Project Navigator. You should see Model Editor now.
-Press 'Add Entity' button. Specifiy entity name 'Author'. Add attribute 'firstName' 
-of type string, non optional. Add attribute 'lastName' of type String, non aptional.
+Press 'Add Entity' button. Specifiy entity name 'Author' in Data Model Inspector.
+Press Enter.
+Add attribute 'firstName' of type string, non optional. Add attribute 'lastName' 
+of type String, non aptional.
 
-Now we have a simple data model with entity 'Author' with 2 attributes 'firstName' 
+Now we have a simple data model with entity 'Author' with two attributes 'firstName'
 and 'lastName'. In model editor this looks like the following:
-
+<center>
 <img src="docs/Images/OwnCoreDataModelAuthor.png" alt="OwnCoreDataModelAuthor.png">
-
+</center>
 Build and run your application. There shouldn't be any problems. Quit the application.
 
 ### <a id="Adding NSArrayController"></a>Adding NSArrayController
 
 Now we will continue the work in XCode Interface Builder. Select the 'MainMenu.xib' 
-file in the Project Navigator. You should see the Interface Builer UI.
-
+file in the Project Navigator. You should see the Interface Builer UI. We will build
+the following UI:
+<center>
+<img src="docs/Images/OwnCoreDataApplication.png" alt="OwnCoreDataapplication.png">
+</center>
 Add an Array Controller to the list of objects contained within the xib file.
 Select the new 'Array Controller' object. In the Inspector pane select 'Attributes Inspector'.
-Specify 'Entity Name' in the 'Mode' field. Specify 'Author' in the 'Entity Name' field.
+Specify 'Entity Name' in the 'Mode' field. Specify 'Author' in the 'Entity Name' field, press Enter.
 Check the 'Prepare Content' checkbox. The Attributes Inspector should look as following:
-
+<center>
 <img src="docs/Images/OwnCoreDataArrayControllerAttributes.png" alt="OwnCoreDataArrayControlerAttributes.png">
-
+</center>
 Select Bindings Inspector in the Inspector pane. Find 'Parameters' heading. Find
 'Managed Object Context' and expand it. Check the 'Bind to' checkbox and choose 
 'App Delegate' in the drop down box. Specify 'managedObjectContext' in 
 'Model Key Path' field. The Bindings Inspector should look as following:
-
+<center>
 <img src="docs/Images/OwnCoreDataArrayControllerBindnings.png" alt="OwnCoreDataArrayControllerBindnings.png">
-
-
-Build and run your application. There shouldn't be any problems. Quit the application.
+</center>
+Build and run your application. There shouldn't be any problems. The application
+should display a login dialog. Fill in the required information and press 'Login'
+button. If the information was correct then applcation window is shown. Otherwise
+an error dialog is shown. Quit the application.
 
 ### <a id="Adding NSTableView"></a>Adding NSTableView
 
 Still in the Interface Builder add a Table View to your view. 
 
-Specify the following
-for the first table column. In Attributes Inspector set Title to 'First Name'. 
+Select Table Header. Click on it two or three times until it goes gray/white. Now
+adjust the table columns widths to be approximately equal.
+
+Select the first table column. In Attributes Inspector set Title to 'First Name', press Enter.
 In Bindings Inspector heading Value check 'Bind to' check box, select 'Array Controller' 
 in the drop down list, Controller Key should be 'arrangedObjects' and Model Key 
-Path set to 'firstName'. This is depicted below:
-
+Path set to 'firstName'. Press Enter. This is depicted below:
+<center>
 <img src="docs/Images/OwnCoreDataFirstColumnBindnings.png" alt="OwnCoreFirstColumnBindnings.png">
-
-
-Specify following for the second table column. In Attributes Inspector set Title to 'Last Name'. 
+</center>
+Select second table column. In Attributes Inspector set Title to 'Last Name', press Enter.
 In Bindings Inspector heading Value check 'Bind to' check box, select 'Array Controller' 
 in the drop down list, Controller Key should be 'arrangedObjects' and Model Key 
-Path set to 'lastName'. This is depicted below:
-
+Path set to 'lastName'. Press Enter. This is depicted below:
+<center>
 <img src="docs/Images/OwnCoreDataSecondColumnBindnings.png" alt="OwnCoreDataSecondColumnBindnings.png">
-
+</center>
 Build and run your application. There shouldn't be any problems. It should present
-a nice table with 2 columns named 'First Name' and 'Last Name'. It still lacks
+a nice table with two columns named 'First Name' and 'Last Name'. It still lacks
 means to enter the data. Quit the application.
 
 ### <a id="Adding buttons"> </a>Adding buttons
@@ -381,24 +437,24 @@ in the view and drag to 'Array Controller' object. Drop there and select 'remove
 the popup menu.
 
 Control-click (or right-click) on the Array Controller. You should obtain the following popup:
-
+<center>
 <img src="docs/Images/OwnCoreDataArrayControllerPopup.png" alt="OwnCoreDataArrayControllerPopup.png">
-
+</center>
 Build and run the application. It should display a window like following:
-
+<center>
 <img src="docs/Images/OwnCoreDataApplication.png" alt="OwnCoreDataapplication.png">
-
+</center>
 When you run your application for the first time, the table will be empty. You 
 can add an author using + button.
 You can remove an author using - button. You can modify an author by double-clicking on it.
-Your chages will automatically be saved to the database when you quit the application.
+Your changes will automatically be saved to the database when you quit the application.
 
 # Notes #
 
 ### The iODBC Administrator ###
 
-The 'Test' button in iODBC Administrator does not allways works. Sometimes you 
-get errors and yet everything is alright. Use the TestConnectApp provided in
+The 'Test' button in iODBC Administrator does not allways work. Sometimes you
+get errors and yet everything is allright. Use the TestConnectApp application provided in
 this software.
 
 The iODBC Administrator writes sometimes wrong path names to odbc.ini and odbcinst.ini in 
@@ -414,7 +470,7 @@ After installation you create a database using DB2 command.
 
 ODBC driver for DB2 and OS X is available from OpenLink.
 
-### Mimer ###
+### Mimer SQL###
 
 Mimer SQL can be dowloaded from http://developer.mimer.com/downloads/index.htm.
 

@@ -10,6 +10,10 @@
 
 #import <Odbc/Odbc.h>
 
+#import <iODBC/sql.h>
+#import <iODBC/sqltypes.h>
+#import <iODBC/sqlext.h>
+
 @interface ConnectionTests ()
     
 @end

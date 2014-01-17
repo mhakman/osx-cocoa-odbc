@@ -8,6 +8,10 @@
 
 #import "OdbcEnvironment.h"
 
+#import <iODBC/sql.h>
+#import <iODBC/sqltypes.h>
+#import <IODBC/sqlext.h>
+
 #define XSTR(x) STR(x)
 #define STR(x) #x
 

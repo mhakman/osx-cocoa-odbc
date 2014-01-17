@@ -41,6 +41,8 @@
 	
 	<option value="//api/name/applicationFilesDirectory">&nbsp;&nbsp;&nbsp;&nbsp;applicationFilesDirectory</option>
 	
+	<option value="//api/name/loginUrl">&nbsp;&nbsp;&nbsp;&nbsp;loginUrl</option>
+	
 	<option value="//api/name/managedObjectContext">&nbsp;&nbsp;&nbsp;&nbsp;managedObjectContext</option>
 	
 	<option value="//api/name/managedObjectModel">&nbsp;&nbsp;&nbsp;&nbsp;managedObjectModel</option>
@@ -73,6 +75,8 @@
 	<option value="//api/name/reloadAction:">&nbsp;&nbsp;&nbsp;&nbsp;- reloadAction:</option>
 	
 	<option value="//api/name/saveAction:">&nbsp;&nbsp;&nbsp;&nbsp;- saveAction:</option>
+	
+	<option value="//api/name/shouldSaveDataOnExit">&nbsp;&nbsp;&nbsp;&nbsp;- shouldSaveDataOnExit</option>
 	
 	<option value="//api/name/windowWillReturnUndoManager:">&nbsp;&nbsp;&nbsp;&nbsp;- windowWillReturnUndoManager:</option>
 	
@@ -114,6 +118,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applicationFilesDirectory">applicationFilesDirectory</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loginUrl">loginUrl</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/managedObjectContext">managedObjectContext</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/managedObjectModel">managedObjectModel</a></span></li>
@@ -147,6 +153,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reloadAction:">reloadAction:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveAction:">saveAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldSaveDataOnExit">shouldSaveDataOnExit</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/windowWillReturnUndoManager:">windowWillReturnUndoManager:</a></span></li>
 	
@@ -190,7 +198,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The OdbcAppDelegate class is inteded to use instead of XCode generated AppDelegate
+						<p>The OdbcAppDelegate class is inteded to be used instead of XCode generated AppDelegate
 code when creating a Core Data project.</p>
 
 <p>When creating a new application, uncheck &lsquo;Use Core Data&rsquo; check box. Then let
@@ -210,24 +218,31 @@ your AppDelegate inherit from OdbcAppDelegate like this:</p>
 </code></pre>
 
 
-<p>In your now empty AppDelegate.m implement following method:</p>
+<p>In your now empty AppDelegate.m implement following methods:</p>
 
 <pre><code>
 
-// AppDelegate.m
+#import "AppDelegate.h"
+
+@implementation AppDelegate
+
+- (void) applicationDidFinishLaunching:(NSNotification *) notification {
+
+    [super applicationDidFinishLaunching : aNotification];
+}
 
 - (NSURL *) persistentStoreUrl {
 
-    return [NSURL URLWithString : @"odbc:&#47;//testdb?username=root&password=secret"];
+    return self.loginUrl;
 }
 
 </code></pre>
 
 
-<p>This method will be called by OdncAppDelegate to get ODBC database URL. The URL
-shown above is only an example. You should replace &lsquo;testdb&rsquo; by your own ODBC
-data source name (DSN). You should replace &lsquo;root&rsquo; with your username and you
-should replace &lsquo;secrect&rsquo; by your own password.</p>
+<p>The method &lsquo;persistentStoreUrl&rsquo; will be called by OdbcAppDelegate to get ODBC database URL.
+The method <a href="#//api/name/loginUrl">loginUrl</a> is implemented by this class. It allows the user to fill in ODBC data
+source name (DSN), username, and password using a dialog box. Then it verifies that
+the information is correct by connecting to and disconnecting from the database.</p>
 					</div>
 					
 					
@@ -284,6 +299,12 @@ should replace &lsquo;secrect&rsquo; by your own password.</p>
 
 						<ul class="task-list">
 							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loginUrl">&nbsp;&nbsp;loginUrl</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/persistentStoreType">&nbsp;&nbsp;persistentStoreType</a></code>
 	</span>
@@ -359,6 +380,12 @@ should replace &lsquo;secrect&rsquo; by your own password.</p>
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldSaveDataOnExit">&ndash;&nbsp;shouldSaveDataOnExit</a></code>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -407,6 +434,52 @@ should replace &lsquo;secrect&rsquo; by your own password.</p>
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
 		<p>NSURL to applications data directory</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcAppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loginUrl" title="loginUrl"></a>
+	<h3 class="subsubtitle method-title">loginUrl</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This allows the user to login and returns Odbc Url</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) NSURL *loginUrl</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>NSURL</p>
+
+<p>This method displays a login dialog and lets the user to login. If the login is
+ok then the method returns login information encoded as an NSURL. If the login
+is not ok then the method displays an error box and waits for new login. The
+user may terminate application using &ldquo;Quit&rdquo; button.</p>
 	</div>
 	
 	
@@ -829,7 +902,9 @@ and [password] is users password.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Currently this method does nothing.</p>
+		<p>If you implement this method then you should call the superclass
+applicationDidFinishLaunching in the beginning of your method. Implementation
+provided here needs to do some cleanup if the method <a href="#//api/name/loginUrl">loginUrl</a> was called.</p>
 	</div>		
 	
     
@@ -856,7 +931,7 @@ and [password] is users password.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>See Apple documentaton of NSApplicationDelegate protocol for the description.</p>
+		<p>See also Apple documentaton of NSApplicationDelegate protocol for the description.</p>
 	</div>
 	
 	
@@ -880,7 +955,7 @@ and [password] is users password.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>This method saves data by calling saveAction and then terminates the application.</p>
+		<p>This method saves data by calling saveAction and then it terminates the application.</p>
 	</div>		
 	
     
@@ -912,7 +987,7 @@ and [password] is users password.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>See Apple documentaton of NSApplicationDelegate protocol for the description.</p>
+		<p>See Apple also documentaton of NSApplicationDelegate protocol for the description.</p>
 	</div>
 	
 	
@@ -1080,6 +1155,48 @@ that no predicate is used.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/shouldSaveDataOnExit" title="shouldSaveDataOnExit"></a>
+	<h3 class="subsubtitle method-title">shouldSaveDataOnExit</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>if you dont want do save data in the database on exit, implement this method and
+return NO</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (bool)shouldSaveDataOnExit</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>bool</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">OdbcAppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/windowWillReturnUndoManager:" title="windowWillReturnUndoManager:"></a>
 	<h3 class="subsubtitle method-title">windowWillReturnUndoManager:</h3>
 	
@@ -1145,7 +1262,7 @@ that no predicate is used.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Datakonsulten AB. All rights reserved. (Last updated: 2013-12-17)</span><br />
+						<p><span class="copyright">&copy; 2014 Datakonsulten AB. All rights reserved. (Last updated: 2014-01-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
 						

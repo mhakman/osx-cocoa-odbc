@@ -7,10 +7,12 @@
 //
 
 #import "OdbcConnection.h"
-
 #import "OdbcException.h"
-
 #import "OdbcStatement.h"
+
+#import <iODBC/sql.h>
+#import <iODBC/sqltypes.h>
+#import <iODBC/sqlext.h>
 
 @interface OdbcConnection ()
     

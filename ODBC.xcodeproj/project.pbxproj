@@ -25,9 +25,11 @@
 
 /* Begin PBXBuildFile section */
 		6A1F1A1517F0EA980019B7CC /* iODBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F1A1417F0EA980019B7CC /* iODBC.framework */; };
+		6A213417188837B7006C18E2 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6E3E3A1885894000C504BE /* LoginModel.m */; };
+		6A2134191888382B006C18E2 /* Odbc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28A17D8FC490070E6B7 /* Odbc.framework */; };
 		6A27E28E17D8FC490070E6B7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
 		6A27E29817D8FC490070E6B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A27E29617D8FC490070E6B7 /* InfoPlist.strings */; };
-		6A27E2B217D8FCAF0070E6B7 /* OdbcColumnDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2A217D8FCAF0070E6B7 /* OdbcColumnDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A27E2B217D8FCAF0070E6B7 /* OdbcColumnDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2A217D8FCAF0070E6B7 /* OdbcColumnDescriptor.h */; };
 		6A27E2B317D8FCAF0070E6B7 /* OdbcColumnDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2A317D8FCAF0070E6B7 /* OdbcColumnDescriptor.m */; };
 		6A27E2B417D8FCAF0070E6B7 /* OdbcConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2A417D8FCAF0070E6B7 /* OdbcConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A27E2B517D8FCAF0070E6B7 /* OdbcConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2A517D8FCAF0070E6B7 /* OdbcConnection.m */; };
@@ -35,10 +37,10 @@
 		6A27E2B717D8FCAF0070E6B7 /* OdbcEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2A717D8FCAF0070E6B7 /* OdbcEnvironment.m */; };
 		6A27E2B817D8FCAF0070E6B7 /* OdbcException.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2A817D8FCAF0070E6B7 /* OdbcException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A27E2B917D8FCAF0070E6B7 /* OdbcException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2A917D8FCAF0070E6B7 /* OdbcException.m */; };
-		6A27E2BA17D8FCAF0070E6B7 /* OdbcParameterDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2AA17D8FCAF0070E6B7 /* OdbcParameterDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A27E2BA17D8FCAF0070E6B7 /* OdbcParameterDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2AA17D8FCAF0070E6B7 /* OdbcParameterDescriptor.h */; };
 		6A27E2BB17D8FCAF0070E6B7 /* OdbcParameterDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2AB17D8FCAF0070E6B7 /* OdbcParameterDescriptor.m */; };
-		6A27E2BC17D8FCAF0070E6B7 /* OdbcPrepareDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2AC17D8FCAF0070E6B7 /* OdbcPrepareDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A27E2BE17D8FCAF0070E6B7 /* OdbcResultDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2AE17D8FCAF0070E6B7 /* OdbcResultDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A27E2BC17D8FCAF0070E6B7 /* OdbcPrepareDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2AC17D8FCAF0070E6B7 /* OdbcPrepareDescriptor.h */; };
+		6A27E2BE17D8FCAF0070E6B7 /* OdbcResultDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2AE17D8FCAF0070E6B7 /* OdbcResultDescriptor.h */; };
 		6A27E2BF17D8FCAF0070E6B7 /* OdbcResultDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2AF17D8FCAF0070E6B7 /* OdbcResultDescriptor.m */; };
 		6A27E2C017D8FCAF0070E6B7 /* OdbcStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A27E2B017D8FCAF0070E6B7 /* OdbcStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A27E2C117D8FCAF0070E6B7 /* OdbcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2B117D8FCAF0070E6B7 /* OdbcStatement.m */; };
@@ -49,6 +51,17 @@
 		6A38A13B181AD6CF00876BDE /* iODBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F1A1417F0EA980019B7CC /* iODBC.framework */; };
 		6A38A13C181ADABA00876BDE /* OdbcException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A27E2A917D8FCAF0070E6B7 /* OdbcException.m */; };
 		6A3947EF18196F600049B34C /* index.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 6A3947EE18196F5F0049B34C /* index.markdown */; };
+		6A4584C21888107B00A9CFE2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
+		6A4584C81888107B00A9CFE2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A4584C61888107B00A9CFE2 /* InfoPlist.strings */; };
+		6A4584CA1888107B00A9CFE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4584C91888107B00A9CFE2 /* main.m */; };
+		6A4584CE1888107B00A9CFE2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6A4584CC1888107B00A9CFE2 /* Credits.rtf */; };
+		6A4584D11888107B00A9CFE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4584D01888107B00A9CFE2 /* AppDelegate.m */; };
+		6A4584D41888107B00A9CFE2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4584D21888107B00A9CFE2 /* MainMenu.xib */; };
+		6A4584D61888107B00A9CFE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A4584D51888107B00A9CFE2 /* Images.xcassets */; };
+		6A4584DD1888107B00A9CFE2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A4584DC1888107B00A9CFE2 /* XCTest.framework */; };
+		6A4584DE1888107B00A9CFE2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A27E28D17D8FC490070E6B7 /* Cocoa.framework */; };
+		6A4584E61888107B00A9CFE2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A4584E41888107B00A9CFE2 /* InfoPlist.strings */; };
+		6A4584E81888107B00A9CFE2 /* LoginServerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4584E71888107B00A9CFE2 /* LoginServerTests.m */; };
 		6A5901CA182150350090ED57 /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5901C9182150350090ED57 /* libParseKit.a */; };
 		6A5901D2182152F80090ED57 /* PKParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CB182152F80090ED57 /* PKParser.h */; };
 		6A5901D3182152F80090ED57 /* PKParserFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5901CC182152F80090ED57 /* PKParserFactory.h */; };
@@ -101,7 +114,7 @@
 		6AA4548E17FAFFAD00BB2EC9 /* StatementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4548D17FAFFAD00BB2EC9 /* StatementTests.m */; };
 		6ABB002F17F1E18100AF8BFB /* OdbcPrepareDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB002E17F1E18100AF8BFB /* OdbcPrepareDescriptor.m */; };
 		6AF8178C18106475004F9042 /* OdbcPredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8178918106475004F9042 /* OdbcPredicate.grammar */; };
-		6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF8178A18106475004F9042 /* OdbcPredicate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6AF8178D18106475004F9042 /* OdbcPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AF8178A18106475004F9042 /* OdbcPredicate.h */; };
 		6AF8178E18106475004F9042 /* OdbcPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8178B18106475004F9042 /* OdbcPredicate.m */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +128,16 @@
 			);
 		};
 /* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		6A4584DF1888107B00A9CFE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A27E28117D8FC490070E6B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A4584C01888107B00A9CFE2;
+			remoteInfo = LoginServer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		6A38A12F181AD36100876BDE /* CopyFiles */ = {
@@ -156,6 +179,21 @@
 		6A38A131181AD36100876BDE /* TestConnect */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestConnect; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A38A134181AD36100876BDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6A3947EE18196F5F0049B34C /* index.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.markdown; path = Odbc/index.markdown; sourceTree = "<group>"; };
+		6A4584C11888107B00A9CFE2 /* LoginServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A4584C51888107B00A9CFE2 /* LoginServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LoginServer-Info.plist"; sourceTree = "<group>"; };
+		6A4584C71888107B00A9CFE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6A4584C91888107B00A9CFE2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6A4584CB1888107B00A9CFE2 /* LoginServer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoginServer-Prefix.pch"; sourceTree = "<group>"; };
+		6A4584CD1888107B00A9CFE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		6A4584CF1888107B00A9CFE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6A4584D01888107B00A9CFE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6A4584D31888107B00A9CFE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6A4584D51888107B00A9CFE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6A4584DB1888107B00A9CFE2 /* LoginServerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginServerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A4584DC1888107B00A9CFE2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6A4584E31888107B00A9CFE2 /* LoginServerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LoginServerTests-Info.plist"; sourceTree = "<group>"; };
+		6A4584E51888107B00A9CFE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6A4584E71888107B00A9CFE2 /* LoginServerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginServerTests.m; sourceTree = "<group>"; };
 		6A5901C9182150350090ED57 /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = ParseKit/libParseKit.a; sourceTree = "<group>"; };
 		6A5901CB182152F80090ED57 /* PKParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParser.h; path = ParseKit/PKParser.h; sourceTree = "<group>"; };
 		6A5901CC182152F80090ED57 /* PKParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParserFactory.h; path = ParseKit/PKParserFactory.h; sourceTree = "<group>"; };
@@ -208,6 +246,8 @@
 		6A66EB281831392000CDD93E /* OdbcArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcArrayController.m; sourceTree = "<group>"; };
 		6A66EB2F1835480200CDD93E /* OdbcDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdbcDocument.h; sourceTree = "<group>"; };
 		6A66EB301835480200CDD93E /* OdbcDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdbcDocument.m; sourceTree = "<group>"; };
+		6A6E3E391885894000C504BE /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		6A6E3E3A1885894000C504BE /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		6A744FAB17F78CD6000793B2 /* Odbc-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Odbc-Prefix.pch"; sourceTree = "<group>"; };
 		6A744FAE17F795D9000793B2 /* Odbc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Odbc-Info.plist"; sourceTree = "<group>"; };
 		6A744FB517F867E1000793B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -248,6 +288,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A4584BE1888107B00A9CFE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2134191888382B006C18E2 /* Odbc.framework in Frameworks */,
+				6A4584C21888107B00A9CFE2 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A4584D81888107B00A9CFE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4584DE1888107B00A9CFE2 /* Cocoa.framework in Frameworks */,
+				6A4584DD1888107B00A9CFE2 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A5EE5F21803308C005E5942 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,10 +333,12 @@
 			children = (
 				6A3947EE18196F5F0049B34C /* index.markdown */,
 				6A744FC917F8E3E9000793B2 /* readme.markdown */,
+				6A4584C31888107B00A9CFE2 /* LoginServer */,
 				6A27E29317D8FC490070E6B7 /* Odbc */,
 				6A744FEA17F9EC8F000793B2 /* OdbcTests */,
 				6A5EE5F71803308C005E5942 /* OdbcExample */,
 				6A38A133181AD36100876BDE /* TestConnect */,
+				6A4584E11888107B00A9CFE2 /* LoginServerTests */,
 				6A27E28C17D8FC490070E6B7 /* Frameworks */,
 				6A27E28B17D8FC490070E6B7 /* Products */,
 			);
@@ -291,6 +351,8 @@
 				6A744FE617F9EC8F000793B2 /* OdbcTests.octest */,
 				6A5EE5F51803308C005E5942 /* OdbcExample.app */,
 				6A38A131181AD36100876BDE /* TestConnect */,
+				6A4584C11888107B00A9CFE2 /* LoginServer.app */,
+				6A4584DB1888107B00A9CFE2 /* LoginServerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,6 +364,7 @@
 				6A1F1A1417F0EA980019B7CC /* iODBC.framework */,
 				6A27E28D17D8FC490070E6B7 /* Cocoa.framework */,
 				6A744FB517F867E1000793B2 /* CoreFoundation.framework */,
+				6A4584DC1888107B00A9CFE2 /* XCTest.framework */,
 				6A27E28F17D8FC490070E6B7 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -322,11 +385,11 @@
 			children = (
 				6A5901C818214FF70090ED57 /* ParseKit */,
 				6A27E29A17D8FC490070E6B7 /* Odbc.h */,
+				6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */,
+				6A5EE637180706F0005E5942 /* OdbcAppDelegate.m */,
 				6AF8178918106475004F9042 /* OdbcPredicate.grammar */,
 				6AF8178A18106475004F9042 /* OdbcPredicate.h */,
 				6AF8178B18106475004F9042 /* OdbcPredicate.m */,
-				6A5EE636180706F0005E5942 /* OdbcAppDelegate.h */,
-				6A5EE637180706F0005E5942 /* OdbcAppDelegate.m */,
 				6A66EB2F1835480200CDD93E /* OdbcDocument.h */,
 				6A66EB301835480200CDD93E /* OdbcDocument.m */,
 				6A66EB271831392000CDD93E /* OdbcArrayController.h */,
@@ -374,6 +437,50 @@
 				6A38A134181AD36100876BDE /* main.m */,
 			);
 			path = TestConnect;
+			sourceTree = "<group>";
+		};
+		6A4584C31888107B00A9CFE2 /* LoginServer */ = {
+			isa = PBXGroup;
+			children = (
+				6A4584CF1888107B00A9CFE2 /* AppDelegate.h */,
+				6A4584D01888107B00A9CFE2 /* AppDelegate.m */,
+				6A6E3E391885894000C504BE /* LoginModel.h */,
+				6A6E3E3A1885894000C504BE /* LoginModel.m */,
+				6A4584D21888107B00A9CFE2 /* MainMenu.xib */,
+				6A4584D51888107B00A9CFE2 /* Images.xcassets */,
+				6A4584C41888107B00A9CFE2 /* Supporting Files */,
+			);
+			path = LoginServer;
+			sourceTree = "<group>";
+		};
+		6A4584C41888107B00A9CFE2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6A4584C51888107B00A9CFE2 /* LoginServer-Info.plist */,
+				6A4584C61888107B00A9CFE2 /* InfoPlist.strings */,
+				6A4584C91888107B00A9CFE2 /* main.m */,
+				6A4584CB1888107B00A9CFE2 /* LoginServer-Prefix.pch */,
+				6A4584CC1888107B00A9CFE2 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6A4584E11888107B00A9CFE2 /* LoginServerTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A4584E71888107B00A9CFE2 /* LoginServerTests.m */,
+				6A4584E21888107B00A9CFE2 /* Supporting Files */,
+			);
+			path = LoginServerTests;
+			sourceTree = "<group>";
+		};
+		6A4584E21888107B00A9CFE2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6A4584E31888107B00A9CFE2 /* LoginServerTests-Info.plist */,
+				6A4584E41888107B00A9CFE2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		6A5901C818214FF70090ED57 /* ParseKit */ = {
@@ -541,6 +648,43 @@
 			productReference = 6A38A131181AD36100876BDE /* TestConnect */;
 			productType = "com.apple.product-type.tool";
 		};
+		6A4584C01888107B00A9CFE2 /* LoginServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A4584E91888107B00A9CFE2 /* Build configuration list for PBXNativeTarget "LoginServer" */;
+			buildPhases = (
+				6A4584BD1888107B00A9CFE2 /* Sources */,
+				6A4584BE1888107B00A9CFE2 /* Frameworks */,
+				6A4584BF1888107B00A9CFE2 /* Resources */,
+				6A4584EF188811E500A9CFE2 /* ShellScript */,
+				6A4584F0188815FC00A9CFE2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoginServer;
+			productName = LoginServer;
+			productReference = 6A4584C11888107B00A9CFE2 /* LoginServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6A4584DA1888107B00A9CFE2 /* LoginServerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A4584EC1888107B00A9CFE2 /* Build configuration list for PBXNativeTarget "LoginServerTests" */;
+			buildPhases = (
+				6A4584D71888107B00A9CFE2 /* Sources */,
+				6A4584D81888107B00A9CFE2 /* Frameworks */,
+				6A4584D91888107B00A9CFE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A4584E01888107B00A9CFE2 /* PBXTargetDependency */,
+			);
+			name = LoginServerTests;
+			productName = LoginServerTests;
+			productReference = 6A4584DB1888107B00A9CFE2 /* LoginServerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6A5EE5F41803308C005E5942 /* OdbcExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A5EE60C1803308D005E5942 /* Build configuration list for PBXNativeTarget "OdbcExample" */;
@@ -585,6 +729,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mikael Hakman";
+				TargetAttributes = {
+					6A4584DA1888107B00A9CFE2 = {
+						TestTargetID = 6A27E28917D8FC490070E6B7;
+					};
+				};
 			};
 			buildConfigurationList = 6A27E28417D8FC490070E6B7 /* Build configuration list for PBXProject "Odbc" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -592,6 +741,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 6A27E28017D8FC490070E6B7;
 			productRefGroup = 6A27E28B17D8FC490070E6B7 /* Products */;
@@ -603,6 +753,8 @@
 				6A5EE5F41803308C005E5942 /* OdbcExample */,
 				6A744FE517F9EC8F000793B2 /* OdbcTests */,
 				6A38A130181AD36100876BDE /* TestConnect */,
+				6A4584C01888107B00A9CFE2 /* LoginServer */,
+				6A4584DA1888107B00A9CFE2 /* LoginServerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -615,6 +767,25 @@
 				6A27E29817D8FC490070E6B7 /* InfoPlist.strings in Resources */,
 				6AF8178C18106475004F9042 /* OdbcPredicate.grammar in Resources */,
 				6A3947EF18196F600049B34C /* index.markdown in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A4584BF1888107B00A9CFE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4584C81888107B00A9CFE2 /* InfoPlist.strings in Resources */,
+				6A4584D61888107B00A9CFE2 /* Images.xcassets in Resources */,
+				6A4584CE1888107B00A9CFE2 /* Credits.rtf in Resources */,
+				6A4584D41888107B00A9CFE2 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A4584D91888107B00A9CFE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4584E61888107B00A9CFE2 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +835,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cp -R \"${BUILD_DIR}/OdbcDocumentation/html\" \"${PROJECT_DIR}/\"";
+		};
+		6A4584EF188811E500A9CFE2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"BUILD_DIR $BUILD_DIR\"\necho \"BUILD_ROOT $BUILD_ROOT\"\necho \"BUILT_PRODUCTS_DIR $BUILT_PRODUCTS_DIR\"\necho \"CONTENTS_FOLDER_PATH $CONTENTS_FOLDER_PATH\"\necho \"DERIVED_FILES_DIR $DERIVED_FILES_DIR\"\necho \"DERIVED_FILE_DIR $DERIVED_FILE_DIR\"\necho \"DERIVED_SOURCES_DIR $DERIVED_SOURCES_DIR\"\necho \"DOCUMENTATION_FOLDER_PATH $DOCUMENTATION_FOLDER_PATH\"\necho \"EXECUTABLES_FOLDER_PATH $EXECUTABLES_FOLDER_PATH\"\necho \"EXECUTABLE_FOLDER_PATH $EXECUTABLE_FOLDER_PATH\"\necho \"EXECUTABLE_NAME $EXECUTABLE_NAME\"\necho \"EXECUTABLE_PATH $EXECUTABLE_PATH\"\necho \"FRAMEWORKS_FOLDER_PATH $FRAMEWORKS_FOLDER_PATH\"\necho \"FRAMEWORK_SEARCH_PATHS $FRAMEWORK_SEARCH_PATHS\"\necho \"FRAMEWORK_VERSION $FRAMEWORK_VERSION\"\necho \"FULL_PRODUCT_NAME $FULL_PRODUCT_NAME\"\necho \"INPUT_FILE_BASE $INPUT_FILE_BASE\"\necho \"INPUT_FILE_DIR $INPUT_FILE_DIR\"\necho \"INPUT_FILE_NAME $INPUT_FILE_NAME\"\necho \"INPUT_FILE_PATH $INPUT_FILE_PATH\"\necho \"SCRIPT_INPUT_FILE $SCRIPT_INPUT_FILE\"\necho \"SCRIPT_OUTPUT_FILE_0 $SCRIPT_OUTPUT_FILE_0\"\necho \"HEADER_SEARCH_PATHS $HEADER_SEARCH_PATHS\"\necho \"INFOPLIST_FILE $INFOPLIST_FILE\"\necho \"INFOPLIST_PATH $INFOPLIST_PATH\"\necho \"INFOSTRINGS_PATH $INFOSTRINGS_PATH\"\necho \"INSTALL_DIR $INSTALL_DIR\"\necho \"INSTALL_PATH $INSTALL_PATH\"\necho \"INSTALL_ROOT $INSTALL_ROOT\"\necho \"LD_MAP_FILE_PATH $LD_MAP_FILE_PATH\"\necho \"LIBRARY_SEARCH_PATHS $LIBRARY_SEARCH_PATHS\"\necho \"PRODUCT_NAME $PRODUCT_NAME\"\necho \"PRODUCT_SETTINGS_PATH $PRODUCT_SETTINGS_PATH\"\necho \"PROJECT $PROJECT\"\necho \"PROJECT_DERIVED_FILE_DIR $PROJECT_DERIVED_FILE_DIR\"\necho \"PROJECT_DIR $PROJECT_DIR\"\necho \"PROJECT_FILE_PATH $PROJECT_FILE_PATH\"\necho \"PROJECT_NAME $PROJECT_NAME\"\necho \"PROJECT_TEMP_DIR $PROJECT_TEMP_DIR\"\necho \"SCRIPTS_FOLDER_PATH $SCRIPTS_FOLDER_PATH\"\necho \"SCRIPT_INPUT_FILE $SCRIPT_INPUT_FILE\"\necho \"SCRIPT_OUTPUT_FILE_0 $SCRIPT_OUTPUT_FILE_0\"\necho \"SOURCE_ROOT $SOURCE_ROOT\"\necho \"SRCROOT $SRCROOT\"\necho \"TARGETNAME $TARGETNAME\"\necho \"TARGET_BUILD_DIR $TARGET_BUILD_DIR\"\necho \"TARGET_NAME $TARGET_NAME\"\necho \"TARGET_TEMP_DIR $TARGET_TEMP_DIR\"\necho \"TEMP_DIR $TEMP_DIR\"\necho \"TEMP_FILES_DIR $TEMP_FILES_DIR\"\necho \"TEMP_FILE_DIR $TEMP_FILE_DIR\"\necho \"TEMP_ROOT $TEMP_ROOT\"\necho \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\"\necho \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Versions/Current\"";
+		};
+		6A4584F0188815FC00A9CFE2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf   \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/Versions/$FRAMEWORK_VERSION/$FULL_PRODUCT_NAME\"\ncp -R -H \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/Versions/$FRAMEWORK_VERSION/\"\nrm -f    \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/$FULL_PRODUCT_NAME\"\nln -s    \"Versions/Current/$FULL_PRODUCT_NAME\" \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/$FULL_PRODUCT_NAME\"";
 		};
 		6A5901EC1821D2670090ED57 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -793,6 +990,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A4584BD1888107B00A9CFE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4584D11888107B00A9CFE2 /* AppDelegate.m in Sources */,
+				6A4584CA1888107B00A9CFE2 /* main.m in Sources */,
+				6A213417188837B7006C18E2 /* LoginModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A4584D71888107B00A9CFE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4584E81888107B00A9CFE2 /* LoginServerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A5EE5F11803308C005E5942 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -823,11 +1038,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6A4584E01888107B00A9CFE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A4584C01888107B00A9CFE2 /* LoginServer */;
+			targetProxy = 6A4584DF1888107B00A9CFE2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		6A27E29617D8FC490070E6B7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6A27E29717D8FC490070E6B7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6A4584C61888107B00A9CFE2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A4584C71888107B00A9CFE2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6A4584CC1888107B00A9CFE2 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A4584CD1888107B00A9CFE2 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		6A4584D21888107B00A9CFE2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A4584D31888107B00A9CFE2 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		6A4584E41888107B00A9CFE2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A4584E51888107B00A9CFE2 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -999,6 +1254,106 @@
 			};
 			name = Release;
 		};
+		6A4584EA1888107B00A9CFE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LoginServer/LoginServer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "LoginServer/LoginServer-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6A4584EB1888107B00A9CFE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LoginServer/LoginServer-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "LoginServer/LoginServer-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6A4584ED1888107B00A9CFE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Odbc.framework/Versions/C/Odbc";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LoginServer/LoginServer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "LoginServerTests/LoginServerTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6A4584EE1888107B00A9CFE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Odbc.framework/Versions/C/Odbc";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LoginServer/LoginServer-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "LoginServerTests/LoginServerTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		6A5EE60D1803308D005E5942 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1115,6 +1470,24 @@
 			buildConfigurations = (
 				6A38A138181AD36100876BDE /* Debug */,
 				6A38A139181AD36100876BDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A4584E91888107B00A9CFE2 /* Build configuration list for PBXNativeTarget "LoginServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A4584EA1888107B00A9CFE2 /* Debug */,
+				6A4584EB1888107B00A9CFE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A4584EC1888107B00A9CFE2 /* Build configuration list for PBXNativeTarget "LoginServerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A4584ED1888107B00A9CFE2 /* Debug */,
+				6A4584EE1888107B00A9CFE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

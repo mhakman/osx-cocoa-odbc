@@ -14,10 +14,10 @@
     
     @protected
     
-    SQLHANDLE henv;
+    void * henv;
 }
 
-@property (readonly) SQLHANDLE henv;
+@property (readonly) void * henv;
 
 + (OdbcEnvironment *) sharedInstance;
 

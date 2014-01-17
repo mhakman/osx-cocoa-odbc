@@ -7,10 +7,13 @@
 //
 
 #import "OdbcStoreDatabase.h"
-
 #import "OdbcStore.h"
+#import "OdbcPredicate.h"
+#import "Odbc.h"
 
-#import <Odbc/Odbc.h>
+#import <iODBC/sql.h>
+#import <iODBC/sqltypes.h>
+#import <iODBC/sqlext.h>
 
 @interface OdbcStoreDatabase () {
     

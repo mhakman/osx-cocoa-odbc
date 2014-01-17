@@ -8,6 +8,10 @@
 
 #import "OdbcException.h"
 
+#import <iODBC/sql.h>
+#import <iODBC/sqltypes.h>
+#import <iODBC/sqlext.h>
+
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 void raiseInvalidHandle (const char * method, const char * function) {

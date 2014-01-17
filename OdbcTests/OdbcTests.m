@@ -10,6 +10,10 @@
 
 #import <Odbc/Odbc.h>
 
+#import <iODBC/sql.h>
+#import <iODBC/sqltypes.h>
+#import <iODBC/sqlext.h>
+
 NSString * DataSourceName;
 NSString * Username;
 NSString * Password;
@@ -22,11 +26,61 @@ NSString * Password;
 
 + (void) initialize {
     
-    DataSourceName = @"mimtest";
+    if (! DataSourceName) {
+        
+        char dsn [256];
     
-    Username = @"testuser";
+        printf ("Data Source Name:");
+        
+        fgets (dsn,sizeof(dsn),stdin);
+        
+        if (dsn[strlen(dsn) - 1] == '\n') dsn[strlen(dsn) - 1] = 0;
+        
+        DataSourceName = [NSString stringWithUTF8String : dsn];
+        
+        char username [256];
+        
+        printf ("Username:");
+        
+        fgets (username,sizeof(username),stdin);
+        
+        if (username[strlen(username) - 1] == '\n') username[strlen(username) - 1] = 0;
+        
+        Username = [NSString stringWithUTF8String : username];
+        
+        char password [256];
+        
+        printf ("Password:");
+        
+        fgets (password,sizeof(password),stdin);
+        
+        if (password[strlen(password) - 1] == '\n') password[strlen(password) - 1] = 0;
+        
+        Password = [NSString stringWithUTF8String : password];
+        
+        @try {
+            
+            OdbcConnection * conn = [OdbcConnection connectionWithDataSource : DataSourceName
+                                                                    username : Username
+                                                                    password : Password];
+            
+            [conn disconnect];
+            
+        } @catch (NSException * ex) {
+                
+            printf ("%s\n",ex.description.UTF8String);
+            
+            printf ("\nTests not run\n");
+            
+            exit (1);
+        }
+    }
+        
+    //DataSourceName = @"mimtest";
     
-    Password = @"test";
+    //Username = @"testuser";
+    
+    //Password = @"test";
 }
 
 - (void) setUp {

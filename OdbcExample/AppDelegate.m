@@ -16,14 +16,23 @@ NSString * DraggedBooksType   = @"library.books";
 @implementation AppDelegate;
 
 @synthesize window, authorsController, booksController;
-
+//
+// Application is ready to run
+//
 - (void) applicationDidFinishLaunching : (NSNotification *) aNotification {
     
     [super applicationDidFinishLaunching : aNotification];
-    
+
     [self setUpSortDescriptors];
     
     [self setUpNotifications];
+}
+//
+// Terminate after last window is closed
+//
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed : (NSApplication *) theApplication {
+    
+    return YES;
 }
 //
 // Sets up notifcations
@@ -70,9 +79,9 @@ NSString * DraggedBooksType   = @"library.books";
 - (NSURL *) persistentStoreUrl {
     
     if ([self.persistentStoreClass isEqualToString : @"OdbcStore"]) {
-    
-        return [NSURL URLWithString : @"odbc:///mimlib?username=libuser&password=lib"];
         
+        return self.loginUrl;
+    
     } else {
         
         return super.persistentStoreUrl;

@@ -23,7 +23,7 @@ retrieve information about the database.
     
 @protected
     
-    SQLHANDLE hdbc;
+    void * hdbc;
 }
 //------------------------------------------------------------------------------
 /**
@@ -226,6 +226,6 @@ Database vendor name.
  Original low level API handle for a connection. For internal use only.
  */
 //------------------------------------------------------------------------------
-@property (readonly) SQLHANDLE hdbc;
+@property (readonly) void * hdbc;
 
 @end

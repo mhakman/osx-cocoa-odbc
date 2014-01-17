@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <iODBC/sql.h>
 
 @class OdbcConnection;
 @class OdbcResultDescriptor;
@@ -17,12 +16,12 @@
     
 @protected
     
-    SQLHANDLE               hstmt;
+    void                  * hstmt;
     OdbcResultDescriptor  * resultDescriptor;
     OdbcPrepareDescriptor * prepareDescriptor;
 }
 
-@property (readonly)  SQLHANDLE        hstmt;
+@property (readonly)  void           * hstmt;
 @property (readonly)  OdbcConnection * connection;
 @property (readonly)  BOOL             wasNull;
 @property (nonatomic) unsigned long    concurrency;
