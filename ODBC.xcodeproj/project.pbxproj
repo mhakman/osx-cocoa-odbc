@@ -860,7 +860,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf   \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/Versions/$FRAMEWORK_VERSION/$FULL_PRODUCT_NAME\"\ncp -R -H \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/Versions/$FRAMEWORK_VERSION/\"\nrm -f    \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/$FULL_PRODUCT_NAME\"\nln -s    \"Versions/Current/$FULL_PRODUCT_NAME\" \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/$FULL_PRODUCT_NAME\"";
+			shellScript = "rm -rf   \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/Versions/$FRAMEWORK_VERSION/$FULL_PRODUCT_NAME\"\ncp -R -H \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/Versions/$FRAMEWORK_VERSION/\"\nrm -f    \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/$FULL_PRODUCT_NAME\"\nln -s    \"Versions/Current/$FULL_PRODUCT_NAME\" \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework/$FULL_PRODUCT_NAME\"\n\nrm -f -r \"$PROJECT_DIR/$PROJECT_NAME.framework\"\ncp -R -H \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.framework\" \"$PROJECT_DIR\"\n";
 		};
 		6A5901EC1821D2670090ED57 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
