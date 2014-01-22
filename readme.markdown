@@ -311,12 +311,19 @@ Your AppDelegate.h should now look like the following:
 
 Modify your AppDelegate.m. Change the 'applicationDidFinishLaunching' method:
 
-    - (void) applicationDidFinishLaunching : (NSNotification *) aNotification {
+    - (void) applicationDidFinishLaunching : (NSNotification *) notification {
     
-        [super applicationDidFinishLaunching : aNotification];
+        [super applicationDidFinishLaunching : notification];
     }
 
-Add the following method:
+Method 'applicationDidFinishLaunching' is invoked by Cocoa when the application 
+is ready to run (all the windows has been created etc.). The expression:
+
+    [super applicationDidFinishLaunching : notification];
+    
+calls the corresponding method in the superclass (OdbcAppDelegate).
+
+Add also the following method:
 
     - (NSURL *) persistentStoreUrl {
     
@@ -334,7 +341,7 @@ Your AppDelegate.m should now look like the followig:
 
     @implementation AppDelegate
 
-    - (void) applicationDidFinishLaunching:(NSNotification *) notification {
+    - (void) applicationDidFinishLaunching : (NSNotification *) notification {
     
         [super applicationDidFinishLaunching : notification];
     }
@@ -356,7 +363,7 @@ done using XCode Model Editor and Xcode Interface Builder.
 
 In this section we will create a data model for your application.
 
-Select your application in the Project Navigator, right or control click on it. 
+Select your application folder in the Project Navigator, right or control click on it.
 Select 'New File...' on the popup menu. Select 'Core Data'/'Data Model' on the
 dialog. Press 'Next' button. On the 'Save As' dialog specify name of the model.
 To keep things easy specify the same name as your application. Press 'Create' button.
@@ -369,7 +376,7 @@ the guide below. We will create an application that does something real. The app
 will display a list of authors from the database and let the user add, modify,
 and delete authors.
 
-Select your model file in the Project Navigator. You should see Model Editor now.
+Select your model file (extension .xcdatamodeld) in the Project Navigator. You should see Model Editor now.
 Press 'Add Entity' button. Specifiy entity name 'Author' in Data Model Inspector.
 Press Enter.
 Add attribute 'firstName' of type string, non optional. Add attribute 'lastName' 
