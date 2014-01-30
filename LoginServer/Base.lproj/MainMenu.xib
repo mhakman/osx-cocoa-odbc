@@ -129,8 +129,8 @@
         </menu>
         <customObject id="494" customClass="AppDelegate">
             <connections>
-                <outlet property="dsnField" destination="2bI-io-su0" id="82L-96-sgY"/>
-                <outlet property="loginModel" destination="JpI-qt-s5k" id="y1m-eX-mgZ"/>
+                <outlet property="dsnField" destination="2bI-io-su0" id="Zke-Ad-Gp3"/>
+                <outlet property="loginModel" destination="JpI-qt-s5k" id="ID7-Oy-pgS"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -142,7 +142,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="344" height="155"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Dxs-Iy-9Jn" userLabel="Data Source Name Label">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Dxs-Iy-9Jn" userLabel="Data Source Label">
                         <rect key="frame" x="18" y="116" width="124" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Data Source Name:" id="GdV-Np-2zi">
@@ -191,23 +191,7 @@
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                 </dictionary>
                             </binding>
-                            <outlet property="nextKeyView" destination="vA3-bv-XVo" id="HmV-Bm-ibR"/>
-                        </connections>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="vA3-bv-XVo" userLabel="Password Field">
-                        <rect key="frame" x="148" y="49" width="176" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Pxc-h8-JID">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="9NX-Mt-LW4" name="value" keyPath="selection.password" id="b7p-qW-0b3">
-                                <dictionary key="options">
-                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                </dictionary>
-                            </binding>
+                            <outlet property="nextKeyView" destination="NTA-Q3-3bS" id="JbZ-Kh-xW7"/>
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6Di-sB-But" userLabel="Password Label">
@@ -219,6 +203,22 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <secureTextField verticalHuggingPriority="750" id="NTA-Q3-3bS" userLabel="Password Field">
+                        <rect key="frame" x="148" y="49" width="176" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="NaV-L4-Im8">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </secureTextFieldCell>
+                        <connections>
+                            <binding destination="9NX-Mt-LW4" name="value" keyPath="selection.password" id="0Ma-RY-uui"/>
+                            <outlet property="nextKeyView" destination="Bds-NM-X0K" id="NxK-qE-gk9"/>
+                        </connections>
+                    </secureTextField>
                     <button verticalHuggingPriority="750" id="Bds-NM-X0K" userLabel="Login Button">
                         <rect key="frame" x="248" y="13" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -231,6 +231,7 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="loginAction:" target="494" id="ETG-LC-Y9r"/>
+                            <outlet property="nextKeyView" destination="2bI-io-su0" id="Z4t-pw-FDw"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="cwY-nP-qXe" userLabel="Quit Button">
