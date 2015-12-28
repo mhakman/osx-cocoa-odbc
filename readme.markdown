@@ -36,7 +36,7 @@ The following is a simple Cocoa console (non-GUI) application that uses Odbc fra
         
         [connection connect: @"testdb" username: @"sysadm" password: @"secret"];
         
-        OdbcStatement * stmt = [connection newStatment];
+        OdbcStatement * stmt = [connection newStatement];
         
         [stmt execDirect: @"select * from book order by title"];
         
